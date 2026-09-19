@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="ko">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#071014" />
   <meta name="description" content="RFVisualizer 졸업과제 시연용 반응형 웹 프레젠테이션" />
   <title>RFVisualizer — 졸업과제 발표</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23071014'/%3E%3Cpath d='M15 42c10-18 24-25 36-20M20 48c8-12 18-17 29-15M29 50c4-5 9-7 15-6' fill='none' stroke='%2369f0c8' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='15' cy='42' r='4' fill='%23ffcc66'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23071014'/%3E%3Cpath d='M15 42c10-18 24-25 36-20M20 48c8-12 18-17 29-15M29 50c4-5 9-7 15-6' fill='none' stroke='%2369f0c8' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='15' cy='42' r='4' fill='%23ffcc66'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header class="topbar" aria-label="발표 도구">
     <a class="brand" href="#intro" aria-label="첫 화면으로 이동">
@@ -36,27 +39,26 @@
     <section class="chapter intro" id="intro" data-label="표지" data-title="제목">
       <div class="canvas cover">
         <div class="ambient-grid" aria-hidden="true"></div>
-      <div class="content hero-layout">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span>2026</span> 졸업과제</p>
-          <h1>사진 기반 실내 복원과<br /><em>실측 잔차 보정</em>을 결합한<br />RF 신호장 추정과 3D 시각화</h1>
-          <p class="hero-summary">복도를 사진으로 3D 복원하고, 전파 시뮬레이션과 Wi-Fi 실측을 합쳐 신호 지도를 만듦. 결과는 PC Viewer와 손에 드는 기기에서 확인</p>
-          <div class="hero-metrics" aria-label="핵심 수치">
-            <div><strong>10</strong><span>시험 지점</span></div>
-            <div><strong>4</strong><span>비교 방법</span></div>
-            <div><strong>2.78</strong><span>최저 MAE (dB)</span></div>
+        <div class="content hero-layout">
+          <div class="hero-copy reveal">
+            <p class="eyebrow"><span>2026</span> 졸업과제</p>
+            <h1>사진 기반 실내 복원과<br /><em>실측 잔차 보정</em>을 결합한<br />RF 신호장 추정과 3D 시각화</h1>
+            <p class="hero-summary">복도를 사진으로 3D 복원하고, 전파 시뮬레이션과 Wi-Fi 실측을 합쳐 신호 지도를 만듦. 결과는 PC Viewer와 손에 드는 기기에서 확인</p>
+            <div class="hero-metrics" aria-label="핵심 수치">
+              <div><strong>10</strong><span>시험 지점</span></div>
+              <div><strong>4</strong><span>비교 방법</span></div>
+              <div><strong>2.78</strong><span>최저 MAE (dB)</span></div>
+            </div>
           </div>
+          <figure class="device-stage reveal delay-1">
+            <img src="assets/handheld.png" alt="RF 분석 화면이 출력된 Handheld 장치" />
+          </figure>
         </div>
-        <figure class="device-stage reveal delay-1">
-          <div class="signal-orbit orbit-a"></div>
-          <div class="signal-orbit orbit-b"></div>
-          <img src="assets/handheld.png" alt="RF 분석 화면이 출력된 Handheld 장치" />
-          <figcaption><span class="live-dot"></span> Handheld 종단 출력</figcaption>
-        </figure>
-      </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">안녕하십니까. 저희 과제는 실내 와이파이 신호를 3차원 공간 안에서 보여 주는 것입니다. 복도를 사진으로 찍어 3차원으로 복원하고, 그 위에서 전파 시뮬레이션을 돌린 뒤, 실제로 측정한 신호로 시뮬레이션의 오차를 보정했습니다. 최종 결과는 PC의 3D Viewer와 직접 만든 손에 드는 기기에서 확인할 수 있습니다. 먼저 왜 이런 것이 필요한지부터 말씀드리겠습니다.</template>
+      <template class="speaker-note">안녕하십니까. 저희 과제는 실내 와이파이 신호를 3차원 공간 안에서 보여 주는 것입니다. 복도를 사진으로 찍어 3차원으로 복원하고, 그 위에서 전파
+        시뮬레이션을 돌린 뒤, 실제로 측정한 신호로 시뮬레이션의 오차를 보정했습니다. 최종 결과는 PC의 3D Viewer와 직접 만든 손에 드는 기기에서 확인할 수 있습니다. 먼저 왜 이런 것이 필요한지부터
+        말씀드리겠습니다.</template>
     </section>
 
     <section class="chapter" id="problem" data-label="문제" data-title="문제 정의">
@@ -67,29 +69,33 @@
         </header>
         <div class="slide-body">
           <div class="content split-layout">
-        <div class="section-copy reveal">
-          <ul class="bullets">
-            <li><b>와이파이 신호 세기(RSSI)</b>는 보통 평면도 위 2D 히트맵으로 그림</li>
-            <li>그런데 신호는 거리만으로 정해지지 않음. 벽에 막히고, 반사되고, 높이에 따라 달라짐</li>
-            <li>평면 그림에는 벽·문·높이가 없어서 <b>왜 여기가 약한지</b>를 설명하지 못함</li>
-            <li>공간을 사람이 직접 3D CAD로 만들면 정확하지만, 공간이 바뀔 때마다 비용이 반복됨</li>
-          </ul>
-          <div class="callout"><b>그래서</b><span>사진으로 공간을 복원하고 · 물리로 예측하고 · 실측으로 보정</span></div>
-        </div>
-        <div class="problem-visual reveal delay-1" aria-label="2D와 3D RF 표현 비교 다이어그램">
-          <div class="map-plane">
-            <span class="heat heat-a"></span><span class="heat heat-b"></span><span class="heat heat-c"></span>
-            <div class="wall wall-a"></div><div class="wall wall-b"></div><div class="wall wall-c"></div>
-            <div class="floor-label">2D HEATMAP</div>
+            <div class="section-copy reveal">
+              <ul class="bullets">
+                <li><b>와이파이 신호 세기(RSSI)</b>는 보통 평면도 위 2D 히트맵으로 그림</li>
+                <li>그런데 신호는 거리만으로 정해지지 않음. 벽에 막히고, 반사되고, 높이에 따라 달라짐</li>
+                <li>평면 그림에는 벽·문·높이가 없어서 <b>왜 여기가 약한지</b>를 설명하지 못함</li>
+                <li>공간을 사람이 직접 3D CAD로 만들면 정확하지만, 공간이 바뀔 때마다 비용이 반복됨</li>
+              </ul>
+              <div class="callout"><b>그래서</b><span>사진으로 공간을 복원하고 · 물리로 예측하고 · 실측으로 보정</span></div>
+            </div>
+            <div class="problem-visual reveal delay-1" aria-label="2D와 3D RF 표현 비교 다이어그램">
+              <div class="map-plane">
+                <span class="heat heat-a"></span><span class="heat heat-b"></span><span class="heat heat-c"></span>
+                <div class="wall wall-a"></div>
+                <div class="wall wall-b"></div>
+                <div class="wall wall-c"></div>
+                <div class="floor-label">2D HEATMAP</div>
+              </div>
+              <div class="depth-arrow"><span>+ HEIGHT</span></div>
+              <div class="vertical-scan"><i></i><i></i><i></i><i></i></div>
+            </div>
           </div>
-          <div class="depth-arrow"><span>+ HEIGHT</span></div>
-          <div class="vertical-scan"><i></i><i></i><i></i><i></i></div>
-        </div>
-      </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">와이파이 신호 세기는 RSSI라고 하며, 보통 평면도 위에 색으로 칠한 2차원 히트맵으로 표현합니다. 그런데 실제 공간에는 벽과 문, 기둥이 있고 높이에 따라서도 신호가 달라집니다. 평면 그림만으로는 어느 위치가 왜 약한지를 설명하기 어렵습니다. 반대로 실제 공간을 사람이 직접 3차원 CAD 모델로 만드는 방법은 정확하지만 시간과 비용이 많이 들고, 공간이 바뀔 때마다 작업을 반복해야 합니다. 그래서 저희는 사진에서 공간을 복원하는 방법을 선택했습니다.</template>
+      <template class="speaker-note">와이파이 신호 세기는 RSSI라고 하며, 보통 평면도 위에 색으로 칠한 2차원 히트맵으로 표현합니다. 그런데 실제 공간에는 벽과 문, 기둥이 있고
+        높이에 따라서도 신호가 달라집니다. 평면 그림만으로는 어느 위치가 왜 약한지를 설명하기 어렵습니다. 반대로 실제 공간을 사람이 직접 3차원 CAD 모델로 만드는 방법은 정확하지만 시간과 비용이 많이
+        들고, 공간이 바뀔 때마다 작업을 반복해야 합니다. 그래서 저희는 사진에서 공간을 복원하는 방법을 선택했습니다.</template>
     </section>
 
     <section class="chapter" id="goal" data-label="목표" data-title="무엇을 만들었나">
@@ -100,23 +106,26 @@
         </header>
         <div class="slide-body">
           <div class="content goal-layout">
-        <div class="section-copy reveal">
-          <ul class="bullets">
-            <li><b>① 공간 복원</b> 사진과 영상으로 복도를 3D로 되살림. CAD 작업 없이</li>
-            <li><b>② 전파 예측</b> 복원한 공간 위에서 반사·차폐를 물리적으로 계산</li>
-            <li><b>③ 실측 보정</b> 직접 잰 신호로 예측의 오차를 위치별로 바로잡음</li>
-          </ul>
-          <div class="callout"><b>결과를 보는 곳</b><span>PC의 3D Viewer · 손에 드는 Handheld 기기 화면</span></div>
-        </div>
-        <button class="goal-figure reveal delay-1" type="button" data-zoom="assets/pipeline.png" aria-label="전체 파이프라인 확대">
-          <img src="assets/pipeline.png" alt="입력에서 예측·보정을 거쳐 렌더러와 Handheld로 이어지는 전체 파이프라인" />
-          <span class="figure-cap">전체 파이프라인 · <b>입력 → 예측과 보정 → 출력</b></span>
-        </button>
-      </div>
+            <div class="section-copy reveal">
+              <ul class="bullets">
+                <li><b>① 공간 복원</b> 사진과 영상으로 복도를 3D로 되살림. CAD 작업 없이</li>
+                <li><b>② 전파 예측</b> 복원한 공간 위에서 반사·차폐를 물리적으로 계산</li>
+                <li><b>③ 실측 보정</b> 직접 잰 신호로 예측의 오차를 위치별로 바로잡음</li>
+              </ul>
+              <div class="callout"><b>결과를 보는 곳</b><span>PC의 3D Viewer · 손에 드는 Handheld 기기 화면</span></div>
+            </div>
+            <button class="goal-figure reveal delay-1" type="button" data-zoom="assets/pipeline.png"
+              aria-label="전체 파이프라인 확대">
+              <img src="assets/pipeline.png" alt="입력에서 예측·보정을 거쳐 렌더러와 Handheld로 이어지는 전체 파이프라인" />
+              <span class="figure-cap">전체 파이프라인 · <b>입력 → 예측과 보정 → 출력</b></span>
+            </button>
+          </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">저희 과제의 목표는 세 가지를 하나의 좌표계 위에서 합치는 것입니다. 첫째, 사진과 영상만으로 복도를 3차원으로 복원합니다. 사람이 CAD로 그릴 필요가 없습니다. 둘째, 복원한 공간 위에서 전파가 벽에 반사되고 가려지는 과정을 물리적으로 계산합니다. 셋째, 실제로 측정한 신호로 그 계산의 오차를 위치마다 바로잡습니다. 오른쪽이 전체 파이프라인입니다. 왼쪽이 입력, 가운데가 예측과 보정, 오른쪽이 출력입니다. 최종 결과는 PC의 3D Viewer와 저희가 만든 손에 드는 기기에서 확인할 수 있습니다.</template>
+      <template class="speaker-note">저희 과제의 목표는 세 가지를 하나의 좌표계 위에서 합치는 것입니다. 첫째, 사진과 영상만으로 복도를 3차원으로 복원합니다. 사람이 CAD로 그릴
+        필요가 없습니다. 둘째, 복원한 공간 위에서 전파가 벽에 반사되고 가려지는 과정을 물리적으로 계산합니다. 셋째, 실제로 측정한 신호로 그 계산의 오차를 위치마다 바로잡습니다. 오른쪽이 전체
+        파이프라인입니다. 왼쪽이 입력, 가운데가 예측과 보정, 오른쪽이 출력입니다. 최종 결과는 PC의 3D Viewer와 저희가 만든 손에 드는 기기에서 확인할 수 있습니다.</template>
     </section>
 
     <section class="chapter" id="reconstruction" data-label="복원" data-title="공간 복원">
@@ -127,30 +136,35 @@
         </header>
         <div class="slide-body">
           <div class="content media-layout">
-        <div class="reconstruction-grid">
-          <button class="image-card scene-card reveal" type="button" data-zoom="assets/scene-render.png" aria-label="Gaussian Scene 확대">
-            <img src="assets/scene-render.png" alt="PGSR로 복원한 3층 복도의 Gaussian Scene" />
-            <span class="image-label"><b>Gaussian Scene</b><small>사람이 보는 장면 (RF 볼륨 겹침)</small></span>
-          </button>
-          <button class="image-card proxy-card reveal delay-1" type="button" data-zoom="assets/proxy-mesh.png" aria-label="Proxy Shell 확대">
-            <img src="assets/proxy-mesh.png" alt="바닥·벽·천장 그룹으로 이루어진 닫힌 Proxy Shell" />
-            <span class="image-label"><b>Proxy Shell</b><small>컴퓨터가 전파를 계산하는 공간</small></span>
-          </button>
-          <div class="process-strip reveal delay-2">
-            <div><span>01</span><b>촬영</b><small>겹치는 사진과 영상</small></div>
-            <i></i>
-            <div><span>02</span><b>COLMAP</b><small>사진에서 카메라 위치 추정</small></div>
-            <i></i>
-            <div><span>03</span><b>PGSR</b><small>Gaussian Scene + 표면 메시</small></div>
-            <i></i>
-            <div><span>04</span><b>Proxy 정리</b><small>벽·바닥·장애물 단순화</small></div>
+            <div class="reconstruction-grid">
+              <button class="image-card scene-card reveal" type="button" data-zoom="assets/scene-render.png"
+                aria-label="Gaussian Scene 확대">
+                <img src="assets/scene-render.png" alt="PGSR로 복원한 3층 복도의 Gaussian Scene" />
+                <span class="image-label"><b>Gaussian Scene</b><small>사람이 보는 장면 (RF 볼륨 겹침)</small></span>
+              </button>
+              <button class="image-card proxy-card reveal delay-1" type="button" data-zoom="assets/proxy-mesh.png"
+                aria-label="Proxy Shell 확대">
+                <img src="assets/proxy-mesh.png" alt="바닥·벽·천장 그룹으로 이루어진 닫힌 Proxy Shell" />
+                <span class="image-label"><b>Proxy Shell</b><small>컴퓨터가 전파를 계산하는 공간</small></span>
+              </button>
+              <div class="process-strip reveal delay-2">
+                <div><span>01</span><b>촬영</b><small>겹치는 사진과 영상</small></div>
+                <i></i>
+                <div><span>02</span><b>COLMAP</b><small>사진에서 카메라 위치 추정</small></div>
+                <i></i>
+                <div><span>03</span><b>PGSR</b><small>Gaussian Scene + 표면 메시</small></div>
+                <i></i>
+                <div><span>04</span><b>Proxy 정리</b><small>벽·바닥·장애물 단순화</small></div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">부산대학교 IT관 3층 복도를 사진이 서로 겹치도록 촬영했습니다. COLMAP은 여러 사진에서 같은 지점을 찾아 카메라가 어디에서 찍었는지를 되찾아 주는 도구입니다. 이 결과를 PGSR에 넣으면 사진처럼 보이는 Gaussian Scene과, 표면을 삼각형으로 표현한 Surface Mesh가 나옵니다. 그런데 복원된 표면에는 부풀음과 떠다니는 조각이 남습니다. 전파 계산에는 닫힌 공간이 필요하므로, 이를 정리해 벽과 바닥, 주요 장애물만 단순하게 남긴 Proxy Mesh를 만들었습니다. 왼쪽은 사람이 보는 장면이고 오른쪽은 컴퓨터가 반사와 차폐를 계산하는 공간입니다. 왼쪽 그림에 입혀진 색은 뒤에서 설명드릴 RF 볼륨입니다.</template>
+      <template class="speaker-note">부산대학교 IT관 3층 복도를 사진이 서로 겹치도록 촬영했습니다. COLMAP은 여러 사진에서 같은 지점을 찾아 카메라가 어디에서 찍었는지를 되찾아
+        주는 도구입니다. 이 결과를 PGSR에 넣으면 사진처럼 보이는 Gaussian Scene과, 표면을 삼각형으로 표현한 Surface Mesh가 나옵니다. 그런데 복원된 표면에는 부풀음과 떠다니는 조각이
+        남습니다. 전파 계산에는 닫힌 공간이 필요하므로, 이를 정리해 벽과 바닥, 주요 장애물만 단순하게 남긴 Proxy Mesh를 만들었습니다. 왼쪽은 사람이 보는 장면이고 오른쪽은 컴퓨터가 반사와 차폐를
+        계산하는 공간입니다. 왼쪽 그림에 입혀진 색은 뒤에서 설명드릴 RF 볼륨입니다.</template>
     </section>
 
     <section class="chapter" id="system" data-label="시스템" data-title="전체 시스템">
@@ -162,33 +176,35 @@
         </header>
         <div class="slide-body">
           <div class="content system-content">
-        <div class="flow-stack reveal delay-1">
-          <div class="flow-lane lane-green">
-            <span class="lane-name">RSSI DATA</span>
-            <div class="flow-node"><b>Remote ESP32 × 4</b><small>원격 실측</small></div><i></i>
-            <div class="flow-node"><b>ESP32 Gateway</b><small>수집 · 자체 실측</small></div><i></i>
-            <div class="flow-node"><b>STM32</b><small>검증 · JSON</small></div><i></i>
-            <div class="flow-node"><b>MQTT</b><small>중계</small></div><i></i>
-            <div class="flow-node strong"><b>Backend</b><small>저장 · 검사</small></div>
+            <div class="flow-stack reveal delay-1">
+              <div class="flow-lane lane-green">
+                <span class="lane-name">RSSI DATA</span>
+                <div class="flow-node"><b>Remote ESP32 × 4</b><small>원격 실측</small></div><i></i>
+                <div class="flow-node"><b>ESP32 Gateway</b><small>수집 · 자체 실측</small></div><i></i>
+                <div class="flow-node"><b>STM32</b><small>검증 · JSON</small></div><i></i>
+                <div class="flow-node"><b>MQTT</b><small>중계</small></div><i></i>
+                <div class="flow-node strong"><b>Backend</b><small>저장 · 검사</small></div>
+              </div>
+              <div class="flow-lane lane-cyan">
+                <span class="lane-name">VIDEO</span>
+                <div class="flow-node"><b>3D Viewer</b><small>800×480</small></div><i></i>
+                <div class="flow-node strong"><b>Image Relay</b><small>최신 프레임</small></div><i></i>
+                <div class="flow-node"><b>Handheld</b><small>LCD 출력</small></div>
+              </div>
+              <div class="flow-lane lane-amber">
+                <span class="lane-name">CONTROL</span>
+                <div class="flow-node"><b>BNO085</b><small>자세 · 버튼</small></div><i></i>
+                <div class="flow-node strong"><b>Backend</b><small>UDP → WS</small></div><i></i>
+                <div class="flow-node"><b>3D Viewer</b><small>카메라 제어</small></div>
+              </div>
+            </div>
           </div>
-          <div class="flow-lane lane-cyan">
-            <span class="lane-name">VIDEO</span>
-            <div class="flow-node"><b>3D Viewer</b><small>800×480</small></div><i></i>
-            <div class="flow-node strong"><b>Image Relay</b><small>최신 프레임</small></div><i></i>
-            <div class="flow-node"><b>Handheld</b><small>LCD 출력</small></div>
-          </div>
-          <div class="flow-lane lane-amber">
-            <span class="lane-name">CONTROL</span>
-            <div class="flow-node"><b>BNO085</b><small>자세 · 버튼</small></div><i></i>
-            <div class="flow-node strong"><b>Backend</b><small>UDP → WS</small></div><i></i>
-            <div class="flow-node"><b>3D Viewer</b><small>카메라 제어</small></div>
-          </div>
-        </div>
-      </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">전체 시스템에는 세 가지 흐름이 있습니다. 첫째 초록색 흐름은 데이터입니다. 네 대의 원격 ESP32 노드와 로컬 측정을 담당하는 Gateway가 신호 세기를 수집하고, STM32와 MQTT를 거쳐 Backend에 저장합니다. 둘째 하늘색 흐름은 영상입니다. 3D Viewer가 만든 화면을 Image Relay가 손에 드는 기기로 보냅니다. 셋째 주황색 흐름은 제어입니다. 기기의 자세 센서와 버튼 입력이 Backend를 거쳐 Viewer 카메라를 움직입니다. 즉 영상은 나가고 조작은 들어오는 양방향 구조입니다.</template>
+      <template class="speaker-note">전체 시스템에는 세 가지 흐름이 있습니다. 첫째 초록색 흐름은 데이터입니다. 네 대의 원격 ESP32 노드와 로컬 측정을 담당하는 Gateway가
+        신호 세기를 수집하고, STM32와 MQTT를 거쳐 Backend에 저장합니다. 둘째 하늘색 흐름은 영상입니다. 3D Viewer가 만든 화면을 Image Relay가 손에 드는 기기로 보냅니다. 셋째
+        주황색 흐름은 제어입니다. 기기의 자세 센서와 버튼 입력이 Backend를 거쳐 Viewer 카메라를 움직입니다. 즉 영상은 나가고 조작은 들어오는 양방향 구조입니다.</template>
     </section>
 
     <section class="chapter" id="embedded" data-label="측정" data-title="RSSI 측정">
@@ -199,29 +215,44 @@
         </header>
         <div class="slide-body">
           <div class="content split-layout measurement-layout">
-        <div class="measurement-map reveal">
-          <img src="assets/measurement-layout.png" alt="송신기, 보정 지점 4개, 시험 지점 10개의 배치도" />
-          <div class="map-badge">시험 10 · 보정 4 · 송신기 1</div>
-        </div>
-        <div class="section-copy reveal delay-1">
-          <ul class="bullets">
-            <li><b>RSSI</b>는 수신한 신호의 세기. 단위는 dBm이고 음수이며, 값이 낮을수록 약함</li>
-            <li>공유기 1대를 놓고 ESP32 5대로 잼. 고정 <b>보정점 4</b> + 이동 <b>시험점 10</b></li>
-            <li>보정점은 <b>벽에 가린 곳과 아닌 곳</b>에 2:2로 나눔. 한쪽에 몰리면 반대편 보정이 추측이 됨</li>
-            <li>시험점 값은 보정에 쓰지 않고 <b>채점에만</b> 씀</li>
-          </ul>
-          <dl class="spec-list">
-            <div><dt>송신기</dt><dd>ipTIME N602SR · 2.437 GHz</dd></div>
-            <div><dt>높이</dt><dd>TX 0.80 m · RX 0.45 m</dd></div>
-            <div><dt>절차</dt><dd>1회 순회 · 지점당 120 s</dd></div>
-            <div><dt>대표값</dt><dd>이동평균의 중앙값</dd></div>
-          </dl>
-        </div>
-      </div>
+            <div class="measurement-map reveal">
+              <img src="assets/measurement-layout.png" alt="송신기, 보정 지점 4개, 시험 지점 10개의 배치도" />
+              <div class="map-badge">시험 10 · 보정 4 · 송신기 1</div>
+            </div>
+            <div class="section-copy reveal delay-1">
+              <ul class="bullets">
+                <li><b>RSSI</b>는 수신한 신호의 세기. 단위는 dBm이고 음수이며, 값이 낮을수록 약함</li>
+                <li>공유기 1대를 놓고 ESP32 5대로 잼. 고정 <b>보정점 4</b> + 이동 <b>시험점 10</b></li>
+                <li>보정점은 <b>벽에 가린 곳과 아닌 곳</b>에 2:2로 나눔. 한쪽에 몰리면 반대편 보정이 추측이 됨</li>
+                <li>시험점 값은 보정에 쓰지 않고 <b>채점에만</b> 씀</li>
+              </ul>
+              <dl class="spec-list">
+                <div>
+                  <dt>송신기</dt>
+                  <dd>ipTIME N602SR · 2.437 GHz</dd>
+                </div>
+                <div>
+                  <dt>높이</dt>
+                  <dd>TX 0.80 m · RX 0.45 m</dd>
+                </div>
+                <div>
+                  <dt>절차</dt>
+                  <dd>1회 순회 · 지점당 120 s</dd>
+                </div>
+                <div>
+                  <dt>대표값</dt>
+                  <dd>이동평균의 중앙값</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">RSSI는 수신한 와이파이 신호의 세기를 나타낸 값입니다. 단위는 dBm이고 보통 음수이며, 값이 낮을수록 신호가 약하다는 뜻입니다. 공유기 한 대를 켜 두고 ESP32 다섯 대로 측정했습니다. 네 대는 고정된 보정 지점에 두고, 나머지 하나인 Gateway가 시험 지점을 돌며 측정했습니다. 보정 지점은 송신기가 보이는 곳 두 개와 벽에 가린 곳 두 개로 나눠 배치했는데, 한쪽 구간에만 몰리면 반대 구간의 보정이 추측이 되기 때문입니다. 각 지점에서 20초 안정화 후 120초를 기록했고, 열 개 시험 지점을 한 번의 순회로 모두 측정했습니다. 중요한 점은 시험 지점의 측정값을 보정에는 전혀 쓰지 않고 채점에만 썼다는 것입니다.</template>
+      <template class="speaker-note">RSSI는 수신한 와이파이 신호의 세기를 나타낸 값입니다. 단위는 dBm이고 보통 음수이며, 값이 낮을수록 신호가 약하다는 뜻입니다. 공유기 한 대를
+        켜 두고 ESP32 다섯 대로 측정했습니다. 네 대는 고정된 보정 지점에 두고, 나머지 하나인 Gateway가 시험 지점을 돌며 측정했습니다. 보정 지점은 송신기가 보이는 곳 두 개와 벽에 가린 곳 두
+        개로 나눠 배치했는데, 한쪽 구간에만 몰리면 반대 구간의 보정이 추측이 되기 때문입니다. 각 지점에서 20초 안정화 후 120초를 기록했고, 열 개 시험 지점을 한 번의 순회로 모두 측정했습니다.
+        중요한 점은 시험 지점의 측정값을 보정에는 전혀 쓰지 않고 채점에만 썼다는 것입니다.</template>
     </section>
 
     <section class="chapter" id="network" data-label="수집" data-title="수집과 검증">
@@ -232,30 +263,33 @@
         </header>
         <div class="slide-body">
           <div class="content split-layout">
-        <div class="section-copy reveal">
-          <ul class="bullets">
-            <li>STM32 → Python Bridge → MQTT → Backend 순으로 전달</li>
-            <li>이상한 값도 <b>지우지 않음</b>. 제외 사유와 함께 원본에 남김</li>
-            <li>대표값 계산과 보정에서만 제외. 나중에 왜 빠졌는지 되짚을 수 있음</li>
-            <li>유효 신호 하한은 모든 단계에서 <b>-110 dBm</b>으로 통일. 수집 단계가 약한 신호를 먼저 지우지 않도록</li>
-            <li>패킷 순번으로 중복·누락을 확인</li>
-          </ul>
-        </div>
-        <div class="section-copy reveal delay-1">
-          <div class="status-pills"><span><i></i>5 nodes</span><span>QoS 1</span><span>원본 보존</span></div>
-          <div class="metric-glossary stacked">
-            <div><b>message rate</b><span>초당 수신량</span></div>
-            <div><b>lost packets</b><span>순번 기준 누락</span></div>
-            <div><b>last seen</b><span>마지막 수신 시각</span></div>
-            <div><b>drop rate</b><span>검사 제외 비율</span></div>
+            <div class="section-copy reveal">
+              <ul class="bullets">
+                <li>STM32 → Python Bridge → MQTT → Backend 순으로 전달</li>
+                <li>이상한 값도 <b>지우지 않음</b>. 제외 사유와 함께 원본에 남김</li>
+                <li>대표값 계산과 보정에서만 제외. 나중에 왜 빠졌는지 되짚을 수 있음</li>
+                <li>유효 신호 하한은 모든 단계에서 <b>-110 dBm</b>으로 통일. 수집 단계가 약한 신호를 먼저 지우지 않도록</li>
+                <li>패킷 순번으로 중복·누락을 확인</li>
+              </ul>
+            </div>
+            <div class="section-copy reveal delay-1">
+              <div class="status-pills"><span><i></i>5 nodes</span><span>QoS 1</span><span>원본 보존</span></div>
+              <div class="metric-glossary stacked">
+                <div><b>message rate</b><span>초당 수신량</span></div>
+                <div><b>lost packets</b><span>순번 기준 누락</span></div>
+                <div><b>last seen</b><span>마지막 수신 시각</span></div>
+                <div><b>drop rate</b><span>검사 제외 비율</span></div>
+              </div>
+              <p class="note-line">측정 중에는 위 네 지표가 실시간으로 변하는 화면을 함께 보여 드립니다</p>
+            </div>
           </div>
-          <p class="note-line">측정 중에는 위 네 지표가 실시간으로 변하는 화면을 함께 보여 드립니다</p>
-        </div>
-      </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">측정한 값은 STM32와 Python Bridge, MQTT를 거쳐 Backend에 저장됩니다. Backend는 값을 검증하고 실험 위치와 시간 구간에 맞춰 보관합니다. 여기서 한 가지 원칙을 두었습니다. 이상한 값이라도 지우지 않고, 왜 제외했는지를 함께 남깁니다. 분석에서만 빼기 때문에 나중에 어떤 표본이 왜 빠졌는지 되짚을 수 있습니다. 또 유효 신호의 하한을 모든 단계에서 -110 dBm으로 통일해, 수집 단계가 약한 신호를 미리 지워 버리지 않도록 했습니다. 이 자리에서는 노드 상태와 초당 수신량, 누락 수와 드롭률이 실시간으로 변하는 대시보드를 함께 보여 드리겠습니다.</template>
+      <template class="speaker-note">측정한 값은 STM32와 Python Bridge, MQTT를 거쳐 Backend에 저장됩니다. Backend는 값을 검증하고 실험 위치와 시간
+        구간에 맞춰 보관합니다. 여기서 한 가지 원칙을 두었습니다. 이상한 값이라도 지우지 않고, 왜 제외했는지를 함께 남깁니다. 분석에서만 빼기 때문에 나중에 어떤 표본이 왜 빠졌는지 되짚을 수 있습니다.
+        또 유효 신호의 하한을 모든 단계에서 -110 dBm으로 통일해, 수집 단계가 약한 신호를 미리 지워 버리지 않도록 했습니다. 이 자리에서는 노드 상태와 초당 수신량, 누락 수와 드롭률이 실시간으로
+        변하는 대시보드를 함께 보여 드리겠습니다.</template>
     </section>
 
     <section class="chapter" id="monitor" data-label="모니터링" data-title="Backend 모니터링">
@@ -267,22 +301,25 @@
         </header>
         <div class="slide-body">
           <div class="content slot-layout">
-          <div class="media-slot">
-            <div>
-              <span class="slot-kind">SCREEN / VIDEO</span>
-              <b>Backend 모니터링 대시보드</b>
-              <span class="slot-hint">측정 중 메시지 수 · 노드 상태 · 드롭 · 손실 값이 변하는 화면<br /><code>assets/monitor.png</code> 또는 <code>assets/monitor.mp4</code>로 교체</span>
+            <div class="media-slot">
+              <div>
+                <span class="slot-kind">SCREEN / VIDEO</span>
+                <b>Backend 모니터링 대시보드</b>
+                <span class="slot-hint">측정 중 메시지 수 · 노드 상태 · 드롭 · 손실 값이 변하는 화면<br /><code>assets/monitor.png</code> 또는
+                  <code>assets/monitor.mp4</code>로 교체</span>
+              </div>
             </div>
-          </div>
-          <div class="slot-caption">
-            <b>볼 것</b>
-            <span>노드 5대가 ONLINE을 유지하는지 · 초당 수신량이 일정한지 · lost packets가 늘지 않는지 · drop rate가 0에 가까운지</span>
-          </div>
+            <div class="slot-caption">
+              <b>볼 것</b>
+              <span>노드 5대가 ONLINE을 유지하는지 · 초당 수신량이 일정한지 · lost packets가 늘지 않는지 · drop rate가 0에 가까운지</span>
+            </div>
           </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">측정이 도는 동안 Backend 대시보드에서 수집 상태를 실시간으로 확인합니다. 왼쪽 위 지표가 초당 수신량이고, 그 옆이 누락된 패킷 수와 드롭률입니다. 아래 표에는 노드 다섯 대의 연결 상태와 마지막 수신 시각이 나옵니다. 지금 보시는 것처럼 다섯 대가 모두 ONLINE을 유지하고 초당 수신량이 일정하게 들어오는 것이 정상 상태입니다. 이 화면 덕분에 측정 도중 노드가 끊기거나 값이 비는 상황을 바로 알아차릴 수 있었습니다.</template>
+      <template class="speaker-note">측정이 도는 동안 Backend 대시보드에서 수집 상태를 실시간으로 확인합니다. 왼쪽 위 지표가 초당 수신량이고, 그 옆이 누락된 패킷 수와
+        드롭률입니다. 아래 표에는 노드 다섯 대의 연결 상태와 마지막 수신 시각이 나옵니다. 지금 보시는 것처럼 다섯 대가 모두 ONLINE을 유지하고 초당 수신량이 일정하게 들어오는 것이 정상 상태입니다.
+        이 화면 덕분에 측정 도중 노드가 끊기거나 값이 비는 상황을 바로 알아차릴 수 있었습니다.</template>
     </section>
 
     <section class="chapter" id="concept" data-label="개념" data-title="세 가지 접근">
@@ -294,37 +331,41 @@
         </header>
         <div class="slide-body">
           <div class="content concept-layout">
-        <div class="concept-row reveal delay-1">
-          <div class="concept-card">
-            <span class="concept-no">①</span>
-            <b>시뮬레이션만</b>
-            <em>Sionna RT</em>
-            <p>복원한 공간에서 전파가 벽에 부딪히고 꺾이는 경로를 물리적으로 계산</p>
-            <p class="miss"><b>놓치는 것</b> 벽 재질과 문이 열렸는지를 정확히 모름. 값이 통째로 치우침</p>
+            <div class="concept-row reveal delay-1">
+              <div class="concept-card">
+                <span class="concept-no">①</span>
+                <b>시뮬레이션만</b>
+                <em>Sionna RT</em>
+                <p>복원한 공간에서 전파가 벽에 부딪히고 꺾이는 경로를 물리적으로 계산</p>
+                <p class="miss"><b>놓치는 것</b> 벽 재질과 문이 열렸는지를 정확히 모름. 값이 통째로 치우침</p>
+              </div>
+              <div class="concept-card">
+                <span class="concept-no">②</span>
+                <b>측정만</b>
+                <em>Plain IDW</em>
+                <p>실제로 잰 값만 사용. 가까운 측정점에 더 큰 가중치를 주어 빈 곳을 채움</p>
+                <p class="miss"><b>놓치는 것</b> 재지 않은 곳의 벽과 차폐를 모름. 벽을 통과해 값이 번짐</p>
+              </div>
+              <div class="concept-card win">
+                <span class="concept-no">③</span>
+                <b>둘을 합침</b>
+                <em>Residual IDW · 제안</em>
+                <p>보정점에서 <b>잔차 = 실측 − 예측</b>을 구하고, 그 차이를 공간에 퍼뜨려 예측에 더함</p>
+                <p class="miss"><b>얻는 것</b> 공간 구조는 시뮬레이션이, 현장 오차는 실측이 담당</p>
+              </div>
+            </div>
+            <div class="mini-methods reveal delay-2">
+              <span><b>비교군 · Global Bias</b> 보정점 오차의 평균 하나를 공간 전체에 똑같이 더하는 가장 단순한 보정</span>
+            </div>
           </div>
-          <div class="concept-card">
-            <span class="concept-no">②</span>
-            <b>측정만</b>
-            <em>Plain IDW</em>
-            <p>실제로 잰 값만 사용. 가까운 측정점에 더 큰 가중치를 주어 빈 곳을 채움</p>
-            <p class="miss"><b>놓치는 것</b> 재지 않은 곳의 벽과 차폐를 모름. 벽을 통과해 값이 번짐</p>
-          </div>
-          <div class="concept-card win">
-            <span class="concept-no">③</span>
-            <b>둘을 합침</b>
-            <em>Residual IDW · 제안</em>
-            <p>보정점에서 <b>잔차 = 실측 − 예측</b>을 구하고, 그 차이를 공간에 퍼뜨려 예측에 더함</p>
-            <p class="miss"><b>얻는 것</b> 공간 구조는 시뮬레이션이, 현장 오차는 실측이 담당</p>
-          </div>
-        </div>
-        <div class="mini-methods reveal delay-2">
-          <span><b>비교군 · Global Bias</b> 보정점 오차의 평균 하나를 공간 전체에 똑같이 더하는 가장 단순한 보정</span>
-        </div>
-      </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">이 부분이 저희 과제의 핵심입니다. 접근은 크게 세 가지입니다. 첫째, 시뮬레이션만 쓰는 방법입니다. 복원한 공간에서 전파가 벽에 부딪히고 꺾이는 경로를 물리적으로 계산합니다. 공간 구조는 잘 반영하지만, 실제 벽의 재질이나 문이 열려 있는지를 정확히 입력할 수 없어 값이 통째로 치우칩니다. 둘째, 측정만 쓰는 방법입니다. 가까운 측정 지점에 더 큰 가중치를 주어 빈 곳을 채웁니다. 실측을 직접 반영하지만 재지 않은 곳의 벽과 차폐를 모르기 때문에 값이 벽을 통과해 번집니다. 셋째가 저희가 제안하는 방법입니다. 보정 지점에서 실측값과 예측값의 차이, 즉 잔차를 구하고 그 차이를 공간에 퍼뜨려 원래 예측에 더합니다. 공간 구조는 시뮬레이션이 담당하고 현장의 오차는 실측이 담당하는 구조입니다. 비교를 위해 오차의 평균 하나를 전체에 똑같이 더하는 가장 단순한 방법도 함께 평가했습니다.</template>
+      <template class="speaker-note">이 부분이 저희 과제의 핵심입니다. 접근은 크게 세 가지입니다. 첫째, 시뮬레이션만 쓰는 방법입니다. 복원한 공간에서 전파가 벽에 부딪히고 꺾이는
+        경로를 물리적으로 계산합니다. 공간 구조는 잘 반영하지만, 실제 벽의 재질이나 문이 열려 있는지를 정확히 입력할 수 없어 값이 통째로 치우칩니다. 둘째, 측정만 쓰는 방법입니다. 가까운 측정 지점에 더
+        큰 가중치를 주어 빈 곳을 채웁니다. 실측을 직접 반영하지만 재지 않은 곳의 벽과 차폐를 모르기 때문에 값이 벽을 통과해 번집니다. 셋째가 저희가 제안하는 방법입니다. 보정 지점에서 실측값과 예측값의
+        차이, 즉 잔차를 구하고 그 차이를 공간에 퍼뜨려 원래 예측에 더합니다. 공간 구조는 시뮬레이션이 담당하고 현장의 오차는 실측이 담당하는 구조입니다. 비교를 위해 오차의 평균 하나를 전체에 똑같이
+        더하는 가장 단순한 방법도 함께 평가했습니다.</template>
     </section>
 
     <section class="chapter" id="methods" data-label="지도" data-title="방법별 신호 지도">
@@ -336,31 +377,34 @@
         </header>
         <div class="slide-body">
           <div class="content methods-layout">
-        <div class="method-row reveal delay-1">
-          <figure class="method-panel">
-            <button class="method-image" type="button" data-zoom="assets/raw-sionna.png" aria-label="시뮬레이션 결과 확대">
-              <img src="assets/raw-sionna.png" alt="보정 전 Sionna RT 예측 분포" />
-            </button>
-            <figcaption><b>① 시뮬레이션만</b><span>구조는 보이지만 전체가 치우침</span><em>MAE 8.64 dB</em></figcaption>
-          </figure>
-          <figure class="method-panel">
-            <button class="method-image" type="button" data-zoom="assets/plain-idw.svg" aria-label="측정 보간 결과 확대">
-              <img src="assets/plain-idw.svg" alt="측정값만 거리 가중치로 보간한 Plain IDW 분포" />
-            </button>
-            <figcaption><b>② 측정만</b><span>부드럽지만 벽을 통과해 번짐</span><em>MAE 5.89 dB</em></figcaption>
-          </figure>
-          <figure class="method-panel">
-            <button class="method-image" type="button" data-zoom="assets/residual-idw.png" aria-label="잔차 IDW 결과 확대">
-              <img src="assets/residual-idw.png" alt="잔차 IDW로 보정한 복도 RF 지도" />
-            </button>
-            <figcaption class="win"><b>③ 둘을 합침</b><span>구조를 지키면서 실측에 가까워짐</span><em>MAE 2.78 dB</em></figcaption>
-          </figure>
-        </div>
-      </div>
+            <div class="method-row reveal delay-1">
+              <figure class="method-panel">
+                <button class="method-image" type="button" data-zoom="assets/raw-sionna.png" aria-label="시뮬레이션 결과 확대">
+                  <img src="assets/raw-sionna.png" alt="보정 전 Sionna RT 예측 분포" />
+                </button>
+                <figcaption><b>① 시뮬레이션만</b><span>구조는 보이지만 전체가 치우침</span><em>MAE 8.64 dB</em></figcaption>
+              </figure>
+              <figure class="method-panel">
+                <button class="method-image" type="button" data-zoom="assets/plain-idw.svg" aria-label="측정 보간 결과 확대">
+                  <img src="assets/plain-idw.svg" alt="측정값만 거리 가중치로 보간한 Plain IDW 분포" />
+                </button>
+                <figcaption><b>② 측정만</b><span>부드럽지만 벽을 통과해 번짐</span><em>MAE 5.89 dB</em></figcaption>
+              </figure>
+              <figure class="method-panel">
+                <button class="method-image" type="button" data-zoom="assets/residual-idw.png"
+                  aria-label="잔차 IDW 결과 확대">
+                  <img src="assets/residual-idw.png" alt="잔차 IDW로 보정한 복도 RF 지도" />
+                </button>
+                <figcaption class="win"><b>③ 둘을 합침</b><span>구조를 지키면서 실측에 가까워짐</span><em>MAE 2.78 dB</em></figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">같은 복도를 세 가지 방법으로 그린 결과입니다. 색은 신호 세기를 뜻하며 노란색이 강하고 보라색이 약합니다. 흰 부분은 복도가 아닌 영역입니다. 왼쪽 시뮬레이션 결과는 복도 구조를 따라 신호가 꺾이는 모습이 보이지만 값 자체가 실제와 어긋나 있습니다. 가운데 측정 보간 결과는 부드럽게 이어지지만 벽을 무시하고 값이 번집니다. 오른쪽이 두 가지를 합친 결과입니다. 구조를 그대로 유지하면서 값은 실측에 가까워졌습니다. 오른쪽 아래 숫자가 각 방법의 평균 오차인데, 8.64에서 2.78로 줄었습니다.</template>
+      <template class="speaker-note">같은 복도를 세 가지 방법으로 그린 결과입니다. 색은 신호 세기를 뜻하며 노란색이 강하고 보라색이 약합니다. 흰 부분은 복도가 아닌 영역입니다. 왼쪽
+        시뮬레이션 결과는 복도 구조를 따라 신호가 꺾이는 모습이 보이지만 값 자체가 실제와 어긋나 있습니다. 가운데 측정 보간 결과는 부드럽게 이어지지만 벽을 무시하고 값이 번집니다. 오른쪽이 두 가지를 합친
+        결과입니다. 구조를 그대로 유지하면서 값은 실측에 가까워졌습니다. 오른쪽 아래 숫자가 각 방법의 평균 오차인데, 8.64에서 2.78로 줄었습니다.</template>
     </section>
 
     <section class="chapter" id="results" data-label="결과" data-title="정량 결과">
@@ -371,31 +415,42 @@
         </header>
         <div class="slide-body">
           <div class="content results-layout">
-        <div class="section-copy reveal">
-          <p>MAE는 예측이 실측에서 평균 몇 dB 벗어났는지. 낮을수록 좋음</p>
-          <div class="winning-number"><strong>2.78</strong><span>dB<br />MAE</span></div>
-          <p class="delta-note">측정만 대비 <b>52.8%</b> ↓<br />시뮬레이션만 대비 <b>67.9%</b> ↓</p>
-        </div>
-        <div class="bar-chart reveal delay-1" aria-label="네 방법의 MAE 비교 막대그래프">
-          <div class="chart-scale"><span>0</span><span>3.5</span><span>7</span><span>10.5 dB</span></div>
-          <div class="bar-row"><span>① 시뮬레이션만</span><div><i style="--value:82.3%"></i></div><b>8.64</b></div>
-          <div class="bar-row"><span>② 측정만</span><div><i style="--value:56.1%"></i></div><b>5.89</b></div>
-          <div class="bar-row winner"><span>③ 둘을 합침</span><div><i style="--value:26.5%"></i></div><b>2.78</b></div>
-          <div class="bar-row"><span>비교군 Global Bias</span><div><i style="--value:84.5%"></i></div><b>8.87</b></div>
-          <p>Mean Absolute Error · lower is better</p>
-        </div>
-        <div class="result-table reveal delay-2">
-          <div class="table-head"><span>METHOD</span><span>MAE</span><span>RMSE</span></div>
-          <div><span>Raw Sionna RT</span><b>8.64</b><b>10.43</b></div>
-          <div><span>Plain IDW</span><b>5.89</b><b>7.84</b></div>
-          <div class="highlight"><span>Sionna + Residual IDW</span><b>2.78</b><b>4.13</b></div>
-          <div><span>Sionna + Global Bias</span><b>8.87</b><b>10.69</b></div>
-        </div>
-      </div>
+            <div class="section-copy reveal">
+              <p>MAE는 예측이 실측에서 평균 몇 dB 벗어났는지. 낮을수록 좋음</p>
+              <div class="winning-number"><strong>2.78</strong><span>dB<br />MAE</span></div>
+              <p class="delta-note">측정만 대비 <b>52.8%</b> ↓<br />시뮬레이션만 대비 <b>67.9%</b> ↓</p>
+            </div>
+            <div class="bar-chart reveal delay-1" aria-label="네 방법의 MAE 비교 막대그래프">
+              <div class="chart-scale"><span>0</span><span>3.5</span><span>7</span><span>10.5 dB</span></div>
+              <div class="bar-row"><span>① 시뮬레이션만</span>
+                <div><i style="--value:82.3%"></i></div><b>8.64</b>
+              </div>
+              <div class="bar-row"><span>② 측정만</span>
+                <div><i style="--value:56.1%"></i></div><b>5.89</b>
+              </div>
+              <div class="bar-row winner"><span>③ 둘을 합침</span>
+                <div><i style="--value:26.5%"></i></div><b>2.78</b>
+              </div>
+              <div class="bar-row"><span>비교군 Global Bias</span>
+                <div><i style="--value:84.5%"></i></div><b>8.87</b>
+              </div>
+              <p>Mean Absolute Error · lower is better</p>
+            </div>
+            <div class="result-table reveal delay-2">
+              <div class="table-head"><span>METHOD</span><span>MAE</span><span>RMSE</span></div>
+              <div><span>Raw Sionna RT</span><b>8.64</b><b>10.43</b></div>
+              <div><span>Plain IDW</span><b>5.89</b><b>7.84</b></div>
+              <div class="highlight"><span>Sionna + Residual IDW</span><b>2.78</b><b>4.13</b></div>
+              <div><span>Sionna + Global Bias</span><b>8.87</b><b>10.69</b></div>
+            </div>
+          </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">네 방법의 오차를 비교한 결과입니다. MAE는 예측이 실제 측정에서 평균 몇 dB 벗어났는지를 뜻하며 낮을수록 좋습니다. 열 개 시험 지점을 모두 포함한 한 번의 측정에서, 시뮬레이션만 쓴 경우가 8.64 dB, 측정만 쓴 경우가 5.89 dB였습니다. 두 가지를 합친 잔차 IDW는 2.78 dB로 가장 낮았습니다. 측정만 쓴 방법보다 52.8 퍼센트, 시뮬레이션만 쓴 방법보다 67.9 퍼센트 낮은 값입니다. 열 개 지점 중 일곱 개에서 시뮬레이션만 쓴 경우보다 오차가 작았습니다. 맨 아래 Global Bias는 오차 평균 하나를 전체에 더한 가장 단순한 보정인데, 보시다시피 거의 개선이 없었습니다. 왜 그런지를 다음 장에서 말씀드리겠습니다.</template>
+      <template class="speaker-note">네 방법의 오차를 비교한 결과입니다. MAE는 예측이 실제 측정에서 평균 몇 dB 벗어났는지를 뜻하며 낮을수록 좋습니다. 열 개 시험 지점을 모두
+        포함한 한 번의 측정에서, 시뮬레이션만 쓴 경우가 8.64 dB, 측정만 쓴 경우가 5.89 dB였습니다. 두 가지를 합친 잔차 IDW는 2.78 dB로 가장 낮았습니다. 측정만 쓴 방법보다 52.8
+        퍼센트, 시뮬레이션만 쓴 방법보다 67.9 퍼센트 낮은 값입니다. 열 개 지점 중 일곱 개에서 시뮬레이션만 쓴 경우보다 오차가 작았습니다. 맨 아래 Global Bias는 오차 평균 하나를 전체에 더한
+        가장 단순한 보정인데, 보시다시피 거의 개선이 없었습니다. 왜 그런지를 다음 장에서 말씀드리겠습니다.</template>
     </section>
 
     <section class="chapter" id="bias" data-label="편향" data-title="왜 잔차 IDW인가">
@@ -406,29 +461,34 @@
         </header>
         <div class="slide-body">
           <div class="content bias-layout">
-        <div class="section-copy reveal">
-          <ul class="bullets">
-            <li>송신기가 <b>보이는 곳</b>에서는 시뮬레이션이 실제보다 높게 예측 · 평균 <b>-11.66 dB</b></li>
-            <li>벽에 <b>가린 곳</b>에서는 반대로 낮게 예측 · 평균 <b>+4.27 dB</b></li>
-            <li>부호가 반대라 <b>전체에 같은 값을 더하면 한쪽이 반드시 나빠짐</b>. Global Bias가 실패한 이유</li>
-            <li>남은 한계: 잔차를 직선 거리로 퍼뜨리므로 <b>벽 너머로 번짐</b>. 오른쪽 붉은 영역</li>
-          </ul>
-          <div class="result-table bias-table">
-            <div class="table-head"><span>REGION</span><span>n</span><span>BIAS</span><span>RESIDUAL IDW</span></div>
-            <div><span>송신기가 보이는 곳</span><b>4</b><b>-11.66</b><b>1.59</b></div>
-            <div><span>벽에 가린 곳</span><b>6</b><b>+4.27</b><b>3.57</b></div>
-            <div class="table-foot"><span>단위 dB · Bias = 실측 − 시뮬레이션 예측</span></div>
+            <div class="section-copy reveal">
+              <ul class="bullets">
+                <li>송신기가 <b>보이는 곳</b>에서는 시뮬레이션이 실제보다 높게 예측 · 평균 <b>-11.66 dB</b></li>
+                <li>벽에 <b>가린 곳</b>에서는 반대로 낮게 예측 · 평균 <b>+4.27 dB</b></li>
+                <li>부호가 반대라 <b>전체에 같은 값을 더하면 한쪽이 반드시 나빠짐</b>. Global Bias가 실패한 이유</li>
+                <li>남은 한계: 잔차를 직선 거리로 퍼뜨리므로 <b>벽 너머로 번짐</b>. 오른쪽 붉은 영역</li>
+              </ul>
+              <div class="result-table bias-table">
+                <div class="table-head"><span>REGION</span><span>n</span><span>BIAS</span><span>RESIDUAL IDW</span>
+                </div>
+                <div><span>송신기가 보이는 곳</span><b>4</b><b>-11.66</b><b>1.59</b></div>
+                <div><span>벽에 가린 곳</span><b>6</b><b>+4.27</b><b>3.57</b></div>
+                <div class="table-foot"><span>단위 dB · Bias = 실측 − 시뮬레이션 예측</span></div>
+              </div>
+            </div>
+            <button class="bias-figure reveal delay-1" type="button" data-zoom="assets/residual-field.png"
+              aria-label="공간 잔차장 확대">
+              <img src="assets/residual-field.png" alt="보정점 잔차를 보간한 공간 잔차장. 코어 너머의 양의 잔차가 가시선 영역까지 번진다" />
+              <span class="figure-cap">위치별 오차를 퍼뜨린 <b>잔차 지도</b> · 붉을수록 시뮬레이션이 낮게 예측한 곳</span>
+            </button>
           </div>
-        </div>
-        <button class="bias-figure reveal delay-1" type="button" data-zoom="assets/residual-field.png" aria-label="공간 잔차장 확대">
-          <img src="assets/residual-field.png" alt="보정점 잔차를 보간한 공간 잔차장. 코어 너머의 양의 잔차가 가시선 영역까지 번진다" />
-          <span class="figure-cap">위치별 오차를 퍼뜨린 <b>잔차 지도</b> · 붉을수록 시뮬레이션이 낮게 예측한 곳</span>
-        </button>
-      </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">왜 단순한 보정이 실패하고 저희 방법이 통했는지 말씀드리겠습니다. 송신기가 보이는 지점 네 곳에서는 시뮬레이션이 실제보다 높게 예측해 평균 오차가 마이너스 11.66 dB였습니다. 반대로 벽에 가린 여섯 지점에서는 낮게 예측해 플러스 4.27 dB였습니다. 부호가 서로 반대입니다. 그래서 공간 전체에 같은 값을 더하는 방식은 한쪽을 고치면 반대쪽이 반드시 나빠집니다. 위치마다 다른 값을 더해야 한다는 뜻이고, 그것이 저희가 잔차를 공간적으로 보간한 이유입니다. 오른쪽 그림이 그 잔차 지도입니다. 붉을수록 시뮬레이션이 실제보다 낮게 예측한 곳입니다. 다만 한계도 보입니다. 잔차를 직선 거리로 퍼뜨리기 때문에, 코어 너머에 있는 보정점의 큰 오차가 벽을 넘어 반대편까지 번지고 있습니다.</template>
+      <template class="speaker-note">왜 단순한 보정이 실패하고 저희 방법이 통했는지 말씀드리겠습니다. 송신기가 보이는 지점 네 곳에서는 시뮬레이션이 실제보다 높게 예측해 평균 오차가
+        마이너스 11.66 dB였습니다. 반대로 벽에 가린 여섯 지점에서는 낮게 예측해 플러스 4.27 dB였습니다. 부호가 서로 반대입니다. 그래서 공간 전체에 같은 값을 더하는 방식은 한쪽을 고치면
+        반대쪽이 반드시 나빠집니다. 위치마다 다른 값을 더해야 한다는 뜻이고, 그것이 저희가 잔차를 공간적으로 보간한 이유입니다. 오른쪽 그림이 그 잔차 지도입니다. 붉을수록 시뮬레이션이 실제보다 낮게 예측한
+        곳입니다. 다만 한계도 보입니다. 잔차를 직선 거리로 퍼뜨리기 때문에, 코어 너머에 있는 보정점의 큰 오차가 벽을 넘어 반대편까지 번지고 있습니다.</template>
     </section>
 
     <section class="chapter" id="viewer" data-label="시연" data-title="Viewer와 Handheld 시연">
@@ -440,25 +500,30 @@
         </header>
         <div class="slide-body">
           <div class="content demo-layout">
-        <button class="volume-shot reveal delay-1" type="button" data-zoom="assets/viewer-volume.png" aria-label="RF 볼륨 렌더 확대">
-          <img src="assets/viewer-volume.png" alt="PC Viewer에서 복원 장면 위에 RF 볼륨을 겹쳐 렌더링한 세 시점" />
-        </button>
-        <div class="demo-notes reveal delay-2">
-          <ul class="bullets">
-            <li>(b)와 (c)는 같은 위치에서 본 <b>보정 전후</b>. 벽 뒤 신호가 어떻게 달라지는지 비교</li>
-            <li>시연에서 보여 드릴 것 · <b>세 방법 전환</b> · <b>기기를 돌리면 화면도 회전</b> · <b>텔레포트</b> · <b>높이 층 변경</b></li>
-            <li>Viewer 화면은 Image Relay를 거쳐 오른쪽 기기 LCD에 그대로 출력</li>
-          </ul>
-        </div>
-        <figure class="handheld-shot reveal delay-2">
-          <img src="assets/handheld.png" alt="Viewer 화면을 표시하는 Handheld 실물" />
-          <figcaption><b>Handheld</b><span>ESP32-S3 · IMU · 800×480</span></figcaption>
-        </figure>
-      </div>
+            <button class="volume-shot reveal delay-1" type="button" data-zoom="assets/viewer-volume.png"
+              aria-label="RF 볼륨 렌더 확대">
+              <img src="assets/viewer-volume.png" alt="PC Viewer에서 복원 장면 위에 RF 볼륨을 겹쳐 렌더링한 세 시점" />
+            </button>
+            <div class="demo-notes reveal delay-2">
+              <ul class="bullets">
+                <li>(b)와 (c)는 같은 위치에서 본 <b>보정 전후</b>. 벽 뒤 신호가 어떻게 달라지는지 비교</li>
+                <li>시연에서 보여 드릴 것 · <b>세 방법 전환</b> · <b>기기를 돌리면 화면도 회전</b> · <b>텔레포트</b> · <b>높이 층 변경</b></li>
+                <li>Viewer 화면은 Image Relay를 거쳐 오른쪽 기기 LCD에 그대로 출력</li>
+              </ul>
+            </div>
+            <figure class="handheld-shot reveal delay-2">
+              <img src="assets/handheld.png" alt="Viewer 화면을 표시하는 Handheld 실물" />
+              <figcaption><b>Handheld</b><span>ESP32-S3 · IMU · 800×480</span></figcaption>
+            </figure>
+          </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">추정한 신호 지도는 복원한 장면 위에 3차원 볼륨으로 겹쳐 띄웁니다. 0.25미터부터 2.75미터까지 0.5미터 간격 여섯 개 층으로 쌓았습니다. 가운데와 오른쪽은 같은 위치에서 보정 전과 후를 비교한 것입니다. 벽 뒤쪽 신호가 어떻게 달라지는지 보실 수 있습니다. 지금부터 직접 보여 드리겠습니다. 먼저 세 가지 방법을 전환하면서 같은 시점에서 결과가 어떻게 달라지는지 보시겠습니다. 다음으로 오른쪽에 있는 기기를 제가 돌리면 왼쪽 Viewer의 카메라가 같은 방향으로 회전합니다. 기기의 자세 센서 값이 Backend를 거쳐 Viewer로 전달되기 때문입니다. 버튼 두 개로 각각 다른 위치로 순간 이동하고, 신호 지도의 높이 층을 바꿀 수 있습니다. 마지막으로 이 Viewer 화면이 Image Relay를 거쳐 기기의 LCD에 그대로 나오는 것을 보여 드리겠습니다.</template>
+      <template class="speaker-note">추정한 신호 지도는 복원한 장면 위에 3차원 볼륨으로 겹쳐 띄웁니다. 0.25미터부터 2.75미터까지 0.5미터 간격 여섯 개 층으로 쌓았습니다.
+        가운데와 오른쪽은 같은 위치에서 보정 전과 후를 비교한 것입니다. 벽 뒤쪽 신호가 어떻게 달라지는지 보실 수 있습니다. 지금부터 직접 보여 드리겠습니다. 먼저 세 가지 방법을 전환하면서 같은 시점에서
+        결과가 어떻게 달라지는지 보시겠습니다. 다음으로 오른쪽에 있는 기기를 제가 돌리면 왼쪽 Viewer의 카메라가 같은 방향으로 회전합니다. 기기의 자세 센서 값이 Backend를 거쳐 Viewer로
+        전달되기 때문입니다. 버튼 두 개로 각각 다른 위치로 순간 이동하고, 신호 지도의 높이 층을 바꿀 수 있습니다. 마지막으로 이 Viewer 화면이 Image Relay를 거쳐 기기의 LCD에 그대로
+        나오는 것을 보여 드리겠습니다.</template>
     </section>
 
     <section class="chapter" id="demo-methods" data-label="영상 1" data-title="시연 · 세 방법 전환">
@@ -470,22 +535,25 @@
         </header>
         <div class="slide-body">
           <div class="content slot-layout">
-          <div class="media-slot">
-            <div>
-              <span class="slot-kind">VIDEO</span>
-              <b>3D Viewer · 분석 방법 전환</b>
-              <span class="slot-hint">같은 카메라 위치에서 Raw Sionna / Plain IDW / Residual IDW를 순서대로 전환<br /><code>assets/demo-methods.mp4</code>로 교체</span>
+            <div class="media-slot">
+              <div>
+                <span class="slot-kind">VIDEO</span>
+                <b>3D Viewer · 분석 방법 전환</b>
+                <span class="slot-hint">같은 카메라 위치에서 Raw Sionna / Plain IDW / Residual IDW를 순서대로
+                  전환<br /><code>assets/demo-methods.mp4</code>로 교체</span>
+              </div>
             </div>
-          </div>
-          <div class="slot-caption">
-            <b>볼 것</b>
-            <span>벽 뒤 영역의 색이 방법마다 어떻게 달라지는지 · 잔차 IDW에서 구조가 유지된 채 값만 실측에 가까워지는지</span>
-          </div>
+            <div class="slot-caption">
+              <b>볼 것</b>
+              <span>벽 뒤 영역의 색이 방법마다 어떻게 달라지는지 · 잔차 IDW에서 구조가 유지된 채 값만 실측에 가까워지는지</span>
+            </div>
           </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">먼저 3D Viewer에서 분석 방법을 전환하는 모습을 보여 드리겠습니다. 카메라 위치는 고정한 채 원시 예측, 측정 보간, 잔차 IDW 순으로 바꿉니다. 원시 예측은 복도 구조를 따라 신호가 꺾이지만 값 자체가 실제와 어긋나 있습니다. 측정 보간은 부드럽게 이어지지만 벽을 무시합니다. 잔차 IDW로 바꾸면 구조는 그대로 유지되면서 값이 실측에 가까워지는 것을 벽 뒤 영역에서 확인하실 수 있습니다.</template>
+      <template class="speaker-note">먼저 3D Viewer에서 분석 방법을 전환하는 모습을 보여 드리겠습니다. 카메라 위치는 고정한 채 원시 예측, 측정 보간, 잔차 IDW 순으로
+        바꿉니다. 원시 예측은 복도 구조를 따라 신호가 꺾이지만 값 자체가 실제와 어긋나 있습니다. 측정 보간은 부드럽게 이어지지만 벽을 무시합니다. 잔차 IDW로 바꾸면 구조는 그대로 유지되면서 값이 실측에
+        가까워지는 것을 벽 뒤 영역에서 확인하실 수 있습니다.</template>
     </section>
 
     <section class="chapter" id="demo-pose" data-label="영상 2" data-title="시연 · 자세 연동">
@@ -499,19 +567,19 @@
           <div class="content slot-layout">
             <div class="slot-row two">
               <div class="media-slot">
-            <div>
-              <span class="slot-kind">VIDEO</span>
-              <b>PC Viewer 화면</b>
-              <span class="slot-hint">Handheld 자세에 따라 회전하는 카메라<br /><code>assets/demo-pose-viewer.mp4</code></span>
-            </div>
-          </div>
+                <div>
+                  <span class="slot-kind">VIDEO</span>
+                  <b>PC Viewer 화면</b>
+                  <span class="slot-hint">Handheld 자세에 따라 회전하는 카메라<br /><code>assets/demo-pose-viewer.mp4</code></span>
+                </div>
+              </div>
               <div class="media-slot">
-            <div>
-              <span class="slot-kind">VIDEO</span>
-              <b>실제 기기 촬영</b>
-              <span class="slot-hint">손으로 기기를 돌리는 모습<br /><code>assets/demo-pose-device.mp4</code></span>
-            </div>
-          </div>
+                <div>
+                  <span class="slot-kind">VIDEO</span>
+                  <b>실제 기기 촬영</b>
+                  <span class="slot-hint">손으로 기기를 돌리는 모습<br /><code>assets/demo-pose-device.mp4</code></span>
+                </div>
+              </div>
             </div>
             <div class="slot-caption">
               <b>경로</b>
@@ -521,7 +589,9 @@
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">다음은 자세 연동입니다. 왼쪽이 PC의 Viewer 화면이고 오른쪽이 제가 들고 있는 실제 기기입니다. 기기 안의 BNO085 센서가 손의 방향을 측정해 Backend로 보내고, Backend가 WebSocket으로 Viewer에 전달하면 카메라가 같은 방향으로 회전합니다. 제가 기기를 돌리는 순간 왼쪽 화면이 같이 돌아가는 것을 보실 수 있습니다.</template>
+      <template class="speaker-note">다음은 자세 연동입니다. 왼쪽이 PC의 Viewer 화면이고 오른쪽이 제가 들고 있는 실제 기기입니다. 기기 안의 BNO085 센서가 손의 방향을
+        측정해 Backend로 보내고, Backend가 WebSocket으로 Viewer에 전달하면 카메라가 같은 방향으로 회전합니다. 제가 기기를 돌리는 순간 왼쪽 화면이 같이 돌아가는 것을 보실 수
+        있습니다.</template>
     </section>
 
     <section class="chapter" id="demo-controls" data-label="영상 3" data-title="시연 · 버튼과 LCD">
@@ -535,29 +605,33 @@
           <div class="content slot-layout">
             <div class="slot-row two">
               <div class="media-slot">
-            <div>
-              <span class="slot-kind">VIDEO</span>
-              <b>텔레포트 · 높이 층 변경</b>
-              <span class="slot-hint">버튼 1은 위치 이동, 버튼 2는 RF 볼륨 층 변경<br /><code>assets/demo-buttons.mp4</code></span>
-            </div>
-          </div>
+                <div>
+                  <span class="slot-kind">VIDEO</span>
+                  <b>텔레포트 · 높이 층 변경</b>
+                  <span class="slot-hint">버튼 1은 위치 이동, 버튼 2는 RF 볼륨 층 변경<br /><code>assets/demo-buttons.mp4</code></span>
+                </div>
+              </div>
               <div class="media-slot">
-            <div>
-              <span class="slot-kind">VIDEO</span>
-              <b>Image Relay → LCD 출력</b>
-              <span class="slot-hint">Viewer 800×480 화면이 기기 LCD에 나오는 모습<br /><code>assets/demo-relay.mp4</code></span>
-            </div>
-          </div>
+                <div>
+                  <span class="slot-kind">VIDEO</span>
+                  <b>Image Relay → LCD 출력</b>
+                  <span class="slot-hint">Viewer 800×480 화면이 기기 LCD에 나오는
+                    모습<br /><code>assets/demo-relay.mp4</code></span>
+                </div>
+              </div>
             </div>
             <div class="slot-caption">
               <b>경로</b>
-              <span>Viewer 프레임 → Image Relay(최신 완성 프레임 우선) → Handheld NT35510 LCD. 층 변경 시 0.25~2.75 m 중 어느 층인지 함께 표시</span>
+              <span>Viewer 프레임 → Image Relay(최신 완성 프레임 우선) → Handheld NT35510 LCD. 층 변경 시 0.25~2.75 m 중 어느 층인지 함께
+                표시</span>
             </div>
           </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">마지막으로 버튼 조작과 화면 출력입니다. 왼쪽 영상에서 첫 번째 버튼을 누르면 다른 위치로 순간 이동하고, 두 번째 버튼을 누르면 RF 볼륨의 높이 층이 바뀝니다. 0.25미터부터 2.75미터까지 여섯 개 층을 오갈 수 있습니다. 오른쪽 영상은 이 Viewer 화면이 Image Relay를 거쳐 기기의 LCD에 그대로 표시되는 모습입니다. Image Relay는 최신 완성 프레임을 우선해 중계하기 때문에 지연이 쌓이지 않습니다.</template>
+      <template class="speaker-note">마지막으로 버튼 조작과 화면 출력입니다. 왼쪽 영상에서 첫 번째 버튼을 누르면 다른 위치로 순간 이동하고, 두 번째 버튼을 누르면 RF 볼륨의 높이
+        층이 바뀝니다. 0.25미터부터 2.75미터까지 여섯 개 층을 오갈 수 있습니다. 오른쪽 영상은 이 Viewer 화면이 Image Relay를 거쳐 기기의 LCD에 그대로 표시되는 모습입니다.
+        Image Relay는 최신 완성 프레임을 우선해 중계하기 때문에 지연이 쌓이지 않습니다.</template>
     </section>
 
     <section class="chapter conclusion" id="conclusion" data-label="결론" data-title="결론과 한계">
@@ -568,48 +642,55 @@
         </header>
         <div class="slide-body">
           <div class="ambient-grid" aria-hidden="true"></div>
-      <div class="content conclusion-layout">
-        <div class="section-copy reveal">
-          <ul class="bullets">
-            <li>공간 복원 · 전파 예측 · 실측 · 분석 · 3D 시각화를 하나의 좌표계로 연결</li>
-            <li>시뮬레이션과 실측을 합친 잔차 IDW가 네 방법 중 가장 낮은 <b>MAE 2.78 dB</b> 기록</li>
-            <li>Handheld에서 영상 출력 · 자세 연동 · 버튼 동작을 실물로 확인</li>
-          </ul>
-          <div class="final-flow"><span>복원</span><i></i><span>측정</span><i></i><span>보정</span><i></i><span>시각화</span></div>
-        </div>
-        <div class="limits-panel reveal delay-1">
-          <p class="panel-kicker">LIMITATIONS / NEXT</p>
-          <div><span>01</span><p><b>단일 건물 · 1회 측정</b>한 건물의 한 개 층, 공유기 한 대, 보정점 4개에 한정됨. 반복 측정에 따른 변동은 정량화하지 못함</p></div>
-          <div><span>02</span><p><b>측정하지 않은 높이</b>보정은 한 높이에서만 얻었고 위아래로 늘려 표현한 것이라, 다른 높이의 볼륨은 정성적 시각화에 한정됨</p></div>
-          <div><span>03</span><p><b>벽을 넘는 잔차</b>잔차를 직선 거리로 퍼뜨려 벽 너머로 번짐. 원래 예측이 정확한 지점은 오히려 나빠질 수 있음</p></div>
-          <div><span>04</span><p><b>향후</b>여러 공간과 여러 높이에서 반복 측정 · 벽을 가로지르는 확산을 막는 영역 분리 · 재질 투과손실 측정</p></div>
-        </div>
-        
-      </div>
+          <div class="content conclusion-layout">
+            <div class="section-copy reveal">
+              <ul class="bullets">
+                <li>공간 복원 · 전파 예측 · 실측 · 분석 · 3D 시각화를 하나의 좌표계로 연결</li>
+                <li>시뮬레이션과 실측을 합친 잔차 IDW가 네 방법 중 가장 낮은 <b>MAE 2.78 dB</b> 기록</li>
+                <li>Handheld에서 영상 출력 · 자세 연동 · 버튼 동작을 실물로 확인</li>
+              </ul>
+              <div class="final-flow"><span>복원</span><i></i><span>측정</span><i></i><span>보정</span><i></i><span>시각화</span>
+              </div>
+            </div>
+            <div class="limits-panel reveal delay-1">
+              <p class="panel-kicker">LIMITATIONS / NEXT</p>
+              <div><span>01</span>
+                <p><b>단일 건물 · 1회 측정</b>한 건물의 한 개 층, 공유기 한 대, 보정점 4개에 한정됨. 반복 측정에 따른 변동은 정량화하지 못함</p>
+              </div>
+              <div><span>02</span>
+                <p><b>측정하지 않은 높이</b>보정은 한 높이에서만 얻었고 위아래로 늘려 표현한 것이라, 다른 높이의 볼륨은 정성적 시각화에 한정됨</p>
+              </div>
+              <div><span>03</span>
+                <p><b>벽을 넘는 잔차</b>잔차를 직선 거리로 퍼뜨려 벽 너머로 번짐. 원래 예측이 정확한 지점은 오히려 나빠질 수 있음</p>
+              </div>
+              <div><span>04</span>
+                <p><b>향후</b>여러 공간과 여러 높이에서 반복 측정 · 벽을 가로지르는 확산을 막는 영역 분리 · 재질 투과손실 측정</p>
+              </div>
+            </div>
+
+          </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">정리하겠습니다. 저희는 사진 촬영과 3차원 복원에서 시작해 전파 시뮬레이션, 신호 실측, 분석, 3차원 시각화와 손에 드는 기기 출력까지를 하나의 시스템으로 연결했습니다. 시뮬레이션과 실측을 합친 잔차 IDW가 비교한 네 방법 중 가장 낮은 평균 오차 2.78 dB를 기록했고, 기기에서 영상과 자세 연동, 버튼 동작을 실물로 확인했습니다. 다만 한계가 분명합니다. 이번 결과는 한 건물의 한 개 층, 공유기 한 대, 보정점 네 개, 한 번의 측정에서 얻은 것이라 다른 공간으로 일반화하기 어렵습니다. 또 측정하지 않은 높이의 볼륨은 한 높이에서 얻은 보정을 위아래로 늘려 표현한 것이라 정성적인 시각화에 가깝습니다. 잔차를 직선 거리로 퍼뜨리는 방식도 벽을 넘어 번지는 문제가 있습니다. 앞으로 여러 공간과 여러 높이에서 측정을 반복하고, 벽을 가로지르는 확산을 막는 방법과 재질의 투과손실 측정을 검증하면 이러한 한계를 줄일 수 있을 것으로 생각합니다. 감사합니다.</template>
+      <template class="speaker-note">정리하겠습니다. 저희는 사진 촬영과 3차원 복원에서 시작해 전파 시뮬레이션, 신호 실측, 분석, 3차원 시각화와 손에 드는 기기 출력까지를 하나의
+        시스템으로 연결했습니다. 시뮬레이션과 실측을 합친 잔차 IDW가 비교한 네 방법 중 가장 낮은 평균 오차 2.78 dB를 기록했고, 기기에서 영상과 자세 연동, 버튼 동작을 실물로 확인했습니다. 다만
+        한계가 분명합니다. 이번 결과는 한 건물의 한 개 층, 공유기 한 대, 보정점 네 개, 한 번의 측정에서 얻은 것이라 다른 공간으로 일반화하기 어렵습니다. 또 측정하지 않은 높이의 볼륨은 한 높이에서
+        얻은 보정을 위아래로 늘려 표현한 것이라 정성적인 시각화에 가깝습니다. 잔차를 직선 거리로 퍼뜨리는 방식도 벽을 넘어 번지는 문제가 있습니다. 앞으로 여러 공간과 여러 높이에서 측정을 반복하고, 벽을
+        가로지르는 확산을 막는 방법과 재질의 투과손실 측정을 검증하면 이러한 한계를 줄일 수 있을 것으로 생각합니다. 감사합니다.</template>
     </section>
-  
+
     <section class="chapter thanks" id="thanks" data-label="감사" data-title="감사합니다">
       <div class="ambient-grid" aria-hidden="true"></div>
       <div class="canvas cover">
         <div class="content thanks-layout">
           <div class="thanks-copy reveal">
-            <p class="eyebrow"><span>END</span> 질문 환영합니다</p>
             <h1>감사합니다</h1>
-            <p class="hero-summary">사진 기반 실내 복원과 실측 잔차 보정을 결합한<br />RF 신호장 추정과 3D 시각화</p>
-            <div class="hero-metrics" aria-label="핵심 수치">
-              <div><strong>2.78</strong><span>최저 MAE (dB)</span></div>
-              <div><strong>67.9%</strong><span>원시 예측 대비 감소</span></div>
-              <div><strong>13</strong><span>시험·보정 지점</span></div>
-            </div>
           </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">이상으로 발표를 마치겠습니다. 저희는 사진으로 복원한 공간 위에서 전파 시뮬레이션과 실측을 결합해, 네 방법 중 가장 낮은 평균 오차 2.78 dB를 얻었고 그 결과를 3D Viewer와 직접 만든 기기에서 확인했습니다. 들어주셔서 감사합니다. 질문 주시면 답변드리겠습니다.</template>
+      <template class="speaker-note">이상으로 발표를 마치겠습니다. 저희는 사진으로 복원한 공간 위에서 전파 시뮬레이션과 실측을 결합해, 네 방법 중 가장 낮은 평균 오차 2.78 dB를
+        얻었고 그 결과를 3D Viewer와 직접 만든 기기에서 확인했습니다. 들어주셔서 감사합니다. 질문 주시면 답변드리겠습니다.</template>
     </section>
   </main>
 
@@ -634,4 +715,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
