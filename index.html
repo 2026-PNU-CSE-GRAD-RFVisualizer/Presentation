@@ -41,7 +41,7 @@
           <h1><span>공간을</span> <span>복원하고,</span><br /><em>전파를 측정하다</em></h1>
           <p class="hero-summary">실제 복도 복원부터 RF 시뮬레이션, RSSI 실측, 3D Viewer와 Handheld까지 하나의 흐름으로 연결했습니다.</p>
           <div class="hero-metrics" aria-label="프로젝트 핵심 수치">
-            <div><strong>5</strong><span>ESP32 nodes</span></div>
+            <div><strong>5</strong><span>RSSI points</span></div>
             <div><strong>4</strong><span>RF methods</span></div>
             <div><strong>6</strong><span>height layers</span></div>
           </div>
@@ -118,8 +118,8 @@
         <div class="flow-stack reveal delay-1">
           <div class="flow-lane lane-green">
             <span class="lane-name">RSSI DATA</span>
-            <div class="flow-node"><b>ESP32 × 5</b><small>실측</small></div><i></i>
-            <div class="flow-node"><b>Gateway</b><small>ESP-NOW</small></div><i></i>
+            <div class="flow-node"><b>Remote ESP32 × 4</b><small>원격 실측</small></div><i></i>
+            <div class="flow-node"><b>Gateway + Local × 1</b><small>수집·로컬 실측</small></div><i></i>
             <div class="flow-node"><b>STM32</b><small>검증·JSON</small></div><i></i>
             <div class="flow-node"><b>MQTT</b><small>중계</small></div><i></i>
             <div class="flow-node strong"><b>Backend</b><small>저장·QC</small></div>
@@ -139,7 +139,7 @@
         </div>
         <button class="text-link reveal delay-2" type="button" data-zoom="assets/pipeline.png">전체 연구 파이프라인 크게 보기 <span>↗</span></button>
       </div>
-      <template class="speaker-note">전체 시스템에는 세 가지 흐름이 있습니다. 첫째, ESP32 다섯 대의 RSSI가 Gateway와 STM32, MQTT를 거쳐 Backend에 저장됩니다. 둘째, 3D Viewer가 만든 화면은 Image Relay를 통해 Handheld LCD로 전달됩니다. 셋째, Handheld의 자세와 버튼 입력은 Backend를 거쳐 Viewer 카메라를 제어합니다.</template>
+      <template class="speaker-note">전체 시스템에는 세 가지 흐름이 있습니다. 첫째, 네 대의 원격 ESP32 노드와 로컬 측정을 담당하는 ESP32 Gateway가 RSSI를 수집하고, STM32와 MQTT를 거쳐 Backend에 저장합니다. 둘째, 3D Viewer가 만든 화면은 Image Relay를 통해 Handheld LCD로 전달됩니다. 셋째, Handheld의 자세와 버튼 입력은 Backend를 거쳐 Viewer 카메라를 제어합니다.</template>
     </section>
 
     <section class="chapter" id="embedded" data-label="EMBEDDED" data-title="RSSI 측정">
@@ -150,8 +150,8 @@
         </div>
         <div class="section-copy reveal delay-1">
           <p class="eyebrow"><span>05</span> 임베디드 계측</p>
-          <h2>실제 공간의 신호를<br /><em>다섯 대가 동시에 측정</em></h2>
-          <p>네 대는 고정 보정 지점에, 한 대는 시험 위치에 배치했습니다. 원시 RSSI와 필터 값을 함께 전달하고, 순서 번호와 오류 상태로 누락과 이상을 추적합니다.</p>
+          <h2>다섯 지점의 신호를<br /><em>동시에 측정합니다</em></h2>
+          <p>네 대의 원격 노드는 고정 보정 지점에, 로컬 RSSI 측정 기능을 포함한 ESP32 Gateway는 시험 위치에 배치했습니다. 원시 RSSI와 필터 값을 함께 전달하고, 순서 번호와 오류 상태로 누락과 이상을 추적합니다.</p>
           <dl class="spec-list">
             <div><dt>Wireless</dt><dd>ESP-NOW</dd></div>
             <div><dt>UART</dt><dd>115200 bps</dd></div>
@@ -160,7 +160,7 @@
           </dl>
         </div>
       </div>
-      <template class="speaker-note">RSSI는 수신한 와이파이 신호의 세기를 나타낸 값입니다. 현장에서는 ESP32 다섯 대를 사용했습니다. 네 대는 고정 보정 지점에 두고 한 대는 시험 위치를 옮겼습니다. 측정값은 ESP-NOW로 Gateway에 모이고, STM32는 형식과 체크섬을 확인해 JSON으로 정리합니다. 누락과 중복을 찾기 위한 순서 번호와 오류 상태도 함께 관리합니다.</template>
+      <template class="speaker-note">RSSI는 수신한 와이파이 신호의 세기를 나타낸 값입니다. 현장에서는 네 대의 원격 ESP32 노드를 고정 보정 지점에 두고, ESP32 Gateway가 시험 위치의 RSSI도 직접 측정하도록 구성했습니다. 즉 별도의 측정 노드 다섯 대가 아니라, 원격 노드 네 대와 Gateway의 로컬 측정 한 개로 총 다섯 지점의 신호를 수집합니다. 측정값은 ESP-NOW로 Gateway에 모이고, STM32는 형식과 체크섬을 확인해 JSON으로 정리합니다. 누락과 중복을 찾기 위한 순서 번호와 오류 상태도 함께 관리합니다.</template>
     </section>
 
     <section class="chapter" id="network" data-label="NETWORK" data-title="Backend 모니터링">
