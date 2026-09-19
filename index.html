@@ -99,7 +99,7 @@
           <h2>세 가지를 <em>하나의 좌표계로</em></h2>
         </header>
         <div class="slide-body">
-          <div class="content split-layout">
+          <div class="content goal-layout">
         <div class="section-copy reveal">
           <ul class="bullets">
             <li><b>① 공간 복원</b> 사진과 영상으로 복도를 3D로 되살림. CAD 작업 없이</li>
@@ -256,6 +256,33 @@
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
       <template class="speaker-note">측정한 값은 STM32와 Python Bridge, MQTT를 거쳐 Backend에 저장됩니다. Backend는 값을 검증하고 실험 위치와 시간 구간에 맞춰 보관합니다. 여기서 한 가지 원칙을 두었습니다. 이상한 값이라도 지우지 않고, 왜 제외했는지를 함께 남깁니다. 분석에서만 빼기 때문에 나중에 어떤 표본이 왜 빠졌는지 되짚을 수 있습니다. 또 유효 신호의 하한을 모든 단계에서 -110 dBm으로 통일해, 수집 단계가 약한 신호를 미리 지워 버리지 않도록 했습니다. 이 자리에서는 노드 상태와 초당 수신량, 누락 수와 드롭률이 실시간으로 변하는 대시보드를 함께 보여 드리겠습니다.</template>
+    </section>
+
+    <section class="chapter" id="monitor" data-label="모니터링" data-title="Backend 모니터링">
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>3</span> 측정과 분석 · 모니터링</p>
+          <h2>수집 상태를 <em>실시간으로 확인</em></h2>
+          <p class="head-note">측정이 도는 동안 노드가 살아 있는지, 빠진 패킷이 있는지를 화면에서 바로 봄</p>
+        </header>
+        <div class="slide-body">
+          <div class="content slot-layout">
+          <div class="media-slot">
+            <div>
+              <span class="slot-kind">SCREEN / VIDEO</span>
+              <b>Backend 모니터링 대시보드</b>
+              <span class="slot-hint">측정 중 메시지 수 · 노드 상태 · 드롭 · 손실 값이 변하는 화면<br /><code>assets/monitor.png</code> 또는 <code>assets/monitor.mp4</code>로 교체</span>
+            </div>
+          </div>
+          <div class="slot-caption">
+            <b>볼 것</b>
+            <span>노드 5대가 ONLINE을 유지하는지 · 초당 수신량이 일정한지 · lost packets가 늘지 않는지 · drop rate가 0에 가까운지</span>
+          </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
+      <template class="speaker-note">측정이 도는 동안 Backend 대시보드에서 수집 상태를 실시간으로 확인합니다. 왼쪽 위 지표가 초당 수신량이고, 그 옆이 누락된 패킷 수와 드롭률입니다. 아래 표에는 노드 다섯 대의 연결 상태와 마지막 수신 시각이 나옵니다. 지금 보시는 것처럼 다섯 대가 모두 ONLINE을 유지하고 초당 수신량이 일정하게 들어오는 것이 정상 상태입니다. 이 화면 덕분에 측정 도중 노드가 끊기거나 값이 비는 상황을 바로 알아차릴 수 있었습니다.</template>
     </section>
 
     <section class="chapter" id="concept" data-label="개념" data-title="세 가지 접근">
@@ -434,6 +461,105 @@
       <template class="speaker-note">추정한 신호 지도는 복원한 장면 위에 3차원 볼륨으로 겹쳐 띄웁니다. 0.25미터부터 2.75미터까지 0.5미터 간격 여섯 개 층으로 쌓았습니다. 가운데와 오른쪽은 같은 위치에서 보정 전과 후를 비교한 것입니다. 벽 뒤쪽 신호가 어떻게 달라지는지 보실 수 있습니다. 지금부터 직접 보여 드리겠습니다. 먼저 세 가지 방법을 전환하면서 같은 시점에서 결과가 어떻게 달라지는지 보시겠습니다. 다음으로 오른쪽에 있는 기기를 제가 돌리면 왼쪽 Viewer의 카메라가 같은 방향으로 회전합니다. 기기의 자세 센서 값이 Backend를 거쳐 Viewer로 전달되기 때문입니다. 버튼 두 개로 각각 다른 위치로 순간 이동하고, 신호 지도의 높이 층을 바꿀 수 있습니다. 마지막으로 이 Viewer 화면이 Image Relay를 거쳐 기기의 LCD에 그대로 나오는 것을 보여 드리겠습니다.</template>
     </section>
 
+    <section class="chapter" id="demo-methods" data-label="영상 1" data-title="시연 · 세 방법 전환">
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>4</span> 통합 시연 · 영상 1</p>
+          <h2>같은 시점에서 <em>세 방법을 전환</em></h2>
+          <p class="head-note">카메라를 고정한 채 원시 예측 → 측정 보간 → 잔차 IDW 순으로 바꿔 가며 비교</p>
+        </header>
+        <div class="slide-body">
+          <div class="content slot-layout">
+          <div class="media-slot">
+            <div>
+              <span class="slot-kind">VIDEO</span>
+              <b>3D Viewer · 분석 방법 전환</b>
+              <span class="slot-hint">같은 카메라 위치에서 Raw Sionna / Plain IDW / Residual IDW를 순서대로 전환<br /><code>assets/demo-methods.mp4</code>로 교체</span>
+            </div>
+          </div>
+          <div class="slot-caption">
+            <b>볼 것</b>
+            <span>벽 뒤 영역의 색이 방법마다 어떻게 달라지는지 · 잔차 IDW에서 구조가 유지된 채 값만 실측에 가까워지는지</span>
+          </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
+      <template class="speaker-note">먼저 3D Viewer에서 분석 방법을 전환하는 모습을 보여 드리겠습니다. 카메라 위치는 고정한 채 원시 예측, 측정 보간, 잔차 IDW 순으로 바꿉니다. 원시 예측은 복도 구조를 따라 신호가 꺾이지만 값 자체가 실제와 어긋나 있습니다. 측정 보간은 부드럽게 이어지지만 벽을 무시합니다. 잔차 IDW로 바꾸면 구조는 그대로 유지되면서 값이 실측에 가까워지는 것을 벽 뒤 영역에서 확인하실 수 있습니다.</template>
+    </section>
+
+    <section class="chapter" id="demo-pose" data-label="영상 2" data-title="시연 · 자세 연동">
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>4</span> 통합 시연 · 영상 2</p>
+          <h2>기기를 돌리면 <em>화면도 따라 돈다</em></h2>
+          <p class="head-note">왼쪽은 PC Viewer 화면, 오른쪽은 실제 기기. 같은 순간을 나란히 촬영</p>
+        </header>
+        <div class="slide-body">
+          <div class="content slot-layout">
+            <div class="slot-row two">
+              <div class="media-slot">
+            <div>
+              <span class="slot-kind">VIDEO</span>
+              <b>PC Viewer 화면</b>
+              <span class="slot-hint">Handheld 자세에 따라 회전하는 카메라<br /><code>assets/demo-pose-viewer.mp4</code></span>
+            </div>
+          </div>
+              <div class="media-slot">
+            <div>
+              <span class="slot-kind">VIDEO</span>
+              <b>실제 기기 촬영</b>
+              <span class="slot-hint">손으로 기기를 돌리는 모습<br /><code>assets/demo-pose-device.mp4</code></span>
+            </div>
+          </div>
+            </div>
+            <div class="slot-caption">
+              <b>경로</b>
+              <span>BNO085 자세 → Backend(UDP) → WebSocket → Viewer 카메라. 두 영상의 움직임이 같은 시점에 맞물리는지가 핵심</span>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
+      <template class="speaker-note">다음은 자세 연동입니다. 왼쪽이 PC의 Viewer 화면이고 오른쪽이 제가 들고 있는 실제 기기입니다. 기기 안의 BNO085 센서가 손의 방향을 측정해 Backend로 보내고, Backend가 WebSocket으로 Viewer에 전달하면 카메라가 같은 방향으로 회전합니다. 제가 기기를 돌리는 순간 왼쪽 화면이 같이 돌아가는 것을 보실 수 있습니다.</template>
+    </section>
+
+    <section class="chapter" id="demo-controls" data-label="영상 3" data-title="시연 · 버튼과 LCD">
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>4</span> 통합 시연 · 영상 3</p>
+          <h2>버튼 조작과 <em>기기 화면 출력</em></h2>
+          <p class="head-note">버튼 두 개로 위치 이동과 높이 층 변경 · Viewer 화면이 기기 LCD에 그대로 표시</p>
+        </header>
+        <div class="slide-body">
+          <div class="content slot-layout">
+            <div class="slot-row two">
+              <div class="media-slot">
+            <div>
+              <span class="slot-kind">VIDEO</span>
+              <b>텔레포트 · 높이 층 변경</b>
+              <span class="slot-hint">버튼 1은 위치 이동, 버튼 2는 RF 볼륨 층 변경<br /><code>assets/demo-buttons.mp4</code></span>
+            </div>
+          </div>
+              <div class="media-slot">
+            <div>
+              <span class="slot-kind">VIDEO</span>
+              <b>Image Relay → LCD 출력</b>
+              <span class="slot-hint">Viewer 800×480 화면이 기기 LCD에 나오는 모습<br /><code>assets/demo-relay.mp4</code></span>
+            </div>
+          </div>
+            </div>
+            <div class="slot-caption">
+              <b>경로</b>
+              <span>Viewer 프레임 → Image Relay(최신 완성 프레임 우선) → Handheld NT35510 LCD. 층 변경 시 0.25~2.75 m 중 어느 층인지 함께 표시</span>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
+      <template class="speaker-note">마지막으로 버튼 조작과 화면 출력입니다. 왼쪽 영상에서 첫 번째 버튼을 누르면 다른 위치로 순간 이동하고, 두 번째 버튼을 누르면 RF 볼륨의 높이 층이 바뀝니다. 0.25미터부터 2.75미터까지 여섯 개 층을 오갈 수 있습니다. 오른쪽 영상은 이 Viewer 화면이 Image Relay를 거쳐 기기의 LCD에 그대로 표시되는 모습입니다. Image Relay는 최신 완성 프레임을 우선해 중계하기 때문에 지연이 쌓이지 않습니다.</template>
+    </section>
+
     <section class="chapter conclusion" id="conclusion" data-label="결론" data-title="결론과 한계">
       <div class="canvas">
         <header class="slide-head">
@@ -458,12 +584,32 @@
           <div><span>03</span><p><b>벽을 넘는 잔차</b>잔차를 직선 거리로 퍼뜨려 벽 너머로 번짐. 원래 예측이 정확한 지점은 오히려 나빠질 수 있음</p></div>
           <div><span>04</span><p><b>향후</b>여러 공간과 여러 높이에서 반복 측정 · 벽을 가로지르는 확산을 막는 영역 분리 · 재질 투과손실 측정</p></div>
         </div>
-        <p class="closing reveal delay-2">RFVisualizer <span>—</span> 감사합니다</p>
+        
       </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
       <template class="speaker-note">정리하겠습니다. 저희는 사진 촬영과 3차원 복원에서 시작해 전파 시뮬레이션, 신호 실측, 분석, 3차원 시각화와 손에 드는 기기 출력까지를 하나의 시스템으로 연결했습니다. 시뮬레이션과 실측을 합친 잔차 IDW가 비교한 네 방법 중 가장 낮은 평균 오차 2.78 dB를 기록했고, 기기에서 영상과 자세 연동, 버튼 동작을 실물로 확인했습니다. 다만 한계가 분명합니다. 이번 결과는 한 건물의 한 개 층, 공유기 한 대, 보정점 네 개, 한 번의 측정에서 얻은 것이라 다른 공간으로 일반화하기 어렵습니다. 또 측정하지 않은 높이의 볼륨은 한 높이에서 얻은 보정을 위아래로 늘려 표현한 것이라 정성적인 시각화에 가깝습니다. 잔차를 직선 거리로 퍼뜨리는 방식도 벽을 넘어 번지는 문제가 있습니다. 앞으로 여러 공간과 여러 높이에서 측정을 반복하고, 벽을 가로지르는 확산을 막는 방법과 재질의 투과손실 측정을 검증하면 이러한 한계를 줄일 수 있을 것으로 생각합니다. 감사합니다.</template>
+    </section>
+  
+    <section class="chapter thanks" id="thanks" data-label="감사" data-title="감사합니다">
+      <div class="ambient-grid" aria-hidden="true"></div>
+      <div class="canvas cover">
+        <div class="content thanks-layout">
+          <div class="thanks-copy reveal">
+            <p class="eyebrow"><span>END</span> 질문 환영합니다</p>
+            <h1>감사합니다</h1>
+            <p class="hero-summary">사진 기반 실내 복원과 실측 잔차 보정을 결합한<br />RF 신호장 추정과 3D 시각화</p>
+            <div class="hero-metrics" aria-label="핵심 수치">
+              <div><strong>2.78</strong><span>최저 MAE (dB)</span></div>
+              <div><strong>67.9%</strong><span>원시 예측 대비 감소</span></div>
+              <div><strong>13</strong><span>시험·보정 지점</span></div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
+      <template class="speaker-note">이상으로 발표를 마치겠습니다. 저희는 사진으로 복원한 공간 위에서 전파 시뮬레이션과 실측을 결합해, 네 방법 중 가장 낮은 평균 오차 2.78 dB를 얻었고 그 결과를 3D Viewer와 직접 만든 기기에서 확인했습니다. 들어주셔서 감사합니다. 질문 주시면 답변드리겠습니다.</template>
     </section>
   </main>
 

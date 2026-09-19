@@ -90,8 +90,8 @@ p { line-height: 1.75; }
 .vertical-scan { position: absolute; right: 20%; bottom: 12%; display: grid; gap: 15px; }
 .vertical-scan i { width: 90px; height: 2px; background: var(--cyan); box-shadow: 0 0 20px var(--cyan); opacity: calc(.3 + var(--i, 0)); }
 
-.media-layout { display: grid; grid-template-columns: .65fr 1.35fr; gap: 55px; align-items: start; }
-.reconstruction-grid { display: grid; grid-template-columns: 1.16fr .84fr; gap: 18px; }
+.media-layout { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 20px; align-content: stretch; }
+.reconstruction-grid { display: grid; grid-template-columns: 1.16fr .84fr; gap: 18px; min-height: 0; }
 .image-card { position: relative; border: 1px solid var(--line); padding: 0; border-radius: 16px; background: var(--surface); overflow: hidden; cursor: zoom-in; min-height: 420px; }
 .image-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
 .image-card:hover img { transform: scale(1.025); }
@@ -332,3 +332,52 @@ p { line-height: 1.75; }
 
 /* 캔버스 꼬리말이 위치를 표시하므로 떠 있는 네비는 감춘다 */
 .nav-controls { display: none; }
+
+/* [1] 03 목표 - 파이프라인을 본문 폭 전체로 */
+.goal-layout { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 10px; align-content: stretch; }
+.goal-layout .section-copy { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 44px; align-items: start; }
+.goal-layout .bullets { margin: 0; gap: 6px; }
+.goal-layout .callout { margin: 0; align-self: start; max-width: 24rem; padding: 13px 16px; }
+.goal-layout .goal-figure { align-self: stretch; }
+.goal-layout .goal-figure img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+
+/* [3][4] 사진·영상 자리 (Placeholder) */
+.media-slot { border: 1px dashed rgba(255,255,255,.22); border-radius: 14px; background:
+  repeating-linear-gradient(135deg, rgba(255,255,255,.022) 0 12px, transparent 12px 24px);
+  display: grid; place-items: center; text-align: center; padding: 22px; min-height: 0; }
+.media-slot .slot-kind { display: inline-block; color: var(--ink); background: var(--green);
+  font-size: .58rem; font-weight: 900; letter-spacing: .14em; padding: 4px 9px; border-radius: 5px; }
+.media-slot b { display: block; font-size: 1.05rem; margin: 13px 0 6px; }
+.media-slot .slot-hint { display: block; color: #6c8083; font-size: .72rem; line-height: 1.6; }
+.media-slot .slot-hint code { color: var(--cyan); font-family: inherit; }
+.media-slot.photo .slot-kind { background: var(--cyan); }
+
+.slot-layout { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 20px; align-content: stretch; }
+.slot-row { display: grid; gap: 16px; min-height: 0; }
+.slot-row.two { grid-template-columns: 1fr 1fr; }
+.slot-caption { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: baseline;
+  border-top: 1px solid var(--line); padding-top: 14px; }
+.slot-caption b { color: var(--green); font-size: .74rem; letter-spacing: .1em; }
+.slot-caption span { color: var(--muted); font-size: .82rem; line-height: 1.6; }
+
+/* 마지막 감사 페이지 */
+.thanks-layout { display: grid; place-items: center; height: 100%; text-align: center; }
+.thanks-copy { max-width: 56rem; }
+.thanks-copy .eyebrow { justify-content: center; margin-bottom: 26px; }
+.thanks-copy h1 { font-size: 4.6rem; letter-spacing: -.045em; }
+.thanks-copy .hero-summary { margin: 30px auto 0; max-width: 46rem; }
+.thanks-copy .hero-metrics { justify-content: center; margin-top: 46px; gap: 54px; }
+.thanks-copy .hero-metrics div { justify-items: center; }
+
+/* 테두리가 행 높이를 넘기지 않도록 */
+.goal-figure, .bias-figure, .volume-shot, .media-slot, .image-card, .method-image,
+.handheld-shot, .dashboard-frame, .limits-panel, .concept-card, .flow-lane { box-sizing: border-box; }
+.goal-layout .figure-cap { padding: 9px 14px; }
+/* 슬롯 페이지만 본문 높이를 꽉 채운다 */
+.slide-body:has(> .slot-layout) { align-content: stretch; }
+.slot-layout { height: 100%; }
+.slot-row { height: 100%; }
+
+/* Placeholder를 실제 사진/영상으로 바꿀 때 쓰는 클래스 */
+.media-fill { width: 100%; height: 100%; object-fit: contain; display: block;
+  border: 1px solid var(--line); border-radius: 14px; background: #05090b; box-sizing: border-box; }
