@@ -231,7 +231,14 @@ p { line-height: 1.75; }
 
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  *, *::before, *::after { scroll-behavior: auto !important;
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important; }
+  /* 위 초기화는 모든 연출을 0.01ms로 만들어 "순식간에 지나가는" 화면이 된다.
+     발표 자료에서는 흔들림만 빼고 페이드는 남긴다. */
+  .reveal { transform: none !important; transition-duration: .28s !important; }
+  .bar-row i { animation-duration: .4s !important; }
+  .laser { transition-duration: .15s !important; }
 }
 
 /* 개조식 불릿 */
@@ -381,3 +388,12 @@ p { line-height: 1.75; }
 /* Placeholder를 실제 사진/영상으로 바꿀 때 쓰는 클래스 */
 .media-fill { width: 100%; height: 100%; object-fit: contain; display: block;
   border: 1px solid var(--line); border-radius: 14px; background: #05090b; box-sizing: border-box; }
+
+/* 레이저 포인터 (L로 켜고 끔) */
+.laser { position: fixed; left: 0; top: 0; z-index: 90; width: 26px; height: 26px;
+  margin: -13px 0 0 -13px; border-radius: 50%; pointer-events: none; opacity: 0;
+  transition: opacity .15s ease; will-change: transform;
+  background: radial-gradient(circle, #fff 0 9%, #ff3b30 24%, rgba(255,59,48,.45) 46%, rgba(255,59,48,0) 72%);
+  box-shadow: 0 0 22px 8px rgba(255,59,48,.35); }
+body.laser-on .laser { opacity: 1; }
+body.laser-on, body.laser-on *, body.laser-on button, body.laser-on a { cursor: none !important; }
