@@ -98,20 +98,20 @@ const methods = {
     title: '물리 시뮬레이션',
     summary: '벽과 복도 구조를 반영하지만, 실제 재질과 문 상태를 완벽하게 입력하기 어렵습니다.'
   },
-  residual: {
-    image: 'assets/residual-field.png',
-    alt: '실측값과 Sionna 예측값의 차이인 잔차 분포',
-    description: '측정 위치에서 실제값과 예측값의 차이를 계산하고 주변 공간으로 보간합니다.',
-    formula: ['Measured', '−', 'Sionna', '=', 'Residual'],
-    title: '실측 오차 지도',
-    summary: '위치마다 다르게 나타나는 오차를 하나의 값이 아니라 공간적인 패턴으로 만듭니다.'
+  plain: {
+    image: 'assets/plain-idw.svg',
+    alt: '실제 측정값만 거리 가중치로 보간한 Plain IDW 개념도',
+    description: '실제 측정값만 사용해 가까운 지점에 더 큰 가중치를 주고 빈 위치를 채웁니다.',
+    formula: ['Measured', '+', 'Distance', '=', 'IDW'],
+    title: '측정값 거리 보간',
+    summary: '계산이 빠르고 실측값을 직접 반영하지만, 벽과 복도 같은 공간 구조는 고려하지 못합니다.'
   },
   corrected: {
     image: 'assets/residual-idw.png',
     alt: 'Residual IDW로 보정한 RF 분포',
-    description: '물리 시뮬레이션의 구조를 유지하면서 실측 잔차를 더해 현실에 가깝게 보정합니다.',
-    formula: ['Sionna', '+', 'Residual', '=', 'Corrected'],
-    title: 'Sionna + Residual IDW',
+    description: '실제값과 Sionna 예측값의 차이인 잔차를 보간해 원래 시뮬레이션에 더합니다.',
+    formula: ['Sionna', '+', 'Residual IDW', '=', 'Corrected'],
+    title: '시뮬레이션 오차 보정',
     summary: '공간 구조와 현장 측정을 결합해 이번 실험에서 가장 낮은 오차를 기록했습니다.'
   }
 };
@@ -141,9 +141,14 @@ const viewerScene = document.getElementById('viewerScene');
 document.querySelectorAll('[data-view]').forEach(button => {
   button.addEventListener('click', () => {
     document.querySelectorAll('[data-view]').forEach(item => item.classList.toggle('active', item === button));
-    const raw = button.dataset.view === 'raw';
-    viewerScene.classList.toggle('raw', raw);
-    document.getElementById('viewerMode').textContent = raw ? 'RAW SIONNA' : 'RESIDUAL IDW';
+    const mode = button.dataset.view;
+    viewerScene.classList.remove('raw', 'plain');
+    if (mode !== 'residual') viewerScene.classList.add(mode);
+    document.getElementById('viewerMode').textContent = {
+      raw: 'RAW SIONNA',
+      plain: 'PLAIN IDW',
+      residual: 'RESIDUAL IDW'
+    }[mode];
   });
 });
 

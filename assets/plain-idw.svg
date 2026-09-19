@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1428 680" role="img" aria-labelledby="title desc">
+  <title id="title">Plain IDW 측정값 거리 보간 개념도</title>
+  <desc id="desc">벽 구조를 사용하지 않고 가까운 RSSI 측정값에 더 큰 가중치를 주어 만든 부드러운 신호 분포</desc>
+  <defs>
+    <clipPath id="floorClip">
+      <path d="M126 42H1088V150H934V195H884V344H1015V405H884V555H720V466H582V555H420V466H260V555H126V405H260V344H126Z"/>
+    </clipPath>
+    <radialGradient id="hot"><stop offset="0" stop-color="#fde725"/><stop offset=".42" stop-color="#7ad151"/><stop offset="1" stop-color="#22a884" stop-opacity="0"/></radialGradient>
+    <radialGradient id="mid"><stop offset="0" stop-color="#35b779"/><stop offset=".5" stop-color="#21918c"/><stop offset="1" stop-color="#31688e" stop-opacity="0"/></radialGradient>
+    <radialGradient id="cold"><stop offset="0" stop-color="#26828e"/><stop offset=".52" stop-color="#3e4989"/><stop offset="1" stop-color="#440154" stop-opacity="0"/></radialGradient>
+    <linearGradient id="legend" x1="0" y1="1" x2="0" y2="0"><stop stop-color="#440154"/><stop offset=".3" stop-color="#31688e"/><stop offset=".58" stop-color="#1f9e89"/><stop offset=".8" stop-color="#6ece58"/><stop offset="1" stop-color="#fde725"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1428" height="680" fill="#fff"/>
+  <g clip-path="url(#floorClip)">
+    <rect x="100" y="30" width="1020" height="550" fill="#355f8d"/>
+    <circle cx="648" cy="142" r="360" fill="url(#hot)" filter="url(#soft)"/>
+    <circle cx="244" cy="360" r="290" fill="url(#mid)" filter="url(#soft)"/>
+    <circle cx="965" cy="400" r="330" fill="url(#cold)" filter="url(#soft)"/>
+    <circle cx="510" cy="495" r="250" fill="url(#cold)" filter="url(#soft)" opacity=".8"/>
+  </g>
+  <path d="M126 42H1088V150H934V195H884V344H1015V405H884V555H720V466H582V555H420V466H260V555H126V405H260V344H126Z" fill="none" stroke="#10232c" stroke-width="3"/>
+  <g fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round">
+    <path d="M163 122l20 20m0-20l-20 20"/><path d="M266 98l20 20m0-20l-20 20"/>
+    <path d="M430 128l20 20m0-20l-20 20"/><path d="M842 120l20 20m0-20l-20 20"/>
+    <path d="M968 101l20 20m0-20l-20 20"/><path d="M1048 146l20 20m0-20l-20 20"/>
+    <path d="M164 390l20 20m0-20l-20 20"/><path d="M300 430l20 20m0-20l-20 20"/>
+    <path d="M434 428l20 20m0-20l-20 20"/><path d="M565 394l20 20m0-20l-20 20"/>
+    <path d="M700 425l20 20m0-20l-20 20"/><path d="M836 392l20 20m0-20l-20 20"/>
+    <path d="M966 425l20 20m0-20l-20 20"/>
+  </g>
+  <g transform="translate(640 116)">
+    <path d="M0-28L7-9L28-9L11 3L18 24L0 12L-18 24L-11 3L-28-9L-7-9Z" fill="#ff2f42" stroke="#fff" stroke-width="4"/>
+  </g>
+  <line x1="126" y1="590" x2="1088" y2="590" stroke="#111" stroke-width="2"/>
+  <line x1="92" y1="42" x2="92" y2="555" stroke="#111" stroke-width="2"/>
+  <text x="590" y="645" font-family="Arial, sans-serif" font-size="27" fill="#111">X (m)</text>
+  <text x="35" y="340" transform="rotate(-90 35 340)" font-family="Arial, sans-serif" font-size="27" fill="#111">Y (m)</text>
+  <rect x="1160" y="72" width="34" height="455" rx="3" fill="url(#legend)" stroke="#111" stroke-width="2"/>
+  <g font-family="Arial, sans-serif" font-size="22" fill="#111"><text x="1210" y="88">-20</text><text x="1210" y="198">-40</text><text x="1210" y="308">-60</text><text x="1210" y="418">-80</text><text x="1210" y="530">-95</text></g>
+  <text x="1328" y="325" transform="rotate(-90 1328 325)" font-family="Arial, sans-serif" font-size="28" fill="#111">RSSI (dBm)</text>
+  <rect x="126" y="595" width="392" height="45" rx="8" fill="#071014" opacity=".9"/>
+  <text x="145" y="625" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="19" font-weight="700" fill="#69f0c8">PLAIN IDW · 측정값 기반 거리 보간</text>
+</svg>
