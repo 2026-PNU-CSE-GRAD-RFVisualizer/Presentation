@@ -151,8 +151,8 @@ document.querySelectorAll('[data-height]').forEach(button => {
   button.addEventListener('click', () => {
     document.querySelectorAll('[data-height]').forEach(item => item.classList.toggle('active', item === button));
     const height = Number(button.dataset.height);
-    document.getElementById('heightLabel').textContent = `Z ${height.toFixed(1)} m`;
-    document.getElementById('rfPlane').style.transform = `perspective(700px) rotateX(66deg) translateY(${18 - (height - 1.2) * 22}%)`;
+    document.getElementById('heightLabel').textContent = `Z ${height.toFixed(2)} m`;
+    document.getElementById('rfPlane').style.transform = `perspective(700px) rotateX(66deg) translateY(${18 - (height - 1.25) * 22}%)`;
   });
 });
 

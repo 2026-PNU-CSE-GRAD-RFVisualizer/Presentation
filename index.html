@@ -156,11 +156,11 @@
             <div><dt>Wireless</dt><dd>ESP-NOW</dd></div>
             <div><dt>UART</dt><dd>115200 bps</dd></div>
             <div><dt>Integrity</dt><dd>CRC32 · Checksum</dd></div>
-            <div><dt>Samples</dt><dd>20 repeated observations</dd></div>
+            <div><dt>Procedure</dt><dd>1 traversal · 120 s / point</dd></div>
           </dl>
         </div>
       </div>
-      <template class="speaker-note">RSSI는 수신한 와이파이 신호의 세기를 나타낸 값입니다. 현장에서는 네 대의 원격 ESP32 노드를 고정 보정 지점에 두고, ESP32 Gateway가 시험 위치의 RSSI도 직접 측정하도록 구성했습니다. 즉 별도의 측정 노드 다섯 대가 아니라, 원격 노드 네 대와 Gateway의 로컬 측정 한 개로 총 다섯 지점의 신호를 수집합니다. 측정값은 ESP-NOW로 Gateway에 모이고, STM32는 형식과 체크섬을 확인해 JSON으로 정리합니다. 누락과 중복을 찾기 위한 순서 번호와 오류 상태도 함께 관리합니다.</template>
+      <template class="speaker-note">RSSI는 수신한 와이파이 신호의 세기를 나타낸 값입니다. 현장에서는 네 대의 원격 ESP32 노드를 고정 보정 지점에 두고, ESP32 Gateway가 시험 위치의 RSSI도 직접 측정하도록 구성했습니다. 즉 별도의 측정 노드 다섯 대가 아니라, 원격 노드 네 대와 Gateway의 로컬 측정 한 개로 총 다섯 지점의 신호를 수집합니다. 측정값은 ESP-NOW로 Gateway에 모이고, STM32는 형식과 체크섬을 확인해 JSON으로 정리합니다. 누락과 중복을 찾기 위한 순서 번호와 오류 상태도 함께 관리합니다. 측정은 각 지점에서 20초 안정화 후 120초를 기록하며, test-10부터 test-01까지 한 번의 순회로 10개 시험 지점을 모두 측정했습니다. 대표값은 유효 RSSI 이동평균의 중앙값에 장치별 오프셋 보정을 적용한 값입니다.</template>
     </section>
 
     <section class="chapter" id="network" data-label="NETWORK" data-title="Backend 모니터링">
@@ -225,25 +225,26 @@
           <p class="eyebrow"><span>08</span> 비교 평가</p>
           <h2>Residual IDW,<br /><em>가장 낮은 오차</em></h2>
           <p>MAE와 RMSE는 실제값과 예측값의 차이입니다. 낮을수록 실제 측정에 가깝습니다.</p>
-          <div class="winning-number"><strong>3.41</strong><span>dB<br />MAE</span></div>
+          <div class="winning-number"><strong>2.78</strong><span>dB<br />MAE</span></div>
+          <p class="delta-note">일반 IDW 대비 <b>52.8%</b> · 원시 예측 대비 <b>67.9%</b> 낮음</p>
         </div>
         <div class="bar-chart reveal delay-1" aria-label="네 방법의 MAE 비교 막대그래프">
-          <div class="chart-scale"><span>0</span><span>3</span><span>6</span><span>9 dB</span></div>
-          <div class="bar-row"><span>Raw Sionna RT</span><div><i style="--value:84.9%"></i></div><b>7.64</b></div>
-          <div class="bar-row"><span>Plain IDW</span><div><i style="--value:59.2%"></i></div><b>5.33</b></div>
-          <div class="bar-row winner"><span>Residual IDW</span><div><i style="--value:37.9%"></i></div><b>3.41</b></div>
-          <div class="bar-row"><span>Global Bias</span><div><i style="--value:91.8%"></i></div><b>8.26</b></div>
+          <div class="chart-scale"><span>0</span><span>3.5</span><span>7</span><span>10.5 dB</span></div>
+          <div class="bar-row"><span>Raw Sionna RT</span><div><i style="--value:82.3%"></i></div><b>8.64</b></div>
+          <div class="bar-row"><span>Plain IDW</span><div><i style="--value:56.1%"></i></div><b>5.89</b></div>
+          <div class="bar-row winner"><span>Residual IDW</span><div><i style="--value:26.5%"></i></div><b>2.78</b></div>
+          <div class="bar-row"><span>Global Bias</span><div><i style="--value:84.5%"></i></div><b>8.87</b></div>
           <p>Mean Absolute Error · lower is better</p>
         </div>
         <div class="result-table reveal delay-2">
           <div class="table-head"><span>METHOD</span><span>MAE</span><span>RMSE</span></div>
-          <div><span>Raw Sionna RT</span><b>7.64</b><b>9.32</b></div>
-          <div><span>Plain IDW</span><b>5.33</b><b>7.09</b></div>
-          <div class="highlight"><span>Sionna + Residual IDW</span><b>3.41</b><b>4.74</b></div>
-          <div><span>Sionna + Global Bias</span><b>8.26</b><b>9.83</b></div>
+          <div><span>Raw Sionna RT</span><b>8.64</b><b>10.43</b></div>
+          <div><span>Plain IDW</span><b>5.89</b><b>7.84</b></div>
+          <div class="highlight"><span>Sionna + Residual IDW</span><b>2.78</b><b>4.13</b></div>
+          <div><span>Sionna + Global Bias</span><b>8.87</b><b>10.69</b></div>
         </div>
       </div>
-      <template class="speaker-note">MAE와 RMSE는 실제값과 예측값의 차이를 나타내며 낮을수록 좋습니다. MAE는 Raw Sionna RT가 7.64 dB, Plain IDW가 5.33 dB였습니다. Residual IDW 결합 결과는 3.41 dB로 가장 낮았고, Global Bias는 8.26 dB였습니다. Residual IDW가 시뮬레이션 구조와 측정 오차를 함께 반영한 결과입니다.</template>
+      <template class="speaker-note">MAE와 RMSE는 실제값과 예측값의 차이를 나타내며 낮을수록 좋습니다. 10개 시험 지점을 모두 포함한 1회 측정에서 MAE는 Raw Sionna RT가 8.64 dB, Plain IDW가 5.89 dB였습니다. Residual IDW 결합 결과는 2.78 dB로 가장 낮았고, Global Bias는 8.87 dB였습니다. 잔차 IDW는 일반 IDW보다 52.8%, 원시 예측보다 67.9% 낮았고, 10개 지점 중 7개에서 원시 예측보다 절대오차가 작았습니다. 시뮬레이션 구조와 측정 오차를 함께 반영한 결과입니다.</template>
     </section>
 
     <section class="chapter" id="viewer" data-label="DEMO" data-title="Viewer와 Handheld">
@@ -253,22 +254,22 @@
             <p class="eyebrow"><span>09</span> 통합 시연</p>
             <h2>손의 움직임이<br /><em>3D 공간과 연결됩니다</em></h2>
           </div>
-          <p>BNO085 자세 추적, 텔레포트, 높이 변경, LCD 영상 출력을 한 장치에서 확인합니다.</p>
+          <p>BNO085 자세 추적, 텔레포트, 높이 변경, LCD 영상 출력을 한 장치에서 확인합니다. RF Volume은 0.25 m에서 2.75 m까지 0.5 m 간격 6개 층으로 계산합니다.</p>
         </div>
         <div class="viewer-window reveal delay-1">
           <div class="window-bar"><span></span><span></span><span></span><b>RFVisualizer / live viewer</b><em id="viewerMode">RESIDUAL IDW</em></div>
           <div class="viewer-scene" id="viewerScene">
             <img src="assets/gaussian-scene.jpg" alt="3D Viewer 장면 미리보기" />
             <div class="rf-plane" id="rfPlane"></div>
-            <div class="viewer-hud"><b>-42 dBm</b><span id="heightLabel">Z 1.2 m</span></div>
+            <div class="viewer-hud"><b>-42 dBm</b><span id="heightLabel">Z 1.25 m</span></div>
           </div>
           <div class="viewer-controls" aria-label="Viewer 데모 컨트롤">
             <button type="button" data-view="raw">Raw</button>
             <button class="active" type="button" data-view="residual">Residual</button>
             <span></span>
-            <button type="button" data-height="0.8">0.8 m</button>
-            <button class="active" type="button" data-height="1.2">1.2 m</button>
-            <button type="button" data-height="1.6">1.6 m</button>
+            <button type="button" data-height="0.75">0.75 m</button>
+            <button class="active" type="button" data-height="1.25">1.25 m</button>
+            <button type="button" data-height="1.75">1.75 m</button>
           </div>
         </div>
         <figure class="handheld-shot reveal delay-2">
@@ -276,7 +277,7 @@
           <figcaption><b>Handheld</b><span>IMU · 2 buttons · 800×480 LCD</span></figcaption>
         </figure>
       </div>
-      <template class="speaker-note">Handheld의 BNO085 센서가 손의 방향을 측정해 Backend로 보내면 3D Viewer 카메라가 같은 방향으로 회전합니다. 첫 번째 버튼은 텔레포트, 두 번째 버튼은 RF 히트맵의 높이 층 변경에 사용합니다. Viewer의 800×480 화면은 Image Relay를 거쳐 Handheld로 전달되고 NT35510 LCD에 표시됩니다.</template>
+      <template class="speaker-note">Handheld의 BNO085 센서가 손의 방향을 측정해 Backend로 보내면 3D Viewer 카메라가 같은 방향으로 회전합니다. 첫 번째 버튼은 텔레포트, 두 번째 버튼은 RF 히트맵의 높이 층 변경에 사용합니다. RF Volume은 0.25 m부터 2.75 m까지 0.5 m 간격 6개 층으로 계산하며, 평면 결과의 기준 높이는 0.45 m입니다. Viewer의 800×480 화면은 Image Relay를 거쳐 Handheld로 전달되고 NT35510 LCD에 표시됩니다.</template>
     </section>
 
     <section class="chapter conclusion" id="conclusion" data-label="OUTRO" data-title="결론과 한계">
@@ -285,18 +286,19 @@
         <div class="section-copy reveal">
           <p class="eyebrow"><span>10</span> 결론</p>
           <h2>측정에서 끝나지 않고<br /><em>공간 안에서 경험합니다</em></h2>
-          <p>공간 복원, RF 시뮬레이션, RSSI 실측, 분석, 3D 시각화와 Handheld 출력을 하나의 시스템으로 연결했습니다.</p>
+          <p>공간 복원, RF 시뮬레이션, RSSI 실측, 분석, 3D 시각화와 Handheld 출력을 하나의 시스템으로 연결했습니다. 잔차 IDW는 비교한 네 방법 중 MAE 2.78 dB로 가장 낮았습니다.</p>
           <div class="final-flow"><span>RECONSTRUCT</span><i></i><span>MEASURE</span><i></i><span>CORRECT</span><i></i><span>VISUALIZE</span></div>
         </div>
         <div class="limits-panel reveal delay-1">
           <p class="panel-kicker">LIMITATIONS / NEXT</p>
-          <div><span>01</span><p><b>단일 건물·단일 AP</b>현재 결과는 탐색적 결과이며 다른 공간으로 일반화하지 않습니다.</p></div>
-          <div><span>02</span><p><b>높이 방향 정성 표현</b>한 높이의 보정값을 확장했으므로 수직 정확도는 추가 측정이 필요합니다.</p></div>
-          <div><span>03</span><p><b>다음 단계</b>여러 공간과 여러 높이에서 반복 측정해 일반성과 3D 정확도를 높입니다.</p></div>
+          <div><span>01</span><p><b>1회 측정 기술통계</b>한 건물의 한 개 층, 단일 송신기와 채널, 보정 지점 4개에 한정되며 반복 측정 변동은 정량화하지 못했습니다.</p></div>
+          <div><span>02</span><p><b>잔차 보간의 한계</b>test-07처럼 원시 예측이 정확한 지점은 오차가 커질 수 있고, 벽을 사이에 둔 지점으로 잔차가 번질 수 있습니다.</p></div>
+          <div><span>03</span><p><b>높이 방향 정성 표현</b>보정은 한 높이에서 얻었으므로 다른 높이의 RF Volume은 정성적 시각화에 한정됩니다.</p></div>
+          <div><span>04</span><p><b>다음 단계</b>영역 분리·장애물 인지 거리 보간과 재질·투과손실 측정을 검증하고, 프레임률과 지연·손실을 정량화합니다.</p></div>
         </div>
         <p class="closing reveal delay-2">RFVisualizer <span>—</span> Thank you</p>
       </div>
-      <template class="speaker-note">저희는 공간 촬영과 3차원 복원에서 시작해 RF 시뮬레이션, RSSI 실측, 분석, 3D 시각화와 Handheld 출력까지 연결했습니다. 이번 결과는 한 건물과 한 공유기 환경에서 얻은 탐색적 결과이며, 수직 방향 RF Volume은 시각적인 해석에 가깝습니다. 여러 공간과 높이에서 측정을 반복하면 일반성과 3차원 정확도를 높일 수 있습니다. 감사합니다.</template>
+      <template class="speaker-note">저희는 공간 촬영과 3차원 복원에서 시작해 RF 시뮬레이션, RSSI 실측, 분석, 3D 시각화와 Handheld 출력까지 연결했습니다. 잔차 IDW는 비교한 네 방법 중 MAE 2.78 dB로 가장 낮았고, LoS와 NLoS의 편향 방향이 달라 모든 위치에 같은 보정값을 적용하는 방식에는 한계가 있음을 확인했습니다. 다만 이번 결과는 한 건물의 한 개 층, 단일 송신기와 채널, 보정 지점 네 개, 1회 측정에 한정된 기술통계이며 반복 측정 변동은 정량화하지 못했습니다. 수직 방향 RF Volume도 정성적 시각화에 가깝습니다. 앞으로는 벽을 가로지르는 잔차 확산을 막는 영역 분리와 재질 투과손실 측정을 검증할 예정입니다. 감사합니다.</template>
     </section>
   </main>
 
