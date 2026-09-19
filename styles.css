@@ -297,9 +297,9 @@ p { line-height: 1.75; }
 .mono { font-variant-numeric: tabular-nums; color: #d8e6e4; }
 
 /* 07 방법 3단 정적 비교 */
-.method-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+.method-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
 .method-panel { margin: 0; display: grid; grid-template-rows: 1fr auto; gap: 10px; }
-.method-panel .method-image { min-height: 250px; width: 100%; }
+.method-panel .method-image { min-height: 320px; width: 100%; }
 .method-panel figcaption { display: grid; gap: 4px; border-top: 1px solid var(--line); padding-top: 10px; }
 .method-panel figcaption b { font-size: .92rem; }
 .method-panel figcaption span { color: var(--muted); font-size: .74rem; line-height: 1.5; }
@@ -308,7 +308,7 @@ p { line-height: 1.75; }
 .methods-layout .mini-methods { display: grid; gap: 14px; margin-top: 16px; }
 
 /* 09 편향 표 */
-.bias-table { grid-column: auto; align-self: center; }
+.bias-table { grid-column: auto; margin-top: 22px; }
 .bias-table .table-head, .bias-table > div { grid-template-columns: 1fr 40px 84px 104px; }
 .bias-table .table-foot { grid-template-columns: 1fr; color: var(--muted); font-size: .66rem; }
 
@@ -322,4 +322,28 @@ p { line-height: 1.75; }
   .method-row { grid-template-columns: 1fr; }
   .methods-layout .mini-methods { grid-template-columns: 1fr; }
   .bias-table .table-head, .bias-table > div { grid-template-columns: 1fr 34px 70px 84px; }
+}
+
+/* 06 수집과 검증 - 사진 없는 본문 슬라이드 */
+.metric-glossary.stacked { grid-template-columns: 1fr 1fr; margin-top: 20px; }
+.section-copy .note-line { color: var(--muted); font-size: .78rem; line-height: 1.6; margin: 18px 0 0; }
+
+/* 09 편향 - 잔차장 그림 + 표 */
+.bias-layout { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(340px, .96fr); gap: clamp(32px, 5vw, 70px); align-items: center; }
+.bias-figure { border: 1px solid var(--line); background: #fff; border-radius: 14px; padding: 0; overflow: hidden; cursor: zoom-in; display: grid; }
+.bias-figure img { width: 100%; display: block; }
+.figure-cap { background: rgba(7,16,20,.92); color: var(--muted); font-size: .72rem; text-align: left; padding: 11px 14px; border-top: 1px solid var(--line); }
+.figure-cap b { color: var(--text); }
+
+/* 전체화면에서는 발표 조작 UI를 숨긴다 */
+:root:fullscreen { --top: 0px; }
+:root:fullscreen .topbar,
+:root:fullscreen .rail { display: none; }
+:root:-webkit-full-screen { --top: 0px; }
+:root:-webkit-full-screen .topbar { display: none; }
+:root:-webkit-full-screen .rail { display: none; }
+
+@media (max-width: 900px) {
+  .bias-layout { grid-template-columns: 1fr; }
+  .metric-glossary.stacked { grid-template-columns: 1fr; }
 }
