@@ -60,7 +60,7 @@
       <div class="content split-layout">
         <div class="section-copy reveal">
           <p class="eyebrow"><span>02</span> 연구 배경</p>
-          <h2>2D 히트맵은<br /><em>공간 구조를 담지 못한다</em></h2>
+          <h2>2D 히트맵의 <em>한계</em></h2>
           <ul class="bullets">
             <li>RSSI는 거리만으로 정해지지 않는다. <b>차폐, 반사, 수신 높이</b>가 함께 작용한다.</li>
             <li>평면 히트맵은 벽과 높이를 표현할 수 없어 급격한 변화를 설명하지 못한다.</li>
@@ -85,12 +85,12 @@
       <div class="content media-layout">
         <div class="section-head reveal">
           <p class="eyebrow"><span>03</span> 장면 구성</p>
-          <h2>사진에서 <em>전파 계산용 공간</em>을 만든다</h2>
+          <h2>복원 장면과<br /><em>계산용 프록시</em></h2>
         </div>
         <div class="reconstruction-grid">
-          <button class="image-card scene-card reveal" type="button" data-zoom="assets/gaussian-scene.jpg" aria-label="Gaussian Scene 확대">
-            <img src="assets/gaussian-scene.jpg" alt="사진 기반으로 복원한 실내 Gaussian Scene" />
-            <span class="image-label"><b>Gaussian Scene</b><small>시각화용. 사람이 보는 장면</small></span>
+          <button class="image-card scene-card reveal" type="button" data-zoom="assets/scene-render.png" aria-label="Gaussian Scene 확대">
+            <img src="assets/scene-render.png" alt="PGSR로 복원한 3층 복도의 Gaussian Scene" />
+            <span class="image-label"><b>Gaussian Scene</b><small>시각화용. 사람이 보는 장면 (RF 볼륨 겹침)</small></span>
           </button>
           <button class="image-card proxy-card reveal delay-1" type="button" data-zoom="assets/proxy-mesh.png" aria-label="Proxy Shell 확대">
             <img src="assets/proxy-mesh.png" alt="바닥·벽·천장 그룹으로 이루어진 닫힌 Proxy Shell" />
@@ -115,7 +115,7 @@
         <div class="section-head horizontal reveal">
           <div>
             <p class="eyebrow"><span>04</span> 시스템 구성</p>
-            <h2>데이터 흐름은 <em>세 갈래</em>다</h2>
+            <h2>세 갈래 <em>데이터 흐름</em></h2>
           </div>
           <p>측정은 분석으로, Viewer 영상은 LCD로, Handheld 입력은 다시 Viewer로 간다.</p>
         </div>
@@ -173,25 +173,30 @@
     </section>
 
     <section class="chapter" id="network" data-label="수집" data-title="수집과 검증">
-      <div class="content dashboard-layout">
-        <div class="section-head horizontal reveal">
-          <div>
-            <p class="eyebrow"><span>06</span> 수집과 검증</p>
-            <h2>이상값은 <em>지우지 않고 제외</em>한다</h2>
-          </div>
-          <div class="status-pills"><span><i></i>5 nodes</span><span>QoS 1</span><span>원본 보존</span></div>
+      <div class="content split-layout">
+        <div class="section-copy reveal">
+          <p class="eyebrow"><span>06</span> 수집과 검증</p>
+          <h2>원본 보존과 <em>이상값 처리</em></h2>
+          <ul class="bullets">
+            <li>STM32 → Python Bridge → MQTT(QoS 1) → Backend 순으로 전달한다.</li>
+            <li>비정상 표본도 <b>삭제하지 않는다.</b> 제외 사유와 함께 원시 데이터에 남긴다.</li>
+            <li>대표값 계산과 잔차 보정에서만 제외한다. 평가 근거를 되짚을 수 있다.</li>
+            <li>유효 RSSI 하한은 모든 계층에서 <b>-110 dBm</b>으로 통일했다. 수집 단계가 약한 신호를 먼저 지우지 않도록.</li>
+            <li>패킷 순번으로 중복과 누락을 확인하고, 기록 구간은 서버 수신 시각 기준 시간창에 배정한다.</li>
+          </ul>
         </div>
-        <button class="dashboard-frame reveal delay-1" type="button" data-zoom="assets/dashboard.png" aria-label="모니터링 대시보드 확대">
-          <img src="assets/dashboard.png" alt="메시지 수, 드롭률, 노드 상태를 표시하는 모니터링 대시보드" />
-        </button>
-        <div class="metric-glossary reveal delay-2">
-          <div><b>message rate</b><span>초당 수신량</span></div>
-          <div><b>lost packets</b><span>순번 기준 누락</span></div>
-          <div><b>last seen</b><span>마지막 수신 시각</span></div>
-          <div><b>drop rate</b><span>검사 제외 비율</span></div>
+        <div class="section-copy reveal delay-1">
+          <div class="status-pills"><span><i></i>5 nodes</span><span>QoS 1</span><span>원본 보존</span></div>
+          <div class="metric-glossary stacked">
+            <div><b>message rate</b><span>초당 수신량</span></div>
+            <div><b>lost packets</b><span>순번 기준 누락</span></div>
+            <div><b>last seen</b><span>마지막 수신 시각</span></div>
+            <div><b>drop rate</b><span>검사 제외 비율</span></div>
+          </div>
+          <p class="note-line">위 네 지표를 대시보드에서 실시간으로 확인한다.</p>
         </div>
       </div>
-      <template class="speaker-note">STM32 데이터는 Python Bridge와 MQTT Broker를 거쳐 Backend로 전달됩니다. Backend는 값을 검증하고 실험 위치와 시간 구간에 맞춰 저장합니다. 비정상 값도 원본과 오류 사유는 남기고 분석에서만 제외합니다. 유효 RSSI 하한은 모든 계층에서 -110 dBm으로 통일해 수집 단계가 약한 신호를 먼저 지우지 않도록 했습니다. 대시보드에서는 노드 연결 상태, 초당 수신량, 누락 수, 마지막 수신 시각과 드롭률을 실시간으로 확인할 수 있습니다.</template>
+      <template class="speaker-note">STM32 데이터는 Python Bridge와 MQTT Broker를 거쳐 Backend로 전달됩니다. Backend는 값을 검증하고 실험 위치와 시간 구간에 맞춰 저장합니다. 비정상 값도 원본과 오류 사유는 남기고 분석에서만 제외합니다. 덕분에 나중에 어떤 표본이 왜 빠졌는지 되짚을 수 있습니다. 유효 RSSI 하한은 모든 계층에서 -110 dBm으로 통일해 수집 단계가 약한 신호를 먼저 지우지 않도록 했습니다. 대시보드에서는 노드 연결 상태, 초당 수신량, 누락 수, 마지막 수신 시각과 드롭률을 실시간으로 확인할 수 있습니다.</template>
     </section>
 
     <section class="chapter" id="methods" data-label="방법" data-title="비교한 네 방법">
@@ -217,16 +222,10 @@
             <figcaption><b>② Plain IDW</b><span>측정값만 거리로 보간. 벽과 복도 구조는 못 본다</span><em>MAE 5.89 dB</em></figcaption>
           </figure>
           <figure class="method-panel">
-            <button class="method-image" type="button" data-zoom="assets/residual-field.png" aria-label="잔차장 확대">
-              <img src="assets/residual-field.png" alt="보정점 잔차를 보간한 공간 잔차장" />
-            </button>
-            <figcaption><b>③ 잔차장</b><span>보정 4점의 실측−예측 차이를 공간에 보간</span><em>중간 산출물</em></figcaption>
-          </figure>
-          <figure class="method-panel">
             <button class="method-image" type="button" data-zoom="assets/residual-idw.png" aria-label="잔차 IDW 결과 확대">
               <img src="assets/residual-idw.png" alt="잔차 IDW로 보정한 복도 RF 지도" />
             </button>
-            <figcaption class="win"><b>④ 잔차 IDW</b><span>① + ③. 구조를 유지하면서 현장 오차를 보정</span><em>MAE 2.78 dB</em></figcaption>
+            <figcaption class="win"><b>③ 잔차 IDW</b><span>보정점 잔차를 보간해 ①에 더한다</span><em>MAE 2.78 dB</em></figcaption>
           </figure>
         </div>
         <div class="mini-methods reveal delay-2">
@@ -265,25 +264,29 @@
     </section>
 
     <section class="chapter" id="bias" data-label="분석" data-title="가시선과 비가시선 편향">
-      <div class="content split-layout">
+      <div class="content bias-layout">
         <div class="section-copy reveal">
           <p class="eyebrow"><span>09</span> 가시선과 비가시선</p>
-          <h2>편향의 <em>부호가 반대</em>다</h2>
+          <h2>편향의 <em>부호가 반대다</em></h2>
           <ul class="bullets">
             <li>LoS는 <b>-11.66 dB</b>, NLoS는 <b>+4.27 dB</b>. 방향이 서로 반대다.</li>
             <li>그래서 전체에 같은 값을 더하는 Global Bias는 한쪽을 반드시 악화시킨다.</li>
             <li>잔차 IDW는 두 영역 모두에서 개선됐고, 폭은 LoS에서 더 컸다.</li>
-            <li>다만 잔차 보간은 유클리드 거리를 쓰므로 <b>벽 너머로 잔차가 번진다</b>.</li>
+            <li>다만 잔차 보간은 유클리드 거리를 쓰므로 <b>벽 너머로 잔차가 번진다.</b> 코어 너머 cal-02·cal-03의 +17 dB대 잔차가 LoS 영역까지 넘어왔다.</li>
           </ul>
+          <div class="result-table bias-table">
+            <div class="table-head"><span>REGION</span><span>n</span><span>BIAS</span><span>RESIDUAL IDW</span></div>
+            <div><span>Line-of-sight</span><b>4</b><b>-11.66</b><b>1.59</b></div>
+            <div><span>Non-line-of-sight</span><b>6</b><b>+4.27</b><b>3.57</b></div>
+            <div class="table-foot"><span>단위 dB · Bias = 실측 − 원시 예측</span></div>
+          </div>
         </div>
-        <div class="result-table bias-table reveal delay-1">
-          <div class="table-head"><span>REGION</span><span>n</span><span>BIAS</span><span>RESIDUAL IDW</span></div>
-          <div><span>Line-of-sight</span><b>4</b><b>-11.66</b><b>1.59</b></div>
-          <div><span>Non-line-of-sight</span><b>6</b><b>+4.27</b><b>3.57</b></div>
-          <div class="table-foot"><span>단위 dB · Bias = 실측 − 원시 예측</span></div>
-        </div>
+        <button class="bias-figure reveal delay-1" type="button" data-zoom="assets/residual-field.png" aria-label="공간 잔차장 확대">
+          <img src="assets/residual-field.png" alt="보정점 잔차를 보간한 공간 잔차장. 코어 너머의 양의 잔차가 가시선 영역까지 번진다" />
+          <span class="figure-cap">보정점 잔차를 보간한 <b>공간 잔차장</b> · 붉은 영역이 양의 잔차</span>
+        </button>
       </div>
-      <template class="speaker-note">가시선 네 개 지점의 평균 편향은 마이너스 11.66 dB, 비가시선 여섯 개 지점은 플러스 4.27 dB로 부호가 반대였습니다. 즉 가시선에서는 시뮬레이션이 실제보다 높게 예측하고, 비가시선에서는 낮게 예측합니다. 따라서 모든 위치에 같은 보정값을 더하는 전역 편향 보정은 한쪽 영역을 반드시 악화시킵니다. 잔차 IDW는 두 영역 모두에서 일반 IDW보다 낮은 오차를 보였고 개선 폭은 가시선에서 더 컸습니다. 다만 잔차 보간이 유클리드 거리를 사용하기 때문에, 코어 너머 비가시선 보정점의 큰 양의 잔차가 벽을 넘어 가시선 영역까지 번지는 한계가 있습니다.</template>
+      <template class="speaker-note">가시선 네 개 지점의 평균 편향은 마이너스 11.66 dB, 비가시선 여섯 개 지점은 플러스 4.27 dB로 부호가 반대였습니다. 즉 가시선에서는 시뮬레이션이 실제보다 높게 예측하고, 비가시선에서는 낮게 예측합니다. 따라서 모든 위치에 같은 보정값을 더하는 전역 편향 보정은 한쪽 영역을 반드시 악화시킵니다. 잔차 IDW는 두 영역 모두에서 일반 IDW보다 낮은 오차를 보였고 개선 폭은 가시선에서 더 컸습니다. 오른쪽 그림이 보정점 잔차를 공간으로 보간한 잔차장입니다. 잔차 보간이 유클리드 거리를 사용하기 때문에, 코어 너머 비가시선 보정점의 큰 양의 잔차가 벽을 넘어 가시선 영역까지 번지는 것을 붉은 영역에서 확인할 수 있습니다.</template>
     </section>
 
     <section class="chapter" id="viewer" data-label="시각화" data-title="3D 시각화와 Handheld">
@@ -291,7 +294,7 @@
         <div class="section-head horizontal reveal">
           <div>
             <p class="eyebrow"><span>10</span> 3D 시각화</p>
-            <h2>복원 장면 위에 <em>RF 볼륨을 겹친다</em></h2>
+            <h2>RF 볼륨과 <em>Handheld 출력</em></h2>
           </div>
           <p>RF 볼륨은 0.25 m에서 2.75 m까지 0.5 m 간격 6개 층으로 계산한다.</p>
         </div>
