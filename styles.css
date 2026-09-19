@@ -182,6 +182,8 @@ p { line-height: 1.75; }
 .bar-row b { font-size: .85rem; text-align: right; }
 .bar-row.winner > span, .bar-row.winner b { color: var(--green); font-weight: 800; }
 .bar-row.winner i { background: linear-gradient(90deg, #2b9678, var(--green)); box-shadow: 0 0 20px rgba(105,240,200,.35); }
+.delta-note { color: var(--muted); font-size: .72rem; margin: 10px 0 0; }
+.delta-note b { color: var(--green); font-weight: 700; }
 .bar-chart > p { color: #607273; font-size: .65rem; text-align: right; margin: 8px 0 0; text-transform: uppercase; letter-spacing: .1em; }
 @keyframes grow { from { transform: scaleX(0); } }
 .result-table { grid-column: 1 / -1; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
