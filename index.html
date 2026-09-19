@@ -39,7 +39,7 @@
         <div class="hero-copy reveal">
           <p class="eyebrow"><span>2026</span> 졸업과제</p>
           <h1>사진 기반 실내 복원과<br /><em>실측 잔차 보정</em>을 결합한<br />RF 신호장 추정과 3D 시각화</h1>
-          <p class="hero-summary">3DGS로 복원한 복도에서 Sionna RT 예측과 ESP32 실측의 잔차를 공간 보간해 RF 지도를 만든다. 결과는 PC Viewer와 Handheld로 출력한다.</p>
+          <p class="hero-summary">3DGS로 복원한 복도에서 Sionna RT 예측과 ESP32 실측의 잔차를 공간 보간해 RF 지도를 만듦. 결과는 PC Viewer와 Handheld로 출력.</p>
           <div class="hero-metrics" aria-label="핵심 수치">
             <div><strong>10</strong><span>시험 지점</span></div>
             <div><strong>4</strong><span>비교 방법</span></div>
@@ -62,9 +62,9 @@
           <p class="eyebrow"><span>02</span> 연구 배경</p>
           <h2>2D 히트맵의 <em>한계</em></h2>
           <ul class="bullets">
-            <li>RSSI는 거리만으로 정해지지 않는다. <b>차폐, 반사, 수신 높이</b>가 함께 작용한다.</li>
-            <li>평면 히트맵은 벽과 높이를 표현할 수 없어 급격한 변화를 설명하지 못한다.</li>
-            <li>수작업 CAD 모델링은 정확하지만 공간마다 비용이 반복된다.</li>
+            <li>RSSI는 거리만으로 정해지지 않음. <b>차폐, 반사, 수신 높이</b>가 함께 작용.</li>
+            <li>평면 히트맵은 벽과 높이를 표현할 수 없어 급격한 변화를 설명하지 못함.</li>
+            <li>수작업 CAD 모델링은 정확하지만 공간마다 비용 반복.</li>
           </ul>
           <div class="callout"><b>접근</b><span>사진 기반 복원 + 물리 시뮬레이션 + 실측 잔차 보정</span></div>
         </div>
@@ -117,7 +117,7 @@
             <p class="eyebrow"><span>04</span> 시스템 구성</p>
             <h2>세 갈래 <em>데이터 흐름</em></h2>
           </div>
-          <p>측정은 분석으로, Viewer 영상은 LCD로, Handheld 입력은 다시 Viewer로 간다.</p>
+          <p>측정은 분석으로, Viewer 영상은 LCD로, Handheld 입력은 다시 Viewer로 감.</p>
         </div>
         <div class="flow-stack reveal delay-1">
           <div class="flow-lane lane-green">
@@ -154,12 +154,12 @@
         </div>
         <div class="section-copy reveal delay-1">
           <p class="eyebrow"><span>05</span> 실험 설계와 측정</p>
-          <h2>보정점을 <em>LoS와 NLoS에 나눠</em> 배치한다</h2>
+          <h2>보정점을 <em>LoS와 NLoS에 나눠</em> 배치</h2>
           <ul class="bullets">
-            <li>중앙 코어를 둘러싼 링 복도. 코어 뒤편에 깊은 <b>NLoS</b> 영역이 생긴다.</li>
-            <li>보정 4점을 LoS 2 · NLoS 2로 나눴다. 한쪽에 몰리면 반대편이 외삽이 된다.</li>
-            <li>시험 10점은 LoS 4 · NLoS 6. 보정에 쓰지 않고 평가에만 쓴다.</li>
-            <li>ESP-NOW로 Gateway에 모으고, STM32가 체크섬과 순번을 검증한다.</li>
+            <li>중앙 코어를 둘러싼 링 복도. 코어 뒤편에 깊은 <b>NLoS</b> 영역이 생김.</li>
+            <li>보정 4점을 LoS 2 · NLoS 2로 나눔. 한쪽에 몰리면 반대편이 외삽이 됨.</li>
+            <li>시험 10점은 LoS 4 · NLoS 6. 보정에 쓰지 않고 평가에만 씀.</li>
+            <li>ESP-NOW로 Gateway에 모으고, STM32가 체크섬과 순번을 검증.</li>
           </ul>
           <dl class="spec-list">
             <div><dt>송신기</dt><dd>ipTIME N602SR · 2.437 GHz</dd></div>
@@ -178,11 +178,11 @@
           <p class="eyebrow"><span>06</span> 수집과 검증</p>
           <h2>원본 보존과 <em>이상값 처리</em></h2>
           <ul class="bullets">
-            <li>STM32 → Python Bridge → MQTT(QoS 1) → Backend 순으로 전달한다.</li>
-            <li>비정상 표본도 <b>삭제하지 않는다.</b> 제외 사유와 함께 원시 데이터에 남긴다.</li>
-            <li>대표값 계산과 잔차 보정에서만 제외한다. 평가 근거를 되짚을 수 있다.</li>
-            <li>유효 RSSI 하한은 모든 계층에서 <b>-110 dBm</b>으로 통일했다. 수집 단계가 약한 신호를 먼저 지우지 않도록.</li>
-            <li>패킷 순번으로 중복과 누락을 확인하고, 기록 구간은 서버 수신 시각 기준 시간창에 배정한다.</li>
+            <li>STM32 → Python Bridge → MQTT(QoS 1) → Backend 순으로 전달.</li>
+            <li>비정상 표본도 <b>삭제하지 않음.</b> 제외 사유와 함께 원시 데이터에 남김.</li>
+            <li>대표값 계산과 잔차 보정에서만 제외. 평가 근거를 되짚을 수 있음.</li>
+            <li>유효 RSSI 하한은 모든 계층에서 <b>-110 dBm</b>으로 통일. 수집 단계가 약한 신호를 먼저 지우지 않도록.</li>
+            <li>패킷 순번으로 중복과 누락을 확인하고, 기록 구간은 서버 수신 시각 기준 시간창에 배정.</li>
           </ul>
         </div>
         <div class="section-copy reveal delay-1">
@@ -193,7 +193,7 @@
             <div><b>last seen</b><span>마지막 수신 시각</span></div>
             <div><b>drop rate</b><span>검사 제외 비율</span></div>
           </div>
-          <p class="note-line">위 네 지표를 대시보드에서 실시간으로 확인한다.</p>
+          <p class="note-line">위 네 지표를 대시보드에서 실시간으로 확인.</p>
         </div>
       </div>
       <template class="speaker-note">STM32 데이터는 Python Bridge와 MQTT Broker를 거쳐 Backend로 전달됩니다. Backend는 값을 검증하고 실험 위치와 시간 구간에 맞춰 저장합니다. 비정상 값도 원본과 오류 사유는 남기고 분석에서만 제외합니다. 덕분에 나중에 어떤 표본이 왜 빠졌는지 되짚을 수 있습니다. 유효 RSSI 하한은 모든 계층에서 -110 dBm으로 통일해 수집 단계가 약한 신호를 먼저 지우지 않도록 했습니다. 대시보드에서는 노드 연결 상태, 초당 수신량, 누락 수, 마지막 수신 시각과 드롭률을 실시간으로 확인할 수 있습니다.</template>
@@ -204,32 +204,32 @@
         <div class="section-head horizontal reveal">
           <div>
             <p class="eyebrow"><span>07</span> 비교한 네 방법</p>
-            <h2>시뮬레이션 구조에 <em>실측 잔차를 더한다</em></h2>
+            <h2>시뮬레이션 구조에 <em>실측 잔차를 더함</em></h2>
           </div>
-          <p>보정점에서 <span class="mono">잔차 = 실측 − 예측</span>을 구하고, 이를 공간에 보간해 원시 예측에 더한다.</p>
+          <p>보정점에서 <span class="mono">잔차 = 실측 − 예측</span>을 구하고, 이를 공간에 보간해 원시 예측에 더함.</p>
         </div>
         <div class="method-row reveal delay-1">
           <figure class="method-panel">
             <button class="method-image" type="button" data-zoom="assets/raw-sionna.png" aria-label="원시 예측 확대">
               <img src="assets/raw-sionna.png" alt="보정 전 Sionna RT 예측 분포" />
             </button>
-            <figcaption><b>① 원시 예측</b><span>구조는 반영하지만 재질·문 상태를 알 수 없다</span><em>MAE 8.64 dB</em></figcaption>
+            <figcaption><b>① 원시 예측</b><span>구조는 반영하지만 재질·문 상태를 알 수 없음</span><em>MAE 8.64 dB</em></figcaption>
           </figure>
           <figure class="method-panel">
             <button class="method-image" type="button" data-zoom="assets/plain-idw.svg" aria-label="Plain IDW 확대">
               <img src="assets/plain-idw.svg" alt="측정값만 거리 가중치로 보간한 Plain IDW 분포" />
             </button>
-            <figcaption><b>② Plain IDW</b><span>측정값만 거리로 보간. 벽과 복도 구조는 못 본다</span><em>MAE 5.89 dB</em></figcaption>
+            <figcaption><b>② Plain IDW</b><span>측정값만 거리로 보간. 벽과 복도 구조는 못 봄</span><em>MAE 5.89 dB</em></figcaption>
           </figure>
           <figure class="method-panel">
             <button class="method-image" type="button" data-zoom="assets/residual-idw.png" aria-label="잔차 IDW 결과 확대">
               <img src="assets/residual-idw.png" alt="잔차 IDW로 보정한 복도 RF 지도" />
             </button>
-            <figcaption class="win"><b>③ 잔차 IDW</b><span>보정점 잔차를 보간해 ①에 더한다</span><em>MAE 2.78 dB</em></figcaption>
+            <figcaption class="win"><b>③ 잔차 IDW</b><span>보정점 잔차를 보간해 ①에 더함</span><em>MAE 2.78 dB</em></figcaption>
           </figure>
         </div>
         <div class="mini-methods reveal delay-2">
-          <span><b>Global Bias</b> 보정점 잔차의 평균을 공간 전체에 적용. LoS와 NLoS의 편향 방향이 달라 한쪽이 나빠진다 · MAE 8.87 dB</span>
+          <span><b>Global Bias</b> 보정점 잔차의 평균을 공간 전체에 적용. LoS와 NLoS의 편향 방향이 달라 한쪽이 나빠짐 · MAE 8.87 dB</span>
         </div>
       </div>
       <template class="speaker-note">첫 번째 Raw Sionna RT는 Nvidia의 전파 계산 프레임워크를 사용해 3차원 공간에서 반사와 차폐를 물리적으로 계산합니다. 공간 구조를 반영하지만 실제 벽 재질과 문 상태를 완벽하게 입력하기 어려워 현실과 차이가 생깁니다. 두 번째 Plain IDW는 실제 측정값만 사용하고 가까운 측정 지점에 더 큰 가중치를 주어 빈 위치를 채웁니다. 계산이 빠르고 실측값을 반영하지만 벽과 복도 구조는 반영하지 못합니다. 세 번째 잔차장은 보정 지점에서 실측값과 Sionna 예측값의 차이를 구해 공간으로 보간한 중간 산출물입니다. 네 번째 Residual IDW는 이 잔차장을 원래 시뮬레이션 결과에 더합니다. 공간 구조를 유지하면서 현장의 오차를 보정하는 방식입니다. 비교 대상으로 공간 전체에 같은 보정값을 더하는 Global Bias도 평가했습니다.</template>
@@ -239,8 +239,8 @@
       <div class="content results-layout">
         <div class="section-copy reveal">
           <p class="eyebrow"><span>08</span> 정량 결과</p>
-          <h2>잔차 IDW가 <em>네 방법 중 가장 낮다</em></h2>
-          <p>MAE와 RMSE는 실측과 예측의 차이다. 낮을수록 실제에 가깝다.</p>
+          <h2>잔차 IDW가 <em>네 방법 중 가장 낮음</em></h2>
+          <p>MAE와 RMSE는 실측과 예측의 차이. 낮을수록 실제에 가까움.</p>
           <div class="winning-number"><strong>2.78</strong><span>dB<br />MAE</span></div>
           <p class="delta-note">일반 IDW 대비 <b>52.8%</b> ↓ · 원시 예측 대비 <b>67.9%</b> ↓</p>
         </div>
@@ -267,12 +267,12 @@
       <div class="content bias-layout">
         <div class="section-copy reveal">
           <p class="eyebrow"><span>09</span> 가시선과 비가시선</p>
-          <h2>편향의 <em>부호가 반대다</em></h2>
+          <h2>편향의 <em>부호가 반대</em></h2>
           <ul class="bullets">
-            <li>LoS는 <b>-11.66 dB</b>, NLoS는 <b>+4.27 dB</b>. 방향이 서로 반대다.</li>
-            <li>그래서 전체에 같은 값을 더하는 Global Bias는 한쪽을 반드시 악화시킨다.</li>
-            <li>잔차 IDW는 두 영역 모두에서 개선됐고, 폭은 LoS에서 더 컸다.</li>
-            <li>다만 잔차 보간은 유클리드 거리를 쓰므로 <b>벽 너머로 잔차가 번진다.</b> 코어 너머 cal-02·cal-03의 +17 dB대 잔차가 LoS 영역까지 넘어왔다.</li>
+            <li>LoS는 <b>-11.66 dB</b>, NLoS는 <b>+4.27 dB</b>. 방향이 서로 반대.</li>
+            <li>그래서 전체에 같은 값을 더하는 Global Bias는 한쪽이 반드시 악화.</li>
+            <li>잔차 IDW는 두 영역 모두에서 개선됐고, 폭은 LoS에서 더 컸음.</li>
+            <li>다만 잔차 보간은 유클리드 거리를 쓰므로 <b>벽 너머로 잔차가 번짐.</b> 코어 너머 cal-02·cal-03의 +17 dB대 잔차가 LoS 영역까지 넘어왔음.</li>
           </ul>
           <div class="result-table bias-table">
             <div class="table-head"><span>REGION</span><span>n</span><span>BIAS</span><span>RESIDUAL IDW</span></div>
@@ -296,16 +296,16 @@
             <p class="eyebrow"><span>10</span> 3D 시각화</p>
             <h2>RF 볼륨과 <em>Handheld 출력</em></h2>
           </div>
-          <p>RF 볼륨은 0.25 m에서 2.75 m까지 0.5 m 간격 6개 층으로 계산한다.</p>
+          <p>RF 볼륨은 0.25 m에서 2.75 m까지 0.5 m 간격 6개 층으로 계산.</p>
         </div>
         <button class="volume-shot reveal delay-1" type="button" data-zoom="assets/viewer-volume.png" aria-label="RF 볼륨 렌더 확대">
           <img src="assets/viewer-volume.png" alt="PC Viewer에서 복원 장면 위에 RF 볼륨을 겹쳐 렌더링한 세 시점" />
         </button>
         <div class="demo-notes reveal delay-2">
           <ul class="bullets">
-            <li>(a) LoS 복도의 잔차 IDW. (b)와 (c)는 같은 시점의 NLoS 복도를 보정 전후로 비교한다.</li>
-            <li>BNO085 자세로 Viewer 카메라를 돌리고, 버튼 두 개로 텔레포트와 층 변경을 한다.</li>
-            <li>Viewer의 800×480 화면은 Image Relay를 거쳐 NT35510 LCD에 표시된다.</li>
+            <li>(a) LoS 복도의 잔차 IDW. (b)와 (c)는 같은 시점의 NLoS 복도를 보정 전후로 비교.</li>
+            <li>BNO085 자세로 Viewer 카메라를 돌리고, 버튼 두 개로 텔레포트와 층 변경.</li>
+            <li>Viewer의 800×480 화면은 Image Relay를 거쳐 NT35510 LCD에 표시.</li>
           </ul>
         </div>
         <figure class="handheld-shot reveal delay-2">
@@ -321,20 +321,20 @@
       <div class="content conclusion-layout">
         <div class="section-copy reveal">
           <p class="eyebrow"><span>11</span> 결론과 한계</p>
-          <h2>구조와 실측을 결합하면<br /><em>오차가 줄어든다</em></h2>
+          <h2>구조와 실측을 결합하면<br /><em>오차 감소</em></h2>
           <ul class="bullets">
-            <li>복원 · 시뮬레이션 · 실측 · 분석 · 시각화를 하나의 좌표계로 연결했다.</li>
-            <li>잔차 IDW가 네 방법 중 가장 낮은 <b>MAE 2.78 dB</b>를 기록했다.</li>
-            <li>LoS와 NLoS의 편향 부호가 달라 전역 보정에는 한계가 있음을 확인했다.</li>
+            <li>복원 · 시뮬레이션 · 실측 · 분석 · 시각화를 하나의 좌표계로 연결.</li>
+            <li>잔차 IDW가 네 방법 중 가장 낮은 <b>MAE 2.78 dB</b> 기록.</li>
+            <li>LoS와 NLoS의 편향 부호가 달라 전역 보정에는 한계가 있음을 확인.</li>
           </ul>
           <div class="final-flow"><span>복원</span><i></i><span>측정</span><i></i><span>보정</span><i></i><span>시각화</span></div>
         </div>
         <div class="limits-panel reveal delay-1">
           <p class="panel-kicker">LIMITATIONS / NEXT</p>
-          <div><span>01</span><p><b>1회 측정 기술통계</b>한 건물의 한 개 층, 단일 송신기와 채널, 보정 4점에 한정된다. 반복 측정 변동은 정량화하지 못했다.</p></div>
-          <div><span>02</span><p><b>잔차 보간의 한계</b>test-07처럼 원시 예측이 정확한 지점은 오차가 커질 수 있고, 벽을 사이에 둔 지점으로 잔차가 번진다.</p></div>
-          <div><span>03</span><p><b>높이 방향</b>보정은 한 높이에서 얻었으므로 다른 높이의 RF 볼륨은 정성적 시각화에 한정된다.</p></div>
-          <div><span>04</span><p><b>다음 단계</b>영역 분리와 장애물 인지 거리 보간, 재질·투과손실 측정을 검증하고 프레임률과 지연을 정량화한다.</p></div>
+          <div><span>01</span><p><b>1회 측정 기술통계</b>한 건물의 한 개 층, 단일 송신기와 채널, 보정 4점에 한정됨. 반복 측정 변동은 정량화하지 못함.</p></div>
+          <div><span>02</span><p><b>잔차 보간의 한계</b>test-07처럼 원시 예측이 정확한 지점은 오차가 커질 수 있고, 벽을 사이에 둔 지점으로 잔차가 번짐.</p></div>
+          <div><span>03</span><p><b>높이 방향</b>보정은 한 높이에서 얻었으므로 다른 높이의 RF 볼륨은 정성적 시각화에 한정됨.</p></div>
+          <div><span>04</span><p><b>다음 단계</b>영역 분리와 장애물 인지 거리 보간, 재질·투과손실 측정을 검증하고 프레임률과 지연을 정량화.</p></div>
         </div>
         <p class="closing reveal delay-2">RFVisualizer <span>—</span> 감사합니다</p>
       </div>
