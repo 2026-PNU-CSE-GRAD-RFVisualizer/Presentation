@@ -347,3 +347,26 @@ p { line-height: 1.75; }
   .bias-layout { grid-template-columns: 1fr; }
   .metric-glossary.stacked { grid-template-columns: 1fr; }
 }
+
+/* 03 목표 - 파이프라인 도식 */
+.goal-figure { border: 1px solid var(--line); background: #fff; border-radius: 14px; padding: 0; overflow: hidden; cursor: zoom-in; display: grid; align-self: center; }
+.goal-figure img { width: 100%; display: block; }
+
+/* 08 개념 - 세 가지 접근 */
+.concept-layout { max-width: 1320px; }
+.concept-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.concept-card { border: 1px solid var(--line); background: rgba(255,255,255,.025); border-radius: 14px; padding: 24px 22px; display: grid; align-content: start; gap: 9px; position: relative; }
+.concept-card .concept-no { color: #5d7275; font-size: .95rem; font-weight: 800; }
+.concept-card b { font-size: 1.22rem; letter-spacing: -.02em; }
+.concept-card em { font-style: normal; color: var(--muted); font-size: .74rem; letter-spacing: .05em; }
+.concept-card p { color: var(--muted); font-size: .84rem; line-height: 1.6; margin: 6px 0 0; }
+.concept-card p.miss { border-top: 1px solid var(--line); padding-top: 11px; margin-top: 12px; font-size: .79rem; }
+.concept-card p.miss b { font-size: .79rem; color: #9fb0ae; margin-right: 5px; }
+.concept-card.win { border-color: rgba(105,240,200,.4); background: rgba(105,240,200,.06); }
+.concept-card.win b, .concept-card.win .concept-no { color: var(--green); }
+.concept-card.win p.miss b { color: var(--green); }
+.concept-layout .mini-methods { display: grid; gap: 14px; margin-top: 18px; }
+
+@media (max-width: 900px) {
+  .concept-row { grid-template-columns: 1fr; }
+}

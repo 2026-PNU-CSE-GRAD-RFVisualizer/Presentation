@@ -20,6 +20,8 @@ chapters.forEach((chapter, index) => {
 });
 
 const railButtons = [...rail.querySelectorAll('button')];
+const navTotal = document.getElementById('navTotal');
+if (navTotal) navTotal.textContent = String(chapters.length).padStart(2, '0');
 
 function updateUI(index) {
   activeIndex = index;
