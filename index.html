@@ -101,13 +101,13 @@
             <i></i>
             <div><span>02</span><b>COLMAP</b><small>카메라 위치 추정</small></div>
             <i></i>
-            <div><span>03</span><b>PGSR</b><small>Gaussian + 표면 메시</small></div>
+            <div><span>03</span><b>PGSR</b><small>Gaussian Scene + Surface Mesh</small></div>
             <i></i>
-            <div><span>04</span><b>정합</b><small>미터 좌표계 · 프록시</small></div>
+            <div><span>04</span><b>Proxy 정리</b><small>벽·바닥·장애물 단순화</small></div>
           </div>
         </div>
       </div>
-      <template class="speaker-note">3층 링 복도를 여러 방향에서 촬영했습니다. 사진이 서로 겹치도록 촬영하면 COLMAP이 카메라 위치와 공간의 기본 구조를 추정합니다. 이 결과를 PGSR에 입력해 Gaussian Scene과 Surface Mesh를 만들었습니다. 복원 표면에는 부풀음과 떠다니는 조각이 남기 때문에, 이를 정리해 바닥과 벽, 천장이 닫힌 Proxy Shell로 만들고 전파 계산에 사용했습니다.</template>
+      <template class="speaker-note">부산대학교 IT관 3층 복도를 사진이 서로 겹치도록 촬영했습니다. COLMAP은 이미지의 공통된 점을 찾아 카메라 위치와 공간의 기본 구조를 추정합니다. 이 결과를 PGSR에 입력해 사진처럼 보이는 Gaussian Scene과 표면을 삼각형 구조로 표현한 Surface Mesh를 만들었습니다. Surface Mesh의 작은 구멍과 불필요한 굴곡은 정리하고, 벽과 바닥, 주요 장애물을 단순하고 닫힌 구조의 Proxy Mesh로 만들었습니다. Gaussian Scene은 사람이 보는 장면이고 Proxy Mesh는 컴퓨터가 반사와 차폐를 계산하는 공간 지도입니다.</template>
     </section>
 
     <section class="chapter" id="system" data-label="시스템" data-title="시스템 구성">
@@ -211,24 +211,29 @@
             <figcaption><b>① 원시 예측</b><span>구조는 반영하지만 재질·문 상태를 알 수 없다</span><em>MAE 8.64 dB</em></figcaption>
           </figure>
           <figure class="method-panel">
+            <button class="method-image" type="button" data-zoom="assets/plain-idw.svg" aria-label="Plain IDW 확대">
+              <img src="assets/plain-idw.svg" alt="측정값만 거리 가중치로 보간한 Plain IDW 분포" />
+            </button>
+            <figcaption><b>② Plain IDW</b><span>측정값만 거리로 보간. 벽과 복도 구조는 못 본다</span><em>MAE 5.89 dB</em></figcaption>
+          </figure>
+          <figure class="method-panel">
             <button class="method-image" type="button" data-zoom="assets/residual-field.png" aria-label="잔차장 확대">
               <img src="assets/residual-field.png" alt="보정점 잔차를 보간한 공간 잔차장" />
             </button>
-            <figcaption><b>② 잔차장</b><span>보정 4점의 실측−예측 차이를 공간에 보간</span><em>중간 산출물</em></figcaption>
+            <figcaption><b>③ 잔차장</b><span>보정 4점의 실측−예측 차이를 공간에 보간</span><em>중간 산출물</em></figcaption>
           </figure>
           <figure class="method-panel">
             <button class="method-image" type="button" data-zoom="assets/residual-idw.png" aria-label="잔차 IDW 결과 확대">
               <img src="assets/residual-idw.png" alt="잔차 IDW로 보정한 복도 RF 지도" />
             </button>
-            <figcaption class="win"><b>③ 잔차 IDW</b><span>① + ②. 구조를 유지하면서 현장 오차를 보정</span><em>MAE 2.78 dB</em></figcaption>
+            <figcaption class="win"><b>④ 잔차 IDW</b><span>① + ③. 구조를 유지하면서 현장 오차를 보정</span><em>MAE 2.78 dB</em></figcaption>
           </figure>
         </div>
         <div class="mini-methods reveal delay-2">
-          <span><b>Plain IDW</b> 측정값만 거리로 보간. 벽과 차폐를 반영하지 못한다</span>
-          <span><b>Global Bias</b> 보정점 잔차의 평균을 전체에 적용. LoS와 NLoS의 편향 방향이 달라 실패한다</span>
+          <span><b>Global Bias</b> 보정점 잔차의 평균을 공간 전체에 적용. LoS와 NLoS의 편향 방향이 달라 한쪽이 나빠진다 · MAE 8.87 dB</span>
         </div>
       </div>
-      <template class="speaker-note">비교한 방법은 네 가지입니다. 원시 예측은 Sionna RT가 3차원 공간에서 반사와 회절을 계산한 결과입니다. Plain IDW는 측정값만 거리로 보간합니다. Global Bias는 보정점 잔차의 평균을 모든 위치에 같게 적용합니다. 잔차 IDW는 보정점에서 실측과 예측의 차이인 잔차를 구해 공간에 보간한 뒤 원시 예측에 더합니다. 공간 구조는 시뮬레이션이 담당하고 현장 오차는 실측이 담당하는 구조입니다.</template>
+      <template class="speaker-note">첫 번째 Raw Sionna RT는 Nvidia의 전파 계산 프레임워크를 사용해 3차원 공간에서 반사와 차폐를 물리적으로 계산합니다. 공간 구조를 반영하지만 실제 벽 재질과 문 상태를 완벽하게 입력하기 어려워 현실과 차이가 생깁니다. 두 번째 Plain IDW는 실제 측정값만 사용하고 가까운 측정 지점에 더 큰 가중치를 주어 빈 위치를 채웁니다. 계산이 빠르고 실측값을 반영하지만 벽과 복도 구조는 반영하지 못합니다. 세 번째 잔차장은 보정 지점에서 실측값과 Sionna 예측값의 차이를 구해 공간으로 보간한 중간 산출물입니다. 네 번째 Residual IDW는 이 잔차장을 원래 시뮬레이션 결과에 더합니다. 공간 구조를 유지하면서 현장의 오차를 보정하는 방식입니다. 비교 대상으로 공간 전체에 같은 보정값을 더하는 Global Bias도 평가했습니다.</template>
     </section>
 
     <section class="chapter" id="results" data-label="결과" data-title="정량 결과">
@@ -256,7 +261,7 @@
           <div><span>Sionna + Global Bias</span><b>8.87</b><b>10.69</b></div>
         </div>
       </div>
-      <template class="speaker-note">MAE와 RMSE는 실제값과 예측값의 차이를 나타내며 낮을수록 좋습니다. 10개 시험 지점을 모두 포함한 1회 측정에서 MAE는 Raw Sionna RT가 8.64 dB, Plain IDW가 5.89 dB였습니다. Residual IDW 결합 결과는 2.78 dB로 가장 낮았고, Global Bias는 8.87 dB였습니다. 잔차 IDW는 일반 IDW보다 52.8%, 원시 예측보다 67.9% 낮았고, 10개 지점 중 7개에서 원시 예측보다 절대오차가 작았습니다. 시뮬레이션 구조와 측정 오차를 함께 반영한 결과입니다.</template>
+      <template class="speaker-note">MAE와 RMSE는 실제값과 예측값의 차이를 나타내며 낮을수록 좋습니다. 10개 시험 지점을 모두 포함한 1회 측정에서 MAE는 Raw Sionna RT가 8.64 dB, Plain IDW가 5.89 dB였습니다. Residual IDW 결합 결과는 2.78 dB로 가장 낮았고, Global Bias는 8.87 dB였습니다. 잔차 IDW는 일반 IDW보다 52.8%, 원시 예측보다 67.9% 낮았고, 10개 지점 중 7개에서 원시 예측보다 절대오차가 작았습니다. 히트맵에서 Raw Sionna는 공간 구조의 패턴을, Plain IDW는 측정값을 부드럽게 연결한 모습을 보여 줍니다. Residual IDW는 두 정보를 결합해 실측에 더 가까운 분포를 만들었습니다.</template>
     </section>
 
     <section class="chapter" id="bias" data-label="분석" data-title="가시선과 비가시선 편향">
@@ -305,7 +310,7 @@
           <figcaption><b>Handheld</b><span>ESP32-S3 · IMU · 800×480</span></figcaption>
         </figure>
       </div>
-      <template class="speaker-note">추정 결과는 복원한 장면 위에 3차원 RF 볼륨으로 겹쳐 렌더링합니다. 왼쪽은 가시선 복도의 잔차 IDW 결과이고, 가운데와 오른쪽은 코어 뒤편 비가시선 복도를 같은 시점에서 보정 전과 후로 비교한 것입니다. RF 볼륨은 0.25 m부터 2.75 m까지 0.5 m 간격 여섯 개 층으로 계산하며, 평면 결과의 기준 높이는 0.45 m입니다. Handheld의 BNO085 센서가 손의 방향을 측정해 Backend로 보내면 Viewer 카메라가 같은 방향으로 회전하고, 버튼 두 개로 텔레포트와 높이 층 변경을 합니다. Viewer의 800×480 화면은 Image Relay를 거쳐 Handheld의 NT35510 LCD에 표시됩니다.</template>
+      <template class="speaker-note">추정 결과는 복원한 장면 위에 3차원 RF 볼륨으로 겹쳐 렌더링합니다. 왼쪽은 가시선 복도의 잔차 IDW 결과이고, 가운데와 오른쪽은 코어 뒤편 비가시선 복도를 같은 시점에서 보정 전과 후로 비교한 것입니다. RF 볼륨은 0.25 m부터 2.75 m까지 0.5 m 간격 여섯 개 층으로 계산하며, 평면 결과의 기준 높이는 0.45 m입니다. Handheld의 BNO085 센서가 손의 방향을 측정해 Backend로 보내면 Viewer 카메라가 같은 방향으로 회전하고, 버튼 두 개로 텔레포트와 높이 층 변경을 합니다. Viewer의 800×480 화면은 Image Relay가 최신 완성 프레임을 우선해 중계하고 Handheld의 NT35510 LCD에 표시합니다.</template>
     </section>
 
     <section class="chapter conclusion" id="conclusion" data-label="결론" data-title="결론과 한계">

@@ -297,15 +297,15 @@ p { line-height: 1.75; }
 .mono { font-variant-numeric: tabular-nums; color: #d8e6e4; }
 
 /* 07 방법 3단 정적 비교 */
-.method-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+.method-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
 .method-panel { margin: 0; display: grid; grid-template-rows: 1fr auto; gap: 10px; }
-.method-panel .method-image { min-height: 330px; width: 100%; }
+.method-panel .method-image { min-height: 250px; width: 100%; }
 .method-panel figcaption { display: grid; gap: 4px; border-top: 1px solid var(--line); padding-top: 10px; }
 .method-panel figcaption b { font-size: .92rem; }
 .method-panel figcaption span { color: var(--muted); font-size: .74rem; line-height: 1.5; }
 .method-panel figcaption em { font-style: normal; font-size: .74rem; color: #7d8f90; letter-spacing: .04em; }
 .method-panel figcaption.win b, .method-panel figcaption.win em { color: var(--green); }
-.methods-layout .mini-methods { grid-template-columns: repeat(2, 1fr); display: grid; gap: 14px; margin-top: 16px; }
+.methods-layout .mini-methods { display: grid; gap: 14px; margin-top: 16px; }
 
 /* 09 편향 표 */
 .bias-table { grid-column: auto; align-self: center; }
