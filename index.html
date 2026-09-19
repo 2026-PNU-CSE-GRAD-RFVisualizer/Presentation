@@ -34,7 +34,8 @@
 
   <main id="deck">
     <section class="chapter intro" id="intro" data-label="표지" data-title="제목">
-      <div class="ambient-grid" aria-hidden="true"></div>
+      <div class="canvas cover">
+        <div class="ambient-grid" aria-hidden="true"></div>
       <div class="content hero-layout">
         <div class="hero-copy reveal">
           <p class="eyebrow"><span>2026</span> 졸업과제</p>
@@ -53,14 +54,20 @@
           <figcaption><span class="live-dot"></span> Handheld 종단 출력</figcaption>
         </figure>
       </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">안녕하십니까. 저희 과제는 실내 와이파이 신호를 3차원 공간 안에서 보여 주는 것입니다. 복도를 사진으로 찍어 3차원으로 복원하고, 그 위에서 전파 시뮬레이션을 돌린 뒤, 실제로 측정한 신호로 시뮬레이션의 오차를 보정했습니다. 최종 결과는 PC의 3D Viewer와 직접 만든 손에 드는 기기에서 확인할 수 있습니다. 먼저 왜 이런 것이 필요한지부터 말씀드리겠습니다.</template>
     </section>
 
     <section class="chapter" id="problem" data-label="문제" data-title="문제 정의">
-      <div class="content split-layout">
-        <div class="section-copy reveal">
+      <div class="canvas">
+        <header class="slide-head">
           <p class="eyebrow"><span>1</span> 도입 · 문제</p>
           <h2>평면 그림으로는<br /><em>공간을 설명할 수 없음</em></h2>
+        </header>
+        <div class="slide-body">
+          <div class="content split-layout">
+        <div class="section-copy reveal">
           <ul class="bullets">
             <li><b>와이파이 신호 세기(RSSI)</b>는 보통 평면도 위 2D 히트맵으로 그림</li>
             <li>그런데 신호는 거리만으로 정해지지 않음. 벽에 막히고, 반사되고, 높이에 따라 달라짐</li>
@@ -79,14 +86,21 @@
           <div class="vertical-scan"><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">와이파이 신호 세기는 RSSI라고 하며, 보통 평면도 위에 색으로 칠한 2차원 히트맵으로 표현합니다. 그런데 실제 공간에는 벽과 문, 기둥이 있고 높이에 따라서도 신호가 달라집니다. 평면 그림만으로는 어느 위치가 왜 약한지를 설명하기 어렵습니다. 반대로 실제 공간을 사람이 직접 3차원 CAD 모델로 만드는 방법은 정확하지만 시간과 비용이 많이 들고, 공간이 바뀔 때마다 작업을 반복해야 합니다. 그래서 저희는 사진에서 공간을 복원하는 방법을 선택했습니다.</template>
     </section>
 
     <section class="chapter" id="goal" data-label="목표" data-title="무엇을 만들었나">
-      <div class="content split-layout">
-        <div class="section-copy reveal">
+      <div class="canvas">
+        <header class="slide-head">
           <p class="eyebrow"><span>1</span> 도입 · 목표</p>
           <h2>세 가지를 <em>하나의 좌표계로</em></h2>
+        </header>
+        <div class="slide-body">
+          <div class="content split-layout">
+        <div class="section-copy reveal">
           <ul class="bullets">
             <li><b>① 공간 복원</b> 사진과 영상으로 복도를 3D로 되살림. CAD 작업 없이</li>
             <li><b>② 전파 예측</b> 복원한 공간 위에서 반사·차폐를 물리적으로 계산</li>
@@ -99,15 +113,20 @@
           <span class="figure-cap">전체 파이프라인 · <b>입력 → 예측과 보정 → 출력</b></span>
         </button>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">저희 과제의 목표는 세 가지를 하나의 좌표계 위에서 합치는 것입니다. 첫째, 사진과 영상만으로 복도를 3차원으로 복원합니다. 사람이 CAD로 그릴 필요가 없습니다. 둘째, 복원한 공간 위에서 전파가 벽에 반사되고 가려지는 과정을 물리적으로 계산합니다. 셋째, 실제로 측정한 신호로 그 계산의 오차를 위치마다 바로잡습니다. 오른쪽이 전체 파이프라인입니다. 왼쪽이 입력, 가운데가 예측과 보정, 오른쪽이 출력입니다. 최종 결과는 PC의 3D Viewer와 저희가 만든 손에 드는 기기에서 확인할 수 있습니다.</template>
     </section>
 
     <section class="chapter" id="reconstruction" data-label="복원" data-title="공간 복원">
-      <div class="content media-layout">
-        <div class="section-head reveal">
+      <div class="canvas">
+        <header class="slide-head">
           <p class="eyebrow"><span>2</span> 공간 구축 · 복원</p>
           <h2>사진에서 <em>계산 가능한 공간</em>으로</h2>
-        </div>
+        </header>
+        <div class="slide-body">
+          <div class="content media-layout">
         <div class="reconstruction-grid">
           <button class="image-card scene-card reveal" type="button" data-zoom="assets/scene-render.png" aria-label="Gaussian Scene 확대">
             <img src="assets/scene-render.png" alt="PGSR로 복원한 3층 복도의 Gaussian Scene" />
@@ -128,18 +147,21 @@
           </div>
         </div>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">부산대학교 IT관 3층 복도를 사진이 서로 겹치도록 촬영했습니다. COLMAP은 여러 사진에서 같은 지점을 찾아 카메라가 어디에서 찍었는지를 되찾아 주는 도구입니다. 이 결과를 PGSR에 넣으면 사진처럼 보이는 Gaussian Scene과, 표면을 삼각형으로 표현한 Surface Mesh가 나옵니다. 그런데 복원된 표면에는 부풀음과 떠다니는 조각이 남습니다. 전파 계산에는 닫힌 공간이 필요하므로, 이를 정리해 벽과 바닥, 주요 장애물만 단순하게 남긴 Proxy Mesh를 만들었습니다. 왼쪽은 사람이 보는 장면이고 오른쪽은 컴퓨터가 반사와 차폐를 계산하는 공간입니다. 왼쪽 그림에 입혀진 색은 뒤에서 설명드릴 RF 볼륨입니다.</template>
     </section>
 
     <section class="chapter" id="system" data-label="시스템" data-title="전체 시스템">
-      <div class="content system-content">
-        <div class="section-head horizontal reveal">
-          <div>
-            <p class="eyebrow"><span>2</span> 공간 구축 · 시스템</p>
-            <h2>세 갈래 <em>데이터 흐름</em></h2>
-          </div>
-          <p>측정은 분석으로, Viewer 영상은 기기 화면으로, 기기 입력은 다시 Viewer로 돌아감</p>
-        </div>
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>2</span> 공간 구축 · 시스템</p>
+          <h2>세 갈래 <em>데이터 흐름</em></h2>
+          <p class="head-note">측정은 분석으로, Viewer 영상은 기기 화면으로, 기기 입력은 다시 Viewer로 돌아감</p>
+        </header>
+        <div class="slide-body">
+          <div class="content system-content">
         <div class="flow-stack reveal delay-1">
           <div class="flow-lane lane-green">
             <span class="lane-name">RSSI DATA</span>
@@ -163,18 +185,25 @@
           </div>
         </div>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">전체 시스템에는 세 가지 흐름이 있습니다. 첫째 초록색 흐름은 데이터입니다. 네 대의 원격 ESP32 노드와 로컬 측정을 담당하는 Gateway가 신호 세기를 수집하고, STM32와 MQTT를 거쳐 Backend에 저장합니다. 둘째 하늘색 흐름은 영상입니다. 3D Viewer가 만든 화면을 Image Relay가 손에 드는 기기로 보냅니다. 셋째 주황색 흐름은 제어입니다. 기기의 자세 센서와 버튼 입력이 Backend를 거쳐 Viewer 카메라를 움직입니다. 즉 영상은 나가고 조작은 들어오는 양방향 구조입니다.</template>
     </section>
 
     <section class="chapter" id="embedded" data-label="측정" data-title="RSSI 측정">
-      <div class="content split-layout measurement-layout">
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>3</span> 측정과 분석 · 실측</p>
+          <h2>실제 복도에서 <em>직접 측정</em></h2>
+        </header>
+        <div class="slide-body">
+          <div class="content split-layout measurement-layout">
         <div class="measurement-map reveal">
           <img src="assets/measurement-layout.png" alt="송신기, 보정 지점 4개, 시험 지점 10개의 배치도" />
           <div class="map-badge">시험 10 · 보정 4 · 송신기 1</div>
         </div>
         <div class="section-copy reveal delay-1">
-          <p class="eyebrow"><span>3</span> 측정과 분석 · 실측</p>
-          <h2>실제 복도에서 <em>직접 측정</em></h2>
           <ul class="bullets">
             <li><b>RSSI</b>는 수신한 신호의 세기. 단위는 dBm이고 음수이며, 값이 낮을수록 약함</li>
             <li>공유기 1대를 놓고 ESP32 5대로 잼. 고정 <b>보정점 4</b> + 이동 <b>시험점 10</b></li>
@@ -189,14 +218,21 @@
           </dl>
         </div>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">RSSI는 수신한 와이파이 신호의 세기를 나타낸 값입니다. 단위는 dBm이고 보통 음수이며, 값이 낮을수록 신호가 약하다는 뜻입니다. 공유기 한 대를 켜 두고 ESP32 다섯 대로 측정했습니다. 네 대는 고정된 보정 지점에 두고, 나머지 하나인 Gateway가 시험 지점을 돌며 측정했습니다. 보정 지점은 송신기가 보이는 곳 두 개와 벽에 가린 곳 두 개로 나눠 배치했는데, 한쪽 구간에만 몰리면 반대 구간의 보정이 추측이 되기 때문입니다. 각 지점에서 20초 안정화 후 120초를 기록했고, 열 개 시험 지점을 한 번의 순회로 모두 측정했습니다. 중요한 점은 시험 지점의 측정값을 보정에는 전혀 쓰지 않고 채점에만 썼다는 것입니다.</template>
     </section>
 
     <section class="chapter" id="network" data-label="수집" data-title="수집과 검증">
-      <div class="content split-layout">
-        <div class="section-copy reveal">
+      <div class="canvas">
+        <header class="slide-head">
           <p class="eyebrow"><span>3</span> 측정과 분석 · 수집</p>
           <h2>원본 보존과 <em>이상값 처리</em></h2>
+        </header>
+        <div class="slide-body">
+          <div class="content split-layout">
+        <div class="section-copy reveal">
           <ul class="bullets">
             <li>STM32 → Python Bridge → MQTT → Backend 순으로 전달</li>
             <li>이상한 값도 <b>지우지 않음</b>. 제외 사유와 함께 원본에 남김</li>
@@ -216,18 +252,21 @@
           <p class="note-line">측정 중에는 위 네 지표가 실시간으로 변하는 화면을 함께 보여 드립니다</p>
         </div>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">측정한 값은 STM32와 Python Bridge, MQTT를 거쳐 Backend에 저장됩니다. Backend는 값을 검증하고 실험 위치와 시간 구간에 맞춰 보관합니다. 여기서 한 가지 원칙을 두었습니다. 이상한 값이라도 지우지 않고, 왜 제외했는지를 함께 남깁니다. 분석에서만 빼기 때문에 나중에 어떤 표본이 왜 빠졌는지 되짚을 수 있습니다. 또 유효 신호의 하한을 모든 단계에서 -110 dBm으로 통일해, 수집 단계가 약한 신호를 미리 지워 버리지 않도록 했습니다. 이 자리에서는 노드 상태와 초당 수신량, 누락 수와 드롭률이 실시간으로 변하는 대시보드를 함께 보여 드리겠습니다.</template>
     </section>
 
     <section class="chapter" id="concept" data-label="개념" data-title="세 가지 접근">
-      <div class="content concept-layout">
-        <div class="section-head horizontal reveal">
-          <div>
-            <p class="eyebrow"><span>3</span> 측정과 분석 · 개념</p>
-            <h2>시뮬레이션과 실측, <em>둘 다 필요함</em></h2>
-          </div>
-          <p>각각 혼자서는 놓치는 것이 있고, 놓치는 지점이 서로 다름</p>
-        </div>
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>3</span> 측정과 분석 · 개념</p>
+          <h2>시뮬레이션과 실측, <em>둘 다 필요함</em></h2>
+          <p class="head-note">각각 혼자서는 놓치는 것이 있고, 놓치는 지점이 서로 다름</p>
+        </header>
+        <div class="slide-body">
+          <div class="content concept-layout">
         <div class="concept-row reveal delay-1">
           <div class="concept-card">
             <span class="concept-no">①</span>
@@ -255,18 +294,21 @@
           <span><b>비교군 · Global Bias</b> 보정점 오차의 평균 하나를 공간 전체에 똑같이 더하는 가장 단순한 보정</span>
         </div>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">이 부분이 저희 과제의 핵심입니다. 접근은 크게 세 가지입니다. 첫째, 시뮬레이션만 쓰는 방법입니다. 복원한 공간에서 전파가 벽에 부딪히고 꺾이는 경로를 물리적으로 계산합니다. 공간 구조는 잘 반영하지만, 실제 벽의 재질이나 문이 열려 있는지를 정확히 입력할 수 없어 값이 통째로 치우칩니다. 둘째, 측정만 쓰는 방법입니다. 가까운 측정 지점에 더 큰 가중치를 주어 빈 곳을 채웁니다. 실측을 직접 반영하지만 재지 않은 곳의 벽과 차폐를 모르기 때문에 값이 벽을 통과해 번집니다. 셋째가 저희가 제안하는 방법입니다. 보정 지점에서 실측값과 예측값의 차이, 즉 잔차를 구하고 그 차이를 공간에 퍼뜨려 원래 예측에 더합니다. 공간 구조는 시뮬레이션이 담당하고 현장의 오차는 실측이 담당하는 구조입니다. 비교를 위해 오차의 평균 하나를 전체에 똑같이 더하는 가장 단순한 방법도 함께 평가했습니다.</template>
     </section>
 
     <section class="chapter" id="methods" data-label="지도" data-title="방법별 신호 지도">
-      <div class="content methods-layout">
-        <div class="section-head horizontal reveal">
-          <div>
-            <p class="eyebrow"><span>3</span> 측정과 분석 · 지도</p>
-            <h2>같은 복도를 <em>세 가지로</em> 그린 결과</h2>
-          </div>
-          <p>노란색이 강한 신호, 보라색이 약한 신호. 흰 부분은 복도가 아닌 영역</p>
-        </div>
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>3</span> 측정과 분석 · 지도</p>
+          <h2>같은 복도를 <em>세 가지로</em> 그린 결과</h2>
+          <p class="head-note">노란색이 강한 신호, 보라색이 약한 신호. 흰 부분은 복도가 아닌 영역</p>
+        </header>
+        <div class="slide-body">
+          <div class="content methods-layout">
         <div class="method-row reveal delay-1">
           <figure class="method-panel">
             <button class="method-image" type="button" data-zoom="assets/raw-sionna.png" aria-label="시뮬레이션 결과 확대">
@@ -288,14 +330,21 @@
           </figure>
         </div>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">같은 복도를 세 가지 방법으로 그린 결과입니다. 색은 신호 세기를 뜻하며 노란색이 강하고 보라색이 약합니다. 흰 부분은 복도가 아닌 영역입니다. 왼쪽 시뮬레이션 결과는 복도 구조를 따라 신호가 꺾이는 모습이 보이지만 값 자체가 실제와 어긋나 있습니다. 가운데 측정 보간 결과는 부드럽게 이어지지만 벽을 무시하고 값이 번집니다. 오른쪽이 두 가지를 합친 결과입니다. 구조를 그대로 유지하면서 값은 실측에 가까워졌습니다. 오른쪽 아래 숫자가 각 방법의 평균 오차인데, 8.64에서 2.78로 줄었습니다.</template>
     </section>
 
     <section class="chapter" id="results" data-label="결과" data-title="정량 결과">
-      <div class="content results-layout">
-        <div class="section-copy reveal">
+      <div class="canvas">
+        <header class="slide-head">
           <p class="eyebrow"><span>3</span> 측정과 분석 · 결과</p>
           <h2>잔차 IDW가 <em>네 방법 중 가장 낮음</em></h2>
+        </header>
+        <div class="slide-body">
+          <div class="content results-layout">
+        <div class="section-copy reveal">
           <p>MAE는 예측이 실측에서 평균 몇 dB 벗어났는지. 낮을수록 좋음</p>
           <div class="winning-number"><strong>2.78</strong><span>dB<br />MAE</span></div>
           <p class="delta-note">측정만 대비 <b>52.8%</b> ↓<br />시뮬레이션만 대비 <b>67.9%</b> ↓</p>
@@ -316,14 +365,21 @@
           <div><span>Sionna + Global Bias</span><b>8.87</b><b>10.69</b></div>
         </div>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">네 방법의 오차를 비교한 결과입니다. MAE는 예측이 실제 측정에서 평균 몇 dB 벗어났는지를 뜻하며 낮을수록 좋습니다. 열 개 시험 지점을 모두 포함한 한 번의 측정에서, 시뮬레이션만 쓴 경우가 8.64 dB, 측정만 쓴 경우가 5.89 dB였습니다. 두 가지를 합친 잔차 IDW는 2.78 dB로 가장 낮았습니다. 측정만 쓴 방법보다 52.8 퍼센트, 시뮬레이션만 쓴 방법보다 67.9 퍼센트 낮은 값입니다. 열 개 지점 중 일곱 개에서 시뮬레이션만 쓴 경우보다 오차가 작았습니다. 맨 아래 Global Bias는 오차 평균 하나를 전체에 더한 가장 단순한 보정인데, 보시다시피 거의 개선이 없었습니다. 왜 그런지를 다음 장에서 말씀드리겠습니다.</template>
     </section>
 
     <section class="chapter" id="bias" data-label="편향" data-title="왜 잔차 IDW인가">
-      <div class="content bias-layout">
-        <div class="section-copy reveal">
+      <div class="canvas">
+        <header class="slide-head">
           <p class="eyebrow"><span>3</span> 측정과 분석 · 이유</p>
           <h2>오차의 <em>부호가 서로 반대</em></h2>
+        </header>
+        <div class="slide-body">
+          <div class="content bias-layout">
+        <div class="section-copy reveal">
           <ul class="bullets">
             <li>송신기가 <b>보이는 곳</b>에서는 시뮬레이션이 실제보다 높게 예측 · 평균 <b>-11.66 dB</b></li>
             <li>벽에 <b>가린 곳</b>에서는 반대로 낮게 예측 · 평균 <b>+4.27 dB</b></li>
@@ -342,18 +398,21 @@
           <span class="figure-cap">위치별 오차를 퍼뜨린 <b>잔차 지도</b> · 붉을수록 시뮬레이션이 낮게 예측한 곳</span>
         </button>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">왜 단순한 보정이 실패하고 저희 방법이 통했는지 말씀드리겠습니다. 송신기가 보이는 지점 네 곳에서는 시뮬레이션이 실제보다 높게 예측해 평균 오차가 마이너스 11.66 dB였습니다. 반대로 벽에 가린 여섯 지점에서는 낮게 예측해 플러스 4.27 dB였습니다. 부호가 서로 반대입니다. 그래서 공간 전체에 같은 값을 더하는 방식은 한쪽을 고치면 반대쪽이 반드시 나빠집니다. 위치마다 다른 값을 더해야 한다는 뜻이고, 그것이 저희가 잔차를 공간적으로 보간한 이유입니다. 오른쪽 그림이 그 잔차 지도입니다. 붉을수록 시뮬레이션이 실제보다 낮게 예측한 곳입니다. 다만 한계도 보입니다. 잔차를 직선 거리로 퍼뜨리기 때문에, 코어 너머에 있는 보정점의 큰 오차가 벽을 넘어 반대편까지 번지고 있습니다.</template>
     </section>
 
     <section class="chapter" id="viewer" data-label="시연" data-title="Viewer와 Handheld 시연">
-      <div class="content demo-layout">
-        <div class="section-head horizontal reveal">
-          <div>
-            <p class="eyebrow"><span>4</span> 통합 시연</p>
-            <h2>복원 장면 위의 <em>RF 볼륨</em></h2>
-          </div>
-          <p>신호 지도를 0.25 m부터 2.75 m까지 0.5 m 간격 6개 층으로 쌓아 공간 안에 띄움</p>
-        </div>
+      <div class="canvas">
+        <header class="slide-head">
+          <p class="eyebrow"><span>4</span> 통합 시연</p>
+          <h2>복원 장면 위의 <em>RF 볼륨</em></h2>
+          <p class="head-note">신호 지도를 0.25 m부터 2.75 m까지 0.5 m 간격 6개 층으로 쌓아 공간 안에 띄움</p>
+        </header>
+        <div class="slide-body">
+          <div class="content demo-layout">
         <button class="volume-shot reveal delay-1" type="button" data-zoom="assets/viewer-volume.png" aria-label="RF 볼륨 렌더 확대">
           <img src="assets/viewer-volume.png" alt="PC Viewer에서 복원 장면 위에 RF 볼륨을 겹쳐 렌더링한 세 시점" />
         </button>
@@ -369,15 +428,22 @@
           <figcaption><b>Handheld</b><span>ESP32-S3 · IMU · 800×480</span></figcaption>
         </figure>
       </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
       <template class="speaker-note">추정한 신호 지도는 복원한 장면 위에 3차원 볼륨으로 겹쳐 띄웁니다. 0.25미터부터 2.75미터까지 0.5미터 간격 여섯 개 층으로 쌓았습니다. 가운데와 오른쪽은 같은 위치에서 보정 전과 후를 비교한 것입니다. 벽 뒤쪽 신호가 어떻게 달라지는지 보실 수 있습니다. 지금부터 직접 보여 드리겠습니다. 먼저 세 가지 방법을 전환하면서 같은 시점에서 결과가 어떻게 달라지는지 보시겠습니다. 다음으로 오른쪽에 있는 기기를 제가 돌리면 왼쪽 Viewer의 카메라가 같은 방향으로 회전합니다. 기기의 자세 센서 값이 Backend를 거쳐 Viewer로 전달되기 때문입니다. 버튼 두 개로 각각 다른 위치로 순간 이동하고, 신호 지도의 높이 층을 바꿀 수 있습니다. 마지막으로 이 Viewer 화면이 Image Relay를 거쳐 기기의 LCD에 그대로 나오는 것을 보여 드리겠습니다.</template>
     </section>
 
     <section class="chapter conclusion" id="conclusion" data-label="결론" data-title="결론과 한계">
-      <div class="ambient-grid" aria-hidden="true"></div>
-      <div class="content conclusion-layout">
-        <div class="section-copy reveal">
+      <div class="canvas">
+        <header class="slide-head">
           <p class="eyebrow"><span>5</span> 결론과 한계</p>
           <h2>복원부터 시각화까지<br /><em>하나의 시스템</em></h2>
+        </header>
+        <div class="slide-body">
+          <div class="ambient-grid" aria-hidden="true"></div>
+      <div class="content conclusion-layout">
+        <div class="section-copy reveal">
           <ul class="bullets">
             <li>공간 복원 · 전파 예측 · 실측 · 분석 · 3D 시각화를 하나의 좌표계로 연결</li>
             <li>시뮬레이션과 실측을 합친 잔차 IDW가 네 방법 중 가장 낮은 <b>MAE 2.78 dB</b> 기록</li>
@@ -393,6 +459,9 @@
           <div><span>04</span><p><b>향후</b>여러 공간과 여러 높이에서 반복 측정 · 벽을 가로지르는 확산을 막는 영역 분리 · 재질 투과손실 측정</p></div>
         </div>
         <p class="closing reveal delay-2">RFVisualizer <span>—</span> 감사합니다</p>
+      </div>
+        </div>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
       <template class="speaker-note">정리하겠습니다. 저희는 사진 촬영과 3차원 복원에서 시작해 전파 시뮬레이션, 신호 실측, 분석, 3차원 시각화와 손에 드는 기기 출력까지를 하나의 시스템으로 연결했습니다. 시뮬레이션과 실측을 합친 잔차 IDW가 비교한 네 방법 중 가장 낮은 평균 오차 2.78 dB를 기록했고, 기기에서 영상과 자세 연동, 버튼 동작을 실물로 확인했습니다. 다만 한계가 분명합니다. 이번 결과는 한 건물의 한 개 층, 공유기 한 대, 보정점 네 개, 한 번의 측정에서 얻은 것이라 다른 공간으로 일반화하기 어렵습니다. 또 측정하지 않은 높이의 볼륨은 한 높이에서 얻은 보정을 위아래로 늘려 표현한 것이라 정성적인 시각화에 가깝습니다. 잔차를 직선 거리로 퍼뜨리는 방식도 벽을 넘어 번지는 문제가 있습니다. 앞으로 여러 공간과 여러 높이에서 측정을 반복하고, 벽을 가로지르는 확산을 막는 방법과 재질의 투과손실 측정을 검증하면 이러한 한계를 줄일 수 있을 것으로 생각합니다. 감사합니다.</template>
     </section>

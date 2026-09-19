@@ -21,7 +21,26 @@ chapters.forEach((chapter, index) => {
 
 const railButtons = [...rail.querySelectorAll('button')];
 const navTotal = document.getElementById('navTotal');
-if (navTotal) navTotal.textContent = String(chapters.length).padStart(2, '0');
+const total = String(chapters.length).padStart(2, '0');
+if (navTotal) navTotal.textContent = total;
+chapters.forEach((chapter, index) => {
+  const num = chapter.querySelector('.foot-num');
+  if (num) num.textContent = `${String(index + 1).padStart(2, '0')} / ${total}`;
+});
+
+// 1600x900 캔버스를 화면에 맞춰 통째로 축소한다
+const CANVAS_W = 1600, CANVAS_H = 900, MARGIN = 26;
+function fitCanvas() {
+  const top = document.fullscreenElement ? 0 : (document.querySelector('.topbar')?.offsetHeight || 0);
+  const k = Math.min(
+    (window.innerWidth - MARGIN * 2) / CANVAS_W,
+    (window.innerHeight - top - MARGIN * 2) / CANVAS_H
+  );
+  document.documentElement.style.setProperty('--k', String(Math.max(k, 0.1)));
+}
+fitCanvas();
+window.addEventListener('resize', fitCanvas);
+document.addEventListener('fullscreenchange', fitCanvas);
 
 function updateUI(index) {
   activeIndex = index;
