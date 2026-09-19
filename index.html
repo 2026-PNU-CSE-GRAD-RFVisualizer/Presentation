@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#071014" />
+  <meta name="description" content="RFVisualizer 졸업과제 시연용 반응형 웹 프레젠테이션" />
+  <title>RFVisualizer — 3D 공간과 RF를 하나의 장면으로</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23071014'/%3E%3Cpath d='M15 42c10-18 24-25 36-20M20 48c8-12 18-17 29-15M29 50c4-5 9-7 15-6' fill='none' stroke='%2369f0c8' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='15' cy='42' r='4' fill='%23ffcc66'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar" aria-label="발표 도구">
+    <a class="brand" href="#intro" aria-label="첫 화면으로 이동">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>RFVisualizer</span>
+    </a>
+    <div class="chapter-status" aria-live="polite">
+      <span id="currentIndex">01</span>
+      <span class="status-line"></span>
+      <span id="currentLabel">INTRO</span>
+    </div>
+    <div class="top-actions">
+      <button class="icon-button" id="notesButton" type="button" aria-pressed="false" aria-controls="notesPanel">
+        <span class="desktop-only">대본</span><kbd>N</kbd>
+      </button>
+      <button class="icon-button" id="fullscreenButton" type="button">
+        <span class="desktop-only">전체화면</span><kbd>F</kbd>
+      </button>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="장면 이동" id="rail"></nav>
+
+  <main id="deck">
+    <section class="chapter intro" id="intro" data-label="INTRO" data-title="프로젝트 목표">
+      <div class="ambient-grid" aria-hidden="true"></div>
+      <div class="content hero-layout">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span>01</span> 졸업과제 통합 시연</p>
+          <h1><span>공간을</span> <span>복원하고,</span><br /><em>전파를 측정하다</em></h1>
+          <p class="hero-summary">실제 복도 복원부터 RF 시뮬레이션, RSSI 실측, 3D Viewer와 Handheld까지 하나의 흐름으로 연결했습니다.</p>
+          <div class="hero-metrics" aria-label="프로젝트 핵심 수치">
+            <div><strong>5</strong><span>ESP32 nodes</span></div>
+            <div><strong>4</strong><span>RF methods</span></div>
+            <div><strong>6</strong><span>height layers</span></div>
+          </div>
+        </div>
+        <figure class="device-stage reveal delay-1">
+          <div class="signal-orbit orbit-a"></div>
+          <div class="signal-orbit orbit-b"></div>
+          <img src="assets/handheld.png" alt="RF 분석 화면이 출력된 Handheld 장치" />
+          <figcaption><span class="live-dot"></span> 실제 Handheld 종단 출력</figcaption>
+        </figure>
+      </div>
+      <template class="speaker-note">와이파이 신호는 보통 평면도 위의 2차원 히트맵으로 표현합니다. 하지만 실제 공간에는 벽과 문, 높이 차이가 있어 평면 그림만으로는 구조와 신호의 관계를 파악하기 어렵습니다. 저희는 사진으로 공간을 복원하고 전파 시뮬레이션과 실측 신호를 결합했습니다. 결과는 PC의 3D Viewer와 Handheld LCD에서 확인할 수 있습니다.</template>
+    </section>
+
+    <section class="chapter" id="problem" data-label="PROBLEM" data-title="2D 히트맵의 한계">
+      <div class="content split-layout">
+        <div class="section-copy reveal">
+          <p class="eyebrow"><span>02</span> 문제 정의</p>
+          <h2>평면은 신호를 보여주지만<br /><em>공간은 설명하지 못합니다</em></h2>
+          <p>같은 좌표라도 벽과 문, 장애물과 높이에 따라 신호는 달라집니다. 직접 CAD 모델을 만드는 방법은 정확하지만 많은 시간과 비용이 듭니다.</p>
+          <div class="callout"><b>우리의 접근</b><span>사진 기반 공간 복원 + 물리 시뮬레이션 + 실제 RSSI</span></div>
+        </div>
+        <div class="problem-visual reveal delay-1" aria-label="2D와 3D RF 표현 비교 다이어그램">
+          <div class="map-plane">
+            <span class="heat heat-a"></span><span class="heat heat-b"></span><span class="heat heat-c"></span>
+            <div class="wall wall-a"></div><div class="wall wall-b"></div><div class="wall wall-c"></div>
+            <div class="floor-label">2D HEATMAP</div>
+          </div>
+          <div class="depth-arrow"><span>+ HEIGHT</span></div>
+          <div class="vertical-scan"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <template class="speaker-note">실제 공간에는 벽과 문, 기둥이 있고 높이에 따라서도 신호가 달라집니다. 평면 그림만으로는 이런 구조와 신호의 관계를 직관적으로 보기 어렵습니다. 반대로 실제 공간을 사람이 직접 3차원 CAD 모델로 만드는 데는 많은 시간과 비용이 필요합니다. 그래서 저희는 사진에서 공간을 복원하는 방법을 선택했습니다.</template>
+    </section>
+
+    <section class="chapter" id="reconstruction" data-label="SCENE" data-title="사진에서 3D 공간으로">
+      <div class="content media-layout">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span>03</span> 공간 구축</p>
+          <h2>사진에서 시작해<br /><em>계산 가능한 공간으로</em></h2>
+        </div>
+        <div class="reconstruction-grid">
+          <button class="image-card scene-card reveal" type="button" data-zoom="assets/gaussian-scene.jpg" aria-label="Gaussian Scene 확대">
+            <img src="assets/gaussian-scene.jpg" alt="사진 기반으로 복원한 실내 Gaussian Scene" />
+            <span class="image-label"><b>Gaussian Scene</b><small>사람이 보는 실제 모습</small></span>
+          </button>
+          <button class="image-card proxy-card reveal delay-1" type="button" data-zoom="assets/proxy-mesh.png" aria-label="Proxy Mesh 확대">
+            <img src="assets/proxy-mesh.png" alt="전파 계산을 위해 단순화한 Proxy Mesh" />
+            <span class="image-label"><b>Proxy Mesh</b><small>컴퓨터가 계산하는 공간 지도</small></span>
+          </button>
+          <div class="process-strip reveal delay-2">
+            <div><span>01</span><b>촬영</b><small>겹치는 사진과 영상</small></div>
+            <i></i>
+            <div><span>02</span><b>COLMAP</b><small>카메라 위치 추정</small></div>
+            <i></i>
+            <div><span>03</span><b>PGSR</b><small>Gaussian + Surface</small></div>
+            <i></i>
+            <div><span>04</span><b>정합</b><small>미터 좌표와 Proxy</small></div>
+          </div>
+        </div>
+      </div>
+      <template class="speaker-note">3층 링 복도를 여러 방향에서 촬영했습니다. 사진이 서로 겹치도록 촬영하면 COLMAP이 카메라 위치와 공간의 기본 구조를 추정합니다. 이 결과를 PGSR에 입력해 Gaussian Scene과 Surface Mesh를 만들었습니다. 복원 표면의 작은 구멍과 불필요한 굴곡은 정리해, 전파 계산에 사용할 Proxy Mesh로 만들었습니다.</template>
+    </section>
+
+    <section class="chapter" id="system" data-label="SYSTEM" data-title="전체 시스템">
+      <div class="content system-content">
+        <div class="section-head horizontal reveal">
+          <div>
+            <p class="eyebrow"><span>04</span> 전체 데이터 흐름</p>
+            <h2>세 개의 흐름이<br /><em>하나의 경험을 만듭니다</em></h2>
+          </div>
+          <p>측정 데이터는 분석으로, Viewer 영상은 LCD로, Handheld 입력은 다시 Viewer로 돌아옵니다.</p>
+        </div>
+        <div class="flow-stack reveal delay-1">
+          <div class="flow-lane lane-green">
+            <span class="lane-name">RSSI DATA</span>
+            <div class="flow-node"><b>ESP32 × 5</b><small>실측</small></div><i></i>
+            <div class="flow-node"><b>Gateway</b><small>ESP-NOW</small></div><i></i>
+            <div class="flow-node"><b>STM32</b><small>검증·JSON</small></div><i></i>
+            <div class="flow-node"><b>MQTT</b><small>중계</small></div><i></i>
+            <div class="flow-node strong"><b>Backend</b><small>저장·QC</small></div>
+          </div>
+          <div class="flow-lane lane-cyan">
+            <span class="lane-name">VIDEO</span>
+            <div class="flow-node"><b>3D Viewer</b><small>800×480</small></div><i></i>
+            <div class="flow-node strong"><b>Image Relay</b><small>최신 프레임</small></div><i></i>
+            <div class="flow-node"><b>Handheld</b><small>LCD 출력</small></div>
+          </div>
+          <div class="flow-lane lane-amber">
+            <span class="lane-name">CONTROL</span>
+            <div class="flow-node"><b>BNO085</b><small>자세·버튼</small></div><i></i>
+            <div class="flow-node strong"><b>Backend</b><small>UDP → WS</small></div><i></i>
+            <div class="flow-node"><b>3D Viewer</b><small>카메라 제어</small></div>
+          </div>
+        </div>
+        <button class="text-link reveal delay-2" type="button" data-zoom="assets/pipeline.png">전체 연구 파이프라인 크게 보기 <span>↗</span></button>
+      </div>
+      <template class="speaker-note">전체 시스템에는 세 가지 흐름이 있습니다. 첫째, ESP32 다섯 대의 RSSI가 Gateway와 STM32, MQTT를 거쳐 Backend에 저장됩니다. 둘째, 3D Viewer가 만든 화면은 Image Relay를 통해 Handheld LCD로 전달됩니다. 셋째, Handheld의 자세와 버튼 입력은 Backend를 거쳐 Viewer 카메라를 제어합니다.</template>
+    </section>
+
+    <section class="chapter" id="embedded" data-label="EMBEDDED" data-title="RSSI 측정">
+      <div class="content split-layout measurement-layout">
+        <div class="measurement-map reveal">
+          <img src="assets/measurement-layout.png" alt="송신기, 보정 지점, 시험 지점의 배치도" />
+          <div class="map-badge">10 TEST POINTS · 4 CALIBRATION NODES</div>
+        </div>
+        <div class="section-copy reveal delay-1">
+          <p class="eyebrow"><span>05</span> 임베디드 계측</p>
+          <h2>실제 공간의 신호를<br /><em>다섯 대가 동시에 측정</em></h2>
+          <p>네 대는 고정 보정 지점에, 한 대는 시험 위치에 배치했습니다. 원시 RSSI와 필터 값을 함께 전달하고, 순서 번호와 오류 상태로 누락과 이상을 추적합니다.</p>
+          <dl class="spec-list">
+            <div><dt>Wireless</dt><dd>ESP-NOW</dd></div>
+            <div><dt>UART</dt><dd>115200 bps</dd></div>
+            <div><dt>Integrity</dt><dd>CRC32 · Checksum</dd></div>
+            <div><dt>Samples</dt><dd>20 repeated observations</dd></div>
+          </dl>
+        </div>
+      </div>
+      <template class="speaker-note">RSSI는 수신한 와이파이 신호의 세기를 나타낸 값입니다. 현장에서는 ESP32 다섯 대를 사용했습니다. 네 대는 고정 보정 지점에 두고 한 대는 시험 위치를 옮겼습니다. 측정값은 ESP-NOW로 Gateway에 모이고, STM32는 형식과 체크섬을 확인해 JSON으로 정리합니다. 누락과 중복을 찾기 위한 순서 번호와 오류 상태도 함께 관리합니다.</template>
+    </section>
+
+    <section class="chapter" id="network" data-label="NETWORK" data-title="Backend 모니터링">
+      <div class="content dashboard-layout">
+        <div class="section-head horizontal reveal">
+          <div>
+            <p class="eyebrow"><span>06</span> 네트워크·Backend</p>
+            <h2>보이지 않는 데이터 흐름을<br /><em>실시간으로 확인합니다</em></h2>
+          </div>
+          <div class="status-pills"><span><i></i>5 nodes online</span><span>QoS 1</span><span>Raw preserved</span></div>
+        </div>
+        <button class="dashboard-frame reveal delay-1" type="button" data-zoom="assets/dashboard.png" aria-label="모니터링 대시보드 확대">
+          <img src="assets/dashboard.png" alt="메시지 수, 드롭률, 노드 상태를 표시하는 모니터링 대시보드" />
+        </button>
+        <div class="metric-glossary reveal delay-2">
+          <div><b>message rate</b><span>초당 수신량</span></div>
+          <div><b>lost packets</b><span>순서 번호 기준 누락</span></div>
+          <div><b>last seen</b><span>마지막 수신 시각</span></div>
+          <div><b>drop rate</b><span>검사에서 제외된 비율</span></div>
+        </div>
+      </div>
+      <template class="speaker-note">STM32 데이터는 Python Bridge와 MQTT Broker를 거쳐 Backend로 전달됩니다. Backend는 값을 검증하고 실험 위치와 시간 구간에 맞춰 저장합니다. 비정상 값도 원본과 오류 사유는 남기고 분석에서만 제외합니다. 대시보드에서는 노드 연결 상태, 초당 수신량, 누락 수, 마지막 수신 시각과 드롭률을 실시간으로 확인할 수 있습니다.</template>
+    </section>
+
+    <section class="chapter" id="methods" data-label="ANALYSIS" data-title="RF 분석 방법">
+      <div class="content methods-layout">
+        <div class="section-head horizontal reveal">
+          <div>
+            <p class="eyebrow"><span>07</span> RF 분석</p>
+            <h2 class="fixed-title-lines"><span>공간의 물리와</span><span><em>현장의 측정을 결합합니다</em></span></h2>
+          </div>
+          <p id="methodDescription">3D 공간에서 반사와 차폐를 계산해 RF의 기본 구조를 만듭니다.</p>
+        </div>
+        <div class="method-tabs reveal delay-1" role="tablist" aria-label="RF 분석 단계">
+          <button class="method-tab active" type="button" role="tab" aria-selected="true" data-method="raw"><span>01</span>Raw Sionna RT</button>
+          <button class="method-tab" type="button" role="tab" aria-selected="false" data-method="residual"><span>02</span>Residual field</button>
+          <button class="method-tab" type="button" role="tab" aria-selected="false" data-method="corrected"><span>03</span>Residual IDW</button>
+        </div>
+        <div class="method-stage reveal delay-2">
+          <button class="method-image" type="button" data-zoom="assets/raw-sionna.png" aria-label="RF 분석 이미지 확대">
+            <img id="methodImage" src="assets/raw-sionna.png" alt="Raw Sionna RT RF 분포" />
+          </button>
+          <div class="method-side">
+            <div class="formula" id="methodFormula"><span>Geometry</span><i>+</i><span>Materials</span><i>=</i><strong>Physics</strong></div>
+            <div class="method-summary" id="methodSummary">
+              <b>물리 시뮬레이션</b>
+              <p>벽과 복도 구조를 반영하지만, 실제 재질과 문 상태를 완벽하게 입력하기 어렵습니다.</p>
+            </div>
+            <div class="mini-methods">
+              <span><b>Plain IDW</b> 측정값만 거리로 보간</span>
+              <span><b>Global Bias</b> 전체에 같은 보정값 적용</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <template class="speaker-note">Raw Sionna RT는 3차원 공간에서 전파가 반사되거나 가려지는 과정을 계산합니다. Plain IDW는 가까운 측정 지점에 더 큰 가중치를 주어 빈 위치를 채웁니다. Residual IDW는 실제값과 Sionna 예측값의 차이인 잔차를 주변에 보간해 원래 결과에 더합니다. 공간 구조는 유지하면서 실제 환경의 오차를 보정하는 방식입니다.</template>
+    </section>
+
+    <section class="chapter" id="results" data-label="RESULTS" data-title="정량 결과">
+      <div class="content results-layout">
+        <div class="section-copy reveal">
+          <p class="eyebrow"><span>08</span> 비교 평가</p>
+          <h2>Residual IDW,<br /><em>가장 낮은 오차</em></h2>
+          <p>MAE와 RMSE는 실제값과 예측값의 차이입니다. 낮을수록 실제 측정에 가깝습니다.</p>
+          <div class="winning-number"><strong>3.41</strong><span>dB<br />MAE</span></div>
+        </div>
+        <div class="bar-chart reveal delay-1" aria-label="네 방법의 MAE 비교 막대그래프">
+          <div class="chart-scale"><span>0</span><span>3</span><span>6</span><span>9 dB</span></div>
+          <div class="bar-row"><span>Raw Sionna RT</span><div><i style="--value:84.9%"></i></div><b>7.64</b></div>
+          <div class="bar-row"><span>Plain IDW</span><div><i style="--value:59.2%"></i></div><b>5.33</b></div>
+          <div class="bar-row winner"><span>Residual IDW</span><div><i style="--value:37.9%"></i></div><b>3.41</b></div>
+          <div class="bar-row"><span>Global Bias</span><div><i style="--value:91.8%"></i></div><b>8.26</b></div>
+          <p>Mean Absolute Error · lower is better</p>
+        </div>
+        <div class="result-table reveal delay-2">
+          <div class="table-head"><span>METHOD</span><span>MAE</span><span>RMSE</span></div>
+          <div><span>Raw Sionna RT</span><b>7.64</b><b>9.32</b></div>
+          <div><span>Plain IDW</span><b>5.33</b><b>7.09</b></div>
+          <div class="highlight"><span>Sionna + Residual IDW</span><b>3.41</b><b>4.74</b></div>
+          <div><span>Sionna + Global Bias</span><b>8.26</b><b>9.83</b></div>
+        </div>
+      </div>
+      <template class="speaker-note">MAE와 RMSE는 실제값과 예측값의 차이를 나타내며 낮을수록 좋습니다. MAE는 Raw Sionna RT가 7.64 dB, Plain IDW가 5.33 dB였습니다. Residual IDW 결합 결과는 3.41 dB로 가장 낮았고, Global Bias는 8.26 dB였습니다. Residual IDW가 시뮬레이션 구조와 측정 오차를 함께 반영한 결과입니다.</template>
+    </section>
+
+    <section class="chapter" id="viewer" data-label="DEMO" data-title="Viewer와 Handheld">
+      <div class="content demo-layout">
+        <div class="section-head horizontal reveal">
+          <div>
+            <p class="eyebrow"><span>09</span> 통합 시연</p>
+            <h2>손의 움직임이<br /><em>3D 공간과 연결됩니다</em></h2>
+          </div>
+          <p>BNO085 자세 추적, 텔레포트, 높이 변경, LCD 영상 출력을 한 장치에서 확인합니다.</p>
+        </div>
+        <div class="viewer-window reveal delay-1">
+          <div class="window-bar"><span></span><span></span><span></span><b>RFVisualizer / live viewer</b><em id="viewerMode">RESIDUAL IDW</em></div>
+          <div class="viewer-scene" id="viewerScene">
+            <img src="assets/gaussian-scene.jpg" alt="3D Viewer 장면 미리보기" />
+            <div class="rf-plane" id="rfPlane"></div>
+            <div class="viewer-hud"><b>-42 dBm</b><span id="heightLabel">Z 1.2 m</span></div>
+          </div>
+          <div class="viewer-controls" aria-label="Viewer 데모 컨트롤">
+            <button type="button" data-view="raw">Raw</button>
+            <button class="active" type="button" data-view="residual">Residual</button>
+            <span></span>
+            <button type="button" data-height="0.8">0.8 m</button>
+            <button class="active" type="button" data-height="1.2">1.2 m</button>
+            <button type="button" data-height="1.6">1.6 m</button>
+          </div>
+        </div>
+        <figure class="handheld-shot reveal delay-2">
+          <img src="assets/handheld.png" alt="Viewer 화면을 표시하는 Handheld 실물" />
+          <figcaption><b>Handheld</b><span>IMU · 2 buttons · 800×480 LCD</span></figcaption>
+        </figure>
+      </div>
+      <template class="speaker-note">Handheld의 BNO085 센서가 손의 방향을 측정해 Backend로 보내면 3D Viewer 카메라가 같은 방향으로 회전합니다. 첫 번째 버튼은 텔레포트, 두 번째 버튼은 RF 히트맵의 높이 층 변경에 사용합니다. Viewer의 800×480 화면은 Image Relay를 거쳐 Handheld로 전달되고 NT35510 LCD에 표시됩니다.</template>
+    </section>
+
+    <section class="chapter conclusion" id="conclusion" data-label="OUTRO" data-title="결론과 한계">
+      <div class="ambient-grid" aria-hidden="true"></div>
+      <div class="content conclusion-layout">
+        <div class="section-copy reveal">
+          <p class="eyebrow"><span>10</span> 결론</p>
+          <h2>측정에서 끝나지 않고<br /><em>공간 안에서 경험합니다</em></h2>
+          <p>공간 복원, RF 시뮬레이션, RSSI 실측, 분석, 3D 시각화와 Handheld 출력을 하나의 시스템으로 연결했습니다.</p>
+          <div class="final-flow"><span>RECONSTRUCT</span><i></i><span>MEASURE</span><i></i><span>CORRECT</span><i></i><span>VISUALIZE</span></div>
+        </div>
+        <div class="limits-panel reveal delay-1">
+          <p class="panel-kicker">LIMITATIONS / NEXT</p>
+          <div><span>01</span><p><b>단일 건물·단일 AP</b>현재 결과는 탐색적 결과이며 다른 공간으로 일반화하지 않습니다.</p></div>
+          <div><span>02</span><p><b>높이 방향 정성 표현</b>한 높이의 보정값을 확장했으므로 수직 정확도는 추가 측정이 필요합니다.</p></div>
+          <div><span>03</span><p><b>다음 단계</b>여러 공간과 여러 높이에서 반복 측정해 일반성과 3D 정확도를 높입니다.</p></div>
+        </div>
+        <p class="closing reveal delay-2">RFVisualizer <span>—</span> Thank you</p>
+      </div>
+      <template class="speaker-note">저희는 공간 촬영과 3차원 복원에서 시작해 RF 시뮬레이션, RSSI 실측, 분석, 3D 시각화와 Handheld 출력까지 연결했습니다. 이번 결과는 한 건물과 한 공유기 환경에서 얻은 탐색적 결과이며, 수직 방향 RF Volume은 시각적인 해석에 가깝습니다. 여러 공간과 높이에서 측정을 반복하면 일반성과 3차원 정확도를 높일 수 있습니다. 감사합니다.</template>
+    </section>
+  </main>
+
+  <aside class="notes-panel" id="notesPanel" aria-hidden="true" aria-label="발표자 대본">
+    <div class="notes-head"><span>발표자 대본</span><button type="button" id="closeNotes" aria-label="대본 닫기">×</button></div>
+    <p class="notes-meta" id="notesMeta"></p>
+    <div class="notes-copy" id="notesCopy"></div>
+    <p class="notes-hint">N으로 열고 닫기 · 방향키로 장면 이동</p>
+  </aside>
+
+  <div class="progress-track" aria-hidden="true"><i id="progressBar"></i></div>
+  <div class="nav-controls" aria-label="이전 및 다음 장면">
+    <button type="button" id="prevButton" aria-label="이전 장면">←</button>
+    <span><b id="navIndex">01</b> / 10</span>
+    <button type="button" id="nextButton" aria-label="다음 장면">→</button>
+  </div>
+
+  <dialog class="lightbox" id="lightbox">
+    <button type="button" id="closeLightbox" aria-label="확대 이미지 닫기">×</button>
+    <img id="lightboxImage" alt="확대 이미지" />
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
