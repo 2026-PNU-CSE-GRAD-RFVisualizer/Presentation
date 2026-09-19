@@ -92,6 +92,28 @@ document.getElementById('fullscreenButton').addEventListener('click', async () =
   } catch (_) {}
 });
 
+// 레이저 포인터 — 위치만 갱신하므로 주사율과 무관하다
+const laser = document.createElement('div');
+laser.className = 'laser';
+laser.setAttribute('aria-hidden', 'true');
+document.body.append(laser);
+
+let laserX = 0, laserY = 0, laserQueued = false;
+function drawLaser() {
+  laser.style.transform = `translate(${laserX}px, ${laserY}px)`;
+  laserQueued = false;
+}
+document.addEventListener('pointermove', (event) => {
+  laserX = event.clientX;
+  laserY = event.clientY;
+  if (!laserQueued) { laserQueued = true; requestAnimationFrame(drawLaser); }
+}, { passive: true });
+
+function toggleLaser(force) {
+  const on = typeof force === 'boolean' ? force : !document.body.classList.contains('laser-on');
+  document.body.classList.toggle('laser-on', on);
+}
+
 document.addEventListener('keydown', (event) => {
   if (document.getElementById('lightbox').open && event.key !== 'Escape') return;
   if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); goTo(activeIndex + 1); }
@@ -100,11 +122,12 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'End') goTo(chapters.length - 1);
   if (event.key.toLowerCase() === 'n') toggleNotes();
   if (event.key.toLowerCase() === 'f') document.getElementById('fullscreenButton').click();
-  if (event.key === 'Escape') toggleNotes(false);
+  if (event.key.toLowerCase() === 'l') toggleLaser();
+  if (event.key === 'Escape') { toggleNotes(false); toggleLaser(false); }
 });
 
 document.addEventListener('wheel', (event) => {
-  if (window.innerWidth < 1100 || notesPanel.matches(':hover') || Math.abs(event.deltaY) < 34 || wheelLocked) return;
+  if (notesPanel.matches(':hover') || Math.abs(event.deltaY) < 34 || wheelLocked) return;
   wheelLocked = true;
   goTo(activeIndex + (event.deltaY > 0 ? 1 : -1));
   window.setTimeout(() => { wheelLocked = false; }, 650);
