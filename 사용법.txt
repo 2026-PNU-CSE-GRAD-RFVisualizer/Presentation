@@ -23,30 +23,36 @@ RFVisualizer 웹 프레젠테이션
    - 장면 이동, 캔버스 배율, 쪽번호: app.js
    - 사진 교체: assets 폴더
 
-5. 사진/영상 자리(Placeholder) 채우기
-   점선 상자로 표시된 자리에 아직 사진이나 영상이 들어가지 않았습니다.
-   상자 안에 채워 넣을 파일 이름이 적혀 있습니다.
+5. 영상
+   14~16페이지 영상은 페이지에 들어가면 자동으로 재생되고 계속 반복됩니다.
+   페이지를 벗어나면 멈추고 처음으로 되감깁니다. 자동 재생을 위해 음소거로
+   넣었으므로 소리는 나지 않습니다.
 
-     08 모니터링      assets/monitor.png  또는 monitor.mp4
-     14 시연 영상 1   assets/demo-methods.mp4
-     15 시연 영상 2   assets/demo-pose-viewer.mp4 / demo-pose-device.mp4
-     16 시연 영상 3   assets/demo-buttons.mp4 / demo-relay.mp4
+     14 영상 1   assets/demo-methods.mp4
+     15 영상 2   assets/demo-pose-viewer.mp4 / demo-pose-device.mp4
+     16 영상 3   assets/demo-teleport.mp4 / demo-level.mp4
 
-   파일을 assets 폴더에 넣은 뒤, index.html에서 해당 자리의
+   컨트롤 막대는 띄우지 않았습니다. 발표 중 멈추고 싶으면 영상을 클릭하면
+   일시정지되고, 다시 클릭하면 이어서 재생됩니다.
 
-     <div class="media-slot"> ... </div>
+   영상을 바꾸려면 assets 폴더의 파일을 같은 이름으로 덮어쓰거나,
+   index.html의 video 태그에서 src를 바꾸면 됩니다.
 
-   블록을 통째로 아래 중 하나로 바꾸면 됩니다.
+6. 아직 비어 있는 자리
+   08 모니터링 페이지에는 아직 화면이 들어가지 않았습니다. 점선 상자 안에
+   파일 이름이 적혀 있습니다.
 
-     영상:  <video class="media-fill" src="assets/demo-methods.mp4"
-                   controls muted loop playsinline></video>
+     assets/monitor.png  또는  assets/monitor.mp4
+
+   파일을 넣은 뒤 index.html에서 해당 <div class="media-slot"> 블록을
+   아래 중 하나로 바꾸면 됩니다.
+
+     영상:  <video class="media-fill" src="assets/monitor.mp4"
+                   muted loop playsinline preload="metadata"></video>
 
      사진:  <img class="media-fill" src="assets/monitor.png" alt="모니터링 화면" />
 
-   media-fill 클래스가 상자 크기에 맞춰 여백 없이 채워 줍니다.
-   발표 중 자동 재생을 원하면 video 태그에 autoplay 를 추가하세요.
-
-6. 동작 줄이기(Reduce motion)가 켜진 기기
+7. 동작 줄이기(Reduce motion)가 켜진 기기
    운영체제의 "동작 줄이기 / Reduce motion" 설정이 켜져 있으면 브라우저가
    모든 전환을 사실상 0으로 만듭니다. 그대로 두면 등장 연출이 순식간에
    지나가 화면이 튀어 보입니다.

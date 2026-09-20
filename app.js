@@ -55,7 +55,32 @@ function updateUI(index) {
   notesMeta.textContent = `${number} · ${chapters[index].dataset.title}`;
   notesCopy.textContent = note ? note.content.textContent.trim() : '';
   document.title = `${number} ${chapters[index].dataset.title} — RFVisualizer`;
+  syncVideos(index);
 }
+
+// 장면에 들어오면 자동 재생, 나가면 멈추고 처음으로 되감는다
+function syncVideos(index) {
+  chapters.forEach((chapter, i) => {
+    chapter.querySelectorAll('video').forEach((video) => {
+      if (i === index) {
+        const playing = video.play();
+        if (playing) playing.catch(() => {});
+      } else if (!video.paused || video.currentTime) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  });
+}
+
+// 컨트롤을 띄우지 않으므로 클릭으로 일시정지한다
+document.querySelectorAll('video.media-fill').forEach((video) => {
+  video.style.cursor = 'pointer';
+  video.addEventListener('click', () => {
+    if (video.paused) { const p = video.play(); if (p) p.catch(() => {}); }
+    else video.pause();
+  });
+});
 
 function goTo(index) {
   const safeIndex = Math.max(0, Math.min(chapters.length - 1, index));
