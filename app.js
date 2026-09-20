@@ -73,6 +73,33 @@ function syncVideos(index) {
   });
 }
 
+// data-loop-end: 지정한 시각에서 되감는다.
+// 같은 슬라이드의 영상은 함께 되감아 길이가 달라도 싱크가 유지된다.
+chapters.forEach((chapter) => {
+  const group = [...chapter.querySelectorAll('video')];
+  if (!group.some((video) => Number.isFinite(parseFloat(video.dataset.loopEnd)))) return;
+
+  function rewindGroup() {
+    group.forEach((video) => {
+      video.currentTime = 0;
+      const playing = video.play();
+      if (playing) playing.catch(() => {});
+    });
+  }
+
+  group.forEach((video) => {
+    const end = parseFloat(video.dataset.loopEnd);
+    if (!Number.isFinite(end)) return;
+    const frameStep = 'requestVideoFrameCallback' in video;
+    const check = () => {
+      if (video.currentTime >= end) rewindGroup();
+      if (frameStep) video.requestVideoFrameCallback(check);
+    };
+    if (frameStep) video.requestVideoFrameCallback(check);
+    else video.addEventListener('timeupdate', check);
+  });
+});
+
 // 컨트롤을 띄우지 않으므로 클릭으로 일시정지한다
 document.querySelectorAll('video.media-fill').forEach((video) => {
   video.style.cursor = 'pointer';
