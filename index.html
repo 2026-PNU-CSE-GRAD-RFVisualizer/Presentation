@@ -136,16 +136,16 @@
                 <span class="image-label"><b>Gaussian Scene</b><small>사람이 보는 장면 (RF 볼륨 겹침)</small></span>
               </button>
               <button class="image-card proxy-card reveal delay-1" type="button" data-zoom="assets/proxy-mesh.png"
-                aria-label="Proxy Shell 확대">
-                <img src="assets/proxy-mesh.png" alt="바닥·벽·천장 그룹으로 이루어진 닫힌 Proxy Shell" />
-                <span class="image-label"><b>Proxy Shell</b><small>컴퓨터가 전파를 계산하는 공간</small></span>
+                aria-label="Proxy Mesh 확대">
+                <img src="assets/proxy-mesh.png" alt="바닥·벽·천장 그룹으로 이루어진 닫힌 Proxy Mesh" />
+                <span class="image-label"><b>Proxy Mesh</b><small>컴퓨터가 전파를 계산하는 공간</small></span>
               </button>
               <div class="process-strip reveal delay-2">
                 <div><span>01</span><b>촬영</b><small>겹치는 사진과 영상</small></div>
                 <i></i>
                 <div><span>02</span><b>COLMAP</b><small>사진에서 카메라 위치 추정</small></div>
                 <i></i>
-                <div><span>03</span><b>PGSR</b><small>Gaussian Scene + 표면 메시</small></div>
+                <div><span>03</span><b>PGSR</b><small>Gaussian Scene + Surface Mesh</small></div>
                 <i></i>
                 <div><span>04</span><b>Proxy 정리</b><small>벽/바닥/장애물 단순화</small></div>
               </div>
@@ -214,7 +214,7 @@
             <div class="section-copy reveal delay-1">
               <ul class="bullets">
                 <li><b>RSSI</b>는 수신한 신호의 세기. 단위는 dBm이고 음수이며, 값이 낮을수록 약함</li>
-                <li>공유기 1대를 놓고 ESP32 5대로 잼. 고정 <b>보정점 4</b> + 이동 <b>시험점 10</b></li>
+                <li>공유기 1대를 놓고 ESP32 5대로 측정. 고정 <b>보정점 4</b> + 이동 <b>시험점 10</b></li>
                 <li>보정점은 <b>벽에 가린 곳과 아닌 곳</b>에 2:2로 나눔. 한쪽에 몰리면 반대편 보정이 추측이 됨</li>
                 <li>시험점 값은 보정에 쓰지 않고 <b>채점에만</b> 씀</li>
               </ul>
@@ -265,7 +265,6 @@
               </ul>
             </div>
             <div class="section-copy reveal delay-1">
-              <div class="status-pills"><span><i></i>5 nodes</span><span>QoS 1</span><span>원본 보존</span></div>
               <div class="metric-glossary stacked">
                 <div><b>message rate</b><span>초당 수신량</span></div>
                 <div><b>lost packets</b><span>순번 기준 누락</span></div>
@@ -293,12 +292,11 @@
           <div class="content slot-layout">
             <div class="slot-row">
               <video class="media-fill" src="assets/monitor.mp4" muted loop playsinline preload="metadata"
-                aria-label="3D Viewer에서 분석 방법을 전환하는 영상"></video>
+                aria-label="측정 중 Backend 모니터링 대시보드 화면"></video>
             </div>
           </div>
         </div>
-      </div>
-      <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
       <template class="speaker-note">측정이 도는 동안 Backend 대시보드에서 수집 상태를 실시간으로 확인합니다. 왼쪽 위 지표가 초당 수신량이고, 그 옆이 누락된 패킷 수와
         드롭률입니다. 아래 표에는 노드 다섯 대의 연결 상태와 마지막 수신 시각이 나옵니다. 지금 보시는 것처럼 다섯 대가 모두 ONLINE을 유지하고 초당 수신량이 일정하게 들어오는 것이 정상 상태입니다.
@@ -366,8 +364,8 @@
                 <figcaption><b>① 시뮬레이션만</b><span>구조는 보이지만 전체가 치우침</span><em>MAE 8.64 dB</em></figcaption>
               </figure>
               <figure class="method-panel">
-                <button class="method-image" type="button" data-zoom="assets/plain-idw.svg" aria-label="측정 보간 결과 확대">
-                  <img src="assets/plain-idw.svg" alt="측정값만 거리 가중치로 보간한 Plain IDW 분포" />
+                <button class="method-image" type="button" data-zoom="assets/plain-idw.png" aria-label="측정 보간 결과 확대">
+                  <img src="assets/plain-idw.png" alt="측정값만 거리 가중치로 보간한 Plain IDW 추정 지도" />
                 </button>
                 <figcaption><b>② 측정만</b><span>부드럽지만 벽을 통과해 번짐</span><em>MAE 5.89 dB</em></figcaption>
               </figure>
