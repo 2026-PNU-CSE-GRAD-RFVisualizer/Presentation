@@ -291,17 +291,14 @@
         </header>
         <div class="slide-body">
           <div class="content slot-layout">
-            <div class="media-slot">
-              <div>
-                <span class="slot-kind">SCREEN / VIDEO</span>
-                <b>Backend 모니터링 대시보드</b>
-                <span class="slot-hint">측정 중 메시지 수 / 노드 상태 / 드롭 / 손실 값이 변하는 화면<br /><code>assets/monitor.png</code> 또는
-                  <code>assets/monitor.mp4</code>로 교체</span>
-              </div>
+            <div class="slot-row">
+              <video class="media-fill" src="assets/monitor.mp4" muted loop playsinline preload="metadata"
+                aria-label="3D Viewer에서 분석 방법을 전환하는 영상"></video>
             </div>
           </div>
         </div>
-        <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
+      </div>
+      <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
       <template class="speaker-note">측정이 도는 동안 Backend 대시보드에서 수집 상태를 실시간으로 확인합니다. 왼쪽 위 지표가 초당 수신량이고, 그 옆이 누락된 패킷 수와
         드롭률입니다. 아래 표에는 노드 다섯 대의 연결 상태와 마지막 수신 시각이 나옵니다. 지금 보시는 것처럼 다섯 대가 모두 ONLINE을 유지하고 초당 수신량이 일정하게 들어오는 것이 정상 상태입니다.
