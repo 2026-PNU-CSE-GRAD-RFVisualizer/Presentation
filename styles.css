@@ -359,7 +359,7 @@ p { line-height: 1.75; }
 .media-slot .slot-hint code { color: var(--cyan); font-family: inherit; }
 .media-slot.photo .slot-kind { background: var(--cyan); }
 
-.slot-layout { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 20px; align-content: stretch; }
+.slot-layout { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 20px; align-content: stretch; min-height: 0; }
 .slot-row { display: grid; gap: 16px; min-height: 0; }
 .slot-row.two { grid-template-columns: 1fr 1fr; }
 .slot-caption { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: baseline;
@@ -386,7 +386,7 @@ p { line-height: 1.75; }
 .slot-row { height: 100%; }
 
 /* Placeholder를 실제 사진/영상으로 바꿀 때 쓰는 클래스 */
-.media-fill { width: 100%; height: 100%; object-fit: contain; display: block;
+.media-fill { width: 100%; height: 100%; min-height: 0; object-fit: contain; display: block;
   border: 1px solid var(--line); border-radius: 14px; background: #05090b; box-sizing: border-box; }
 
 /* 레이저 포인터 (L로 켜고 끔) */
@@ -397,3 +397,10 @@ p { line-height: 1.75; }
   box-shadow: 0 0 22px 8px rgba(255,59,48,.35); }
 body.laser-on .laser { opacity: 1; }
 body.laser-on, body.laser-on *, body.laser-on button, body.laser-on a { cursor: none !important; }
+
+/* 영상 + 캡션 묶음 */
+.media-figure { margin: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 11px; min-height: 0; }
+.slot-row > * { min-height: 0; }
+.media-figure figcaption { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: baseline; }
+.media-figure figcaption b { color: var(--green); font-size: .86rem; }
+.media-figure figcaption span { color: var(--muted); font-size: .78rem; line-height: 1.55; }

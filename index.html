@@ -528,13 +528,8 @@
         </header>
         <div class="slide-body">
           <div class="content slot-layout">
-            <div class="media-slot">
-              <div>
-                <span class="slot-kind">VIDEO</span>
-                <b>3D Viewer · 분석 방법 전환</b>
-                <span class="slot-hint">같은 카메라 위치에서 Raw Sionna / Plain IDW / Residual IDW를 순서대로
-                  전환<br /><code>assets/demo-methods.mp4</code>로 교체</span>
-              </div>
+            <div class="slot-row">
+              <video class="media-fill" src="assets/demo-methods.mp4" muted loop playsinline preload="metadata" aria-label="3D Viewer에서 분석 방법을 전환하는 영상"></video>
             </div>
             <div class="slot-caption">
               <b>볼 것</b>
@@ -559,20 +554,8 @@
         <div class="slide-body">
           <div class="content slot-layout">
             <div class="slot-row two">
-              <div class="media-slot">
-                <div>
-                  <span class="slot-kind">VIDEO</span>
-                  <b>PC Viewer 화면</b>
-                  <span class="slot-hint">Handheld 자세에 따라 회전하는 카메라<br /><code>assets/demo-pose-viewer.mp4</code></span>
-                </div>
-              </div>
-              <div class="media-slot">
-                <div>
-                  <span class="slot-kind">VIDEO</span>
-                  <b>실제 기기 촬영</b>
-                  <span class="slot-hint">손으로 기기를 돌리는 모습<br /><code>assets/demo-pose-device.mp4</code></span>
-                </div>
-              </div>
+              <video class="media-fill" src="assets/demo-pose-viewer.mp4" muted loop playsinline preload="metadata" aria-label="Handheld 자세에 따라 회전하는 PC Viewer 화면"></video>
+              <video class="media-fill" src="assets/demo-pose-device.mp4" muted loop playsinline preload="metadata" aria-label="손으로 기기를 돌리는 모습"></video>
             </div>
             <div class="slot-caption">
               <b>경로</b>
@@ -587,44 +570,34 @@
         있습니다.</template>
     </section>
 
-    <section class="chapter" id="demo-controls" data-label="영상 3" data-title="시연 · 버튼과 LCD">
+    <section class="chapter" id="demo-controls" data-label="영상 3" data-title="시연 · 버튼 조작">
       <div class="canvas">
         <header class="slide-head">
           <p class="eyebrow"><span>4</span> 통합 시연 · 영상 3</p>
-          <h2>버튼 조작과 <em>기기 화면 출력</em></h2>
-          <p class="head-note">버튼 두 개로 위치 이동과 높이 층 변경 · Viewer 화면이 기기 LCD에 그대로 표시</p>
+          <h2>버튼 두 개로 <em>이동과 높이 변경</em></h2>
+          <p class="head-note">왼쪽은 위치를 옮기는 텔레포트, 오른쪽은 RF 볼륨의 높이 층 변경</p>
         </header>
         <div class="slide-body">
           <div class="content slot-layout">
             <div class="slot-row two">
-              <div class="media-slot">
-                <div>
-                  <span class="slot-kind">VIDEO</span>
-                  <b>텔레포트 · 높이 층 변경</b>
-                  <span class="slot-hint">버튼 1은 위치 이동, 버튼 2는 RF 볼륨 층 변경<br /><code>assets/demo-buttons.mp4</code></span>
-                </div>
-              </div>
-              <div class="media-slot">
-                <div>
-                  <span class="slot-kind">VIDEO</span>
-                  <b>Image Relay → LCD 출력</b>
-                  <span class="slot-hint">Viewer 800×480 화면이 기기 LCD에 나오는
-                    모습<br /><code>assets/demo-relay.mp4</code></span>
-                </div>
-              </div>
+              <figure class="media-figure">
+                <video class="media-fill" src="assets/demo-teleport.mp4" muted loop playsinline preload="metadata" aria-label="버튼으로 다른 위치로 텔레포트하는 영상"></video>
+                <figcaption><b>텔레포트</b><span>버튼 1 · 복도의 다른 지점으로 즉시 이동</span></figcaption>
+              </figure>
+              <figure class="media-figure">
+                <video class="media-fill" src="assets/demo-level.mp4" muted loop playsinline preload="metadata" aria-label="RF 볼륨의 높이 층을 바꾸는 영상"></video>
+                <figcaption><b>높이 층 변경</b><span>버튼 2 · 0.25~2.75 m의 6개 층을 오감</span></figcaption>
+              </figure>
             </div>
             <div class="slot-caption">
-              <b>경로</b>
-              <span>Viewer 프레임 → Image Relay(최신 완성 프레임 우선) → Handheld NT35510 LCD. 층 변경 시 0.25~2.75 m 중 어느 층인지 함께
-                표시</span>
+              <b>볼 것</b>
+              <span>텔레포트 후에도 RF 볼륨이 공간에 그대로 붙어 있는지 · 층을 바꿀 때 벽 뒤 신호의 세기가 어떻게 달라지는지</span>
             </div>
           </div>
         </div>
         <footer class="slide-foot"><span>RFVisualizer</span><span class="foot-num"></span></footer>
       </div>
-      <template class="speaker-note">마지막으로 버튼 조작과 화면 출력입니다. 왼쪽 영상에서 첫 번째 버튼을 누르면 다른 위치로 순간 이동하고, 두 번째 버튼을 누르면 RF 볼륨의 높이
-        층이 바뀝니다. 0.25미터부터 2.75미터까지 여섯 개 층을 오갈 수 있습니다. 오른쪽 영상은 이 Viewer 화면이 Image Relay를 거쳐 기기의 LCD에 그대로 표시되는 모습입니다.
-        Image Relay는 최신 완성 프레임을 우선해 중계하기 때문에 지연이 쌓이지 않습니다.</template>
+      <template class="speaker-note">버튼 조작을 보여 드리겠습니다. 왼쪽 영상에서 첫 번째 버튼을 누르면 복도의 다른 지점으로 즉시 이동합니다. 시점이 바뀌어도 RF 볼륨은 공간에 그대로 붙어 있습니다. 오른쪽 영상에서 두 번째 버튼을 누르면 RF 볼륨의 높이 층이 바뀝니다. 0.25미터부터 2.75미터까지 여섯 개 층을 오갈 수 있고, 층이 올라갈수록 벽 뒤 신호의 분포가 달라지는 것을 보실 수 있습니다.</template>
     </section>
 
     <section class="chapter conclusion" id="conclusion" data-label="결론" data-title="결론과 한계">
